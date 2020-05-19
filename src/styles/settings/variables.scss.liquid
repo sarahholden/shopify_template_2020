@@ -1,0 +1,136 @@
+/* --------------------------------------------------------------------------
+Colors
+-----------------------------------------------------------------------------*/
+$black: #383938;
+$white: #FFF;
+$grayBlue: #5d6787;
+$cream: #F4F2EC;
+
+$primaryBgColor: $white;
+$primaryTextColor: $black;
+$primaryAnchorColor: $grayBlue;
+
+$secondaryBgColor: $cream;
+$secondaryTextColor: $black;
+
+$borderColor: #383938;
+$border: 1px solid $borderColor;
+
+/* --------------------------------------------------------------------------
+Font Sizes
+-----------------------------------------------------------------------------*/
+$baseSize: 10px;
+$tabletBaseSize: 9px;
+$mobileBaseSize: 8px;
+
+$bodyTextFontSize: 1.4rem;
+
+$largeHeadingFontSize: 2.7rem;
+$mediumHeadingFontSize: 2rem;
+$smallHeadingFontSize: 2rem;
+
+/* --------------------------------------------------------------------------
+Font Styles
+-----------------------------------------------------------------------------*/
+$bodyTextLineHeight: 1.6;
+$bodyTextLetterSpacing: 0.05rem;
+
+/* --------------------------------------------------------------------------
+Mixins
+-----------------------------------------------------------------------------*/
+%smallCaps {
+  text-transform: uppercase;
+  font-size: $smallHeadingFontSize;
+  line-height: 1.6;
+  letter-spacing: 0.1rem;
+}
+
+%secondarySection {
+  background-color: $secondaryBgColor;
+  color: $secondaryTextColor;
+}
+
+/* --------------------------------------------------------------------------
+Responsive Mixins
+-----------------------------------------------------------------------------*/
+
+/* Adjust breakpoints below if needed  */
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$desktop-lg-width: 1250px;
+$monitor-width: 1440px;
+
+@mixin mobile-only {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (max-width: #{$desktop-width}) and (min-width: #{$tablet-width + 1}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet-width + 1}) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$desktop-width + 1}) {
+    @content;
+  }
+}
+
+@mixin desktop-sm-down {
+  @media (max-width: #{$desktop-lg-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-sm-only {
+  @media (min-width: #{$desktop-width + 1}) and (max-width: #{$desktop-lg-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-lg-up {
+  @media (min-width: #{$desktop-lg-width + 1}) {
+    @content;
+  }
+}
+
+@mixin monitor-up {
+  @media (min-width: #{$monitor-width + 1}) {
+    @content;
+  }
+}
+
+/* --------------------------------------------------------------------------
+Hide / Show
+-----------------------------------------------------------------------------*/
+.show-mobile {
+  display: none;
+  @include mobile-only {
+    display: block;
+  }
+}
+
+.hide-mobile {
+  @include mobile-only {
+    display: none !important;
+  }
+}
+
+
+.hide {
+  display: none;
+}

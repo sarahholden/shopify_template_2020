@@ -1,0 +1,131 @@
+/* --------------------------------------------------------------------------
+Typography
+-----------------------------------------------------------------------------*/
+html {
+  font-size: $baseSize;
+  font-size: 0.6944444444444vw;
+}
+
+body {
+  background-color: $primaryBgColor;
+  font-family: $bodyTextFont;
+  font-size: $bodyTextFontSize;
+  color: $primaryTextColor;
+  line-height: $bodyTextLineHeight;
+  letter-spacing: $bodyTextLetterSpacing;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-font-smoothing: antialiased;
+
+}
+
+/* --------------------------------------------------------------------------
+Anchors
+-----------------------------------------------------------------------------*/
+a {
+  color: $primaryAnchorColor;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+a:active,
+a:hover {
+  color: darken($primaryAnchorColor, 10%);
+}
+
+/* --------------------------------------------------------------------------
+Headings
+-----------------------------------------------------------------------------*/
+h1,
+h2,
+h3,
+h4 {
+  font-family: $headingFont;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-size: $largeHeadingFontSize;
+}
+
+h2 {
+  font-size: $mediumHeadingFontSize;
+}
+
+h3 {
+  font-size: $smallHeadingFontSize;
+}
+
+/* --------------------------------------------------------------------------
+Lists
+-----------------------------------------------------------------------------*/
+li,
+ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+
+}
+
+/* --------------------------------------------------------------------------
+Body Type
+-----------------------------------------------------------------------------*/
+.desc-large {
+  font-size: 2.2rem;
+  @include mobile-only {
+    font-size: 1.5rem;
+  }
+}
+
+.text-columns {
+  column-count: 2;
+  column-gap: 8.8rem;
+}
+
+.desc,
+.desc-large {
+  a {}
+  ul {
+    list-style: disc;
+  }
+}
+
+/* --------------------------------------------------------------------------
+Rules
+-----------------------------------------------------------------------------*/
+hr {
+  border: 0;
+  border-bottom: $border;
+}
+
+/* --------------------------------------------------------------------------
+Responsive Design
+-----------------------------------------------------------------------------*/
+/* TABLET ================== */
+@include tablet-only {
+  html {
+    font-size: $tabletBaseSize;
+    font-size: 1vw;
+  }
+}
+
+/* Mobile ================== */
+@include mobile-only {
+  html {
+    font-size: 2.5vw;
+  }
+}
+
+/* Large Mobile ================== */
+@media only screen and (max-width: 768px) and (min-width: 580px) {
+  html {
+    font-size: 1.8vw;
+  }
+}
+
+/* MONITOR ================== */
+@media only screen and (min-width: 1800px) {
+  html {
+    font-size: 13px;
+  }
+}
