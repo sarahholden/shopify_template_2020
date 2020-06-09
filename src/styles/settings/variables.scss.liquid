@@ -3,48 +3,20 @@ Colors
 -----------------------------------------------------------------------------*/
 $black: #383938;
 $white: #FFF;
-$grayBlue: #5d6787;
-$cream: #F4F2EC;
 
 $primaryBgColor: $white;
 $primaryTextColor: $black;
-$primaryAnchorColor: $grayBlue;
+$primaryAnchorColor: $primaryTextColor;
 
-$secondaryBgColor: $cream;
-$secondaryTextColor: $black;
+$secondaryBgColor: $black;
+$secondaryTextColor: $white;
 
 $borderColor: #383938;
 $border: 1px solid $borderColor;
 
 /* --------------------------------------------------------------------------
-Font Sizes
------------------------------------------------------------------------------*/
-$baseSize: 10px;
-$tabletBaseSize: 9px;
-$mobileBaseSize: 8px;
-
-$bodyTextFontSize: 1.4rem;
-
-$largeHeadingFontSize: 2.7rem;
-$mediumHeadingFontSize: 2rem;
-$smallHeadingFontSize: 2rem;
-
-/* --------------------------------------------------------------------------
-Font Styles
------------------------------------------------------------------------------*/
-$bodyTextLineHeight: 1.6;
-$bodyTextLetterSpacing: 0.05rem;
-
-/* --------------------------------------------------------------------------
 Mixins
 -----------------------------------------------------------------------------*/
-%smallCaps {
-  text-transform: uppercase;
-  font-size: $smallHeadingFontSize;
-  line-height: 1.6;
-  letter-spacing: 0.1rem;
-}
-
 %secondarySection {
   background-color: $secondaryBgColor;
   color: $secondaryTextColor;
@@ -56,9 +28,16 @@ Responsive Mixins
 
 /* Adjust breakpoints below if needed  */
 $tablet-width: 768px;
+$mobile-sm-width: 460px;
 $desktop-width: 1024px;
 $desktop-lg-width: 1250px;
 $monitor-width: 1440px;
+
+@mixin mobile-sm-only {
+  @media (max-width: #{$mobile-sm-width}) {
+    @content;
+  }
+}
 
 @mixin mobile-only {
   @media (max-width: #{$tablet-width}) {
@@ -117,6 +96,19 @@ $monitor-width: 1440px;
 /* --------------------------------------------------------------------------
 Hide / Show
 -----------------------------------------------------------------------------*/
+.show-tablet-down {
+  display: none;
+  @include tablet-down {
+    display: block;
+  }
+}
+
+.hide-tablet-down {
+  @include tablet-down {
+    display: none !important;
+  }
+}
+
 .show-mobile {
   display: none;
   @include mobile-only {
@@ -130,7 +122,20 @@ Hide / Show
   }
 }
 
-
 .hide {
   display: none;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
 }

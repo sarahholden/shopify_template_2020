@@ -1,9 +1,29 @@
 /* --------------------------------------------------------------------------
+Font Sizes
+-----------------------------------------------------------------------------*/
+$baseSize: 10px;
+$tabletBaseSize: 9px;
+$mobileBaseSize: 8px;
+$bodyDesktopFontSize: 1.8rem;
+$bodyMobileFontSize: 1.6rem;
+$bodyTextFontSize: 1.8rem;
+
+$largeHeadingFontSize: 2.7rem;
+$mediumHeadingFontSize: 2.4rem;
+$smallHeadingFontSize: 2rem;
+
+/* --------------------------------------------------------------------------
+Font Styles
+-----------------------------------------------------------------------------*/
+$bodyTextLineHeight: 1.6;
+$bodyTextLetterSpacing: 0.05rem;
+
+/* --------------------------------------------------------------------------
 Typography
 -----------------------------------------------------------------------------*/
 html {
   font-size: $baseSize;
-  font-size: 0.6944444444444vw;
+  font-size: 0.76923076vw;
 }
 
 body {
@@ -15,7 +35,10 @@ body {
   letter-spacing: $bodyTextLetterSpacing;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-font-smoothing: antialiased;
-
+  font-size: $bodyDesktopFontSize;
+  @include mobile-only {
+    font-size: $bodyMobileFontSize;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -57,37 +80,13 @@ h3 {
 }
 
 /* --------------------------------------------------------------------------
-Lists
+  SMALL CAPS
 -----------------------------------------------------------------------------*/
-li,
-ul {
-  padding: 0;
-  list-style: none;
-  margin: 0;
-
-}
-
-/* --------------------------------------------------------------------------
-Body Type
------------------------------------------------------------------------------*/
-.desc-large {
-  font-size: 2.2rem;
-  @include mobile-only {
-    font-size: 1.5rem;
-  }
-}
-
-.text-columns {
-  column-count: 2;
-  column-gap: 8.8rem;
-}
-
-.desc,
-.desc-large {
-  a {}
-  ul {
-    list-style: disc;
-  }
+%smallCaps {
+  text-transform: uppercase;
+  font-size: $smallHeadingFontSize;
+  line-height: 1.6;
+  letter-spacing: 0.1rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -101,18 +100,17 @@ hr {
 /* --------------------------------------------------------------------------
 Responsive Design
 -----------------------------------------------------------------------------*/
-/* TABLET ================== */
-@include tablet-only {
-  html {
-    font-size: $tabletBaseSize;
-    font-size: 1vw;
-  }
-}
-
 /* Mobile ================== */
 @include mobile-only {
   html {
-    font-size: 2.5vw;
+    font-size: 2.1vw;
+  }
+}
+
+@include mobile-sm-only {
+  html {
+    font-size: 2.666666666vw;
+    // font-size: 10px;
   }
 }
 

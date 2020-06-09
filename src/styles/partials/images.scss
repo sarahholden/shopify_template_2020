@@ -6,68 +6,25 @@ img {
   max-width: 100%;
 }
 
-.imgSrc50Hero {
-  width: 100%;
+/* --------------------------------------------------------------------------
+  LAZY LOADING IMAGES
+-----------------------------------------------------------------------------*/
+.lazy-fade {
+  opacity: 0;
+  transition: all 0.6s ease-in-out;
+  &.lazyloaded {
+    opacity: 1;
+  }
 }
 
-img.imgSrcLoad {
-	opacity: 0;
-}
-
-img.imgSrc50,
-img.lazy-load {
-	opacity: 0;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-img.imgSrcLoadOn {
-	opacity: 1;
-	height: auto;
-	-moz-transition: opacity 1s ease-out;
-	-o-transition: opacity 1s ease-out;
-	-webkit-transition: opacity 1s ease-out;
-	transition: opacity 1s ease-out;
-}
-
-
-/*-----------------------------------------------------------
-Background Images
--------------------------------------------------------------*/
-div.imgSrc50 {
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	width: 100%;
-	position: absolute;
-	opacity: 0;
-	transition: opacity .3s
-}
-
-div.imgSrc50.loaded {
-	opacity: 1;
-}
-
-.bgFadeImage {
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	width: 100%;
-	opacity: 0;
-	-webkit-transition: all .3s;
-	transition: all .3s
-}
-
-.bgFadeImage.loaded {
-  opacity: 1;
-}
-
-.bg-img--full-height {
-	height: calc(100vh - 174px);
-  max-height: 752px;
-  min-height: 550px;
-  background-position: center top;
+.lazy-scale {
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.6s ease-in-out;
+  &.lazyloaded {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /*-----------------------------------------------------------
@@ -75,9 +32,9 @@ Responsive Videos
 -------------------------------------------------------------*/
 .video-wrapper {
   position: relative;
-	padding-bottom: 56.3%;
-	height: 0;
-	overflow: hidden;
+  padding-bottom: 56.3%;
+  height: 0;
+  overflow: hidden;
   background-size: cover;
   background-position: center center;
   margin-bottom: 2rem;
@@ -85,15 +42,15 @@ Responsive Videos
   .placeholder {
     z-index: 1;
   }
-	iframe {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  border: 0;
-	  width: 100%;
-	  height: 100%;
-	  z-index: 2;
-	}
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
   .video-play-button {
     background: rgba(38, 57, 88, .85);
     position: absolute;
@@ -105,7 +62,7 @@ Responsive Videos
     align-items: center;
     justify-content: center;
     z-index: 5;
-    transition: opacity .3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
   }
   &.playing {
     .video-play-button {

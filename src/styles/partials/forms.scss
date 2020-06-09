@@ -1,18 +1,3 @@
-/* --------------------------------------------------------------------------
-Buttons
------------------------------------------------------------------------------*/
-.button,
-button {
-	cursor: pointer;
-	border: 0;
-	border-radius: 0;
-	transition: all 0.3s ease-in-out;
-	font-family: inherit;
-	outline: none;
-	display: inline-block;
-	&:hover {
-		}
-}
 
 /* --------------------------------------------------------------------------
 Inputs
@@ -28,6 +13,7 @@ textarea {
 	box-shadow: none;
 	padding-bottom: 4px;
 	letter-spacing: 0.05rem;
+	border-radius: 0;
 }
 
 ::-webkit-input-placeholder {
