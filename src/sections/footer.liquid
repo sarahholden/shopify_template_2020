@@ -1,7 +1,46 @@
 <footer class="site-footer">
   <div class="container">
-    <!-- Social Icons -->
-    {%- include 'social-icons' -%}
+
+    <div class="mobile-columns">
+      <div class="cols-footer">
+        <div class="logo-icon">
+          <img src="{{ 'logo_icon.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            itemprop="logo">
+        </div>
+
+        <!-- Footer Menu -->
+        <nav>
+          {%- include 'menu-footer' -%}
+        </nav>
+
+
+        <div class="right-col">
+          <!-- Tablet & up Social Icons -->
+          <div class="hide-mobile">
+            {%- include 'social-icons' -%}
+          </div>
+
+          <!-- Copyright -->
+          <div class="end-credits">
+            {% if section.settings.copyright != blank %}
+              <span class="copyright">{{ section.settings.copyright }}</span>
+            {% endif %}
+            {% if section.settings.site_credit != blank %}
+              <span class="site-credit">
+                {{ section.settings.site_credit }}
+              </span>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Social Icons -->
+      <div class="show-mobile">
+        {%- include 'social-icons' -%}
+      </div>
+    </div>
 
     <!-- Payment Icons -->
     {% if section.settings.show_payment_icons %}
@@ -9,15 +48,9 @@
         {%- include 'payment-icons' -%}
       {% endunless %}
     {% endif %}
-
-    <!-- Footer Menu -->
-    {%- include 'menu-footer' -%}
-
-    <!-- Copyright -->
-    <div class="copyright">
-      <p>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}.</p>
-    </div>
   </div>
+
+
 </footer>
 
 
@@ -30,6 +63,16 @@
         "id": "footer_linklist",
         "label": "First menu",
         "default": "footer"
+      },
+      {
+        "type": "richtext",
+        "id": "copyright",
+        "label": "Copyright"
+      },
+      {
+        "type": "richtext",
+        "id": "site_credit",
+        "label": "Site Credit"
       },
       {
         "type": "checkbox",

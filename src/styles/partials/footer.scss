@@ -1,23 +1,122 @@
 /* --------------------------------------------------------------------------
-Footer Navigation Styles
+  LOGO ICON
 -----------------------------------------------------------------------------*/
-footer nav {
-	a,
-	a:visited {
-		color: #4c4b4b;
-		margin-left: 18px;
+footer .logo-icon {
+	@include mobile-only {
+		margin-bottom: 2.8rem;
 	}
-	a:hover {
-		color: darken(#4c4b4b, 20%);
+	img {
+		width: 4.6rem;
+	}
+}
+/* --------------------------------------------------------------------------
+  FOOTER STYlES
+-----------------------------------------------------------------------------*/
+.site-footer {
+	@extend %smallCaps;
+	background: $black;
+	color: #FEFEFE;
+	padding-top: 3.2rem;
+	padding-bottom: 10rem;
+}
+
+/* MOBILE COLUMNS ================== */
+.site-footer {
+	.mobile-columns {
+		@include mobile-only {
+			grid-template-columns: 3fr 1fr;
+			grid-column-gap: 0;
+			display: grid;
+		}
 	}
 }
 
 /* --------------------------------------------------------------------------
-LK Site Credit
+Footer Navigation Styles
 -----------------------------------------------------------------------------*/
-.site-credit {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  display: block;
-  text-align: right;
+.site-footer nav {
+	ul {
+		@extend .cols-2;
+		@include tablet-up {
+			display: grid;
+			grid-column-gap: 6.2rem;
+		}
+		li {
+			margin-bottom: 1.4rem;
+			@include mobile-only {
+				margin-bottom: 1.2rem;
+				&:last-of-type {
+					margin-bottom: 3.2rem;
+				}
+			}
+		}
+	}
+	a,
+	a:visited {
+		color: #FEFEFE;
+	}
+	a:hover {
+		color: #FEFEFE;
+		text-decoration: underline;
+	}
+}
+
+/* --------------------------------------------------------------------------
+  RIGHT COLUMN
+-----------------------------------------------------------------------------*/
+.right-col {
+	@include tablet-up {
+		text-align: right;
+	}
+}
+
+/* --------------------------------------------------------------------------
+  SOCIAL ICONS
+-----------------------------------------------------------------------------*/
+footer .social-icon-list {
+	@include mobile-only {
+		padding-top: 6.9rem;
+	}
+	circle,
+	path {
+		fill: white;
+	}
+	a {
+		padding-top: 0;
+		padding-bottom: 1.5rem;
+		margin-left: 0;
+		&:last-of-type {
+			padding-right: 0;
+		}
+	}
+}
+
+/* --------------------------------------------------------------------------
+Copyright & Site Credit
+-----------------------------------------------------------------------------*/
+.end-credits {
+	text-transform: uppercase;
+	display: block;
+	opacity: 0.7;
+	color: white;
+	letter-spacing: 0.192rem;
+	font-size: 0.9rem;
+	line-height: (18 / 9);
+	@include tablet-up {
+		text-align: right;
+		display: flex;
+		justify-content: flex-end;
+	}
+	@include mobile-only {
+		width: 80%;
+	}
+	a {
+		color: white;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	span:not(:first-of-type) {
+		margin-left: 4.6rem;
+	}
 }

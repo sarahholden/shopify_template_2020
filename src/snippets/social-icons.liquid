@@ -1,18 +1,21 @@
-{%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-<ul>
+{%- assign social_accounts = ' Instagram, Facebook, Twitter, Pinterest, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+<div class="social-icon-list">
   {% for social in social_accounts %}
     {%- assign social_handle = social | handleize -%}
     {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
     {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
 
     {% if settings[social_link] != blank %}
-      <li>
-        <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-          {% include social_icon %}
-          <span class="icon-fallback-text">{{ social }}</span>
-        </a>
-      </li>
+      <a href="{{ settings[social_link] }}"
+        class="{{ social | downcase }}-icon-wrapper"
+        title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}"
+        aria-label="Open {{ social }} in new tab"
+        target="_blank"
+        >
+        <span class="icon">{% include social_icon %}</span>
+        <span class="icon-fallback-text">{{ social }}</span>
+      </a>
     {% endif %}
 
   {% endfor %}
-</ul>
+</div>

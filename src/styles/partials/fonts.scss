@@ -3,37 +3,36 @@ Hosted Fonts
 -----------------------------------------------------------------------------*/
 
 @font-face {
-  font-family: "Eksell";
-  src: url(" {{ "EksellDisplayWebMedium.eot" | asset_url }} ");
-  src: url(" {{ "EksellDisplayWebMedium.eot?#iefix" | asset_url }} ") format("embedded-opentype"), url(" {{ "EksellDisplayWebMedium.woff2" | asset_url }} ") format("woff2"), url(" {{ "EksellDisplayWebMedium.woff" | asset_url }} ") format("woff");
+  font-family: "Apercu Regular";
+  src: url(" {{ 'apercuMonoRegularPro.eot' | asset_url }} ");
+  src: url(" {{ 'apercuMonoRegularPro.eot?#iefix' | asset_url }} ") format("embedded-opentype"), url(" {{ 'apercuMonoRegularPro.woff2' | asset_url }} ") format("woff2"), url(" {{ 'apercuMonoRegularPro.woff' | asset_url }} ") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Eksell";
-  src: url(" {{ "EksellDisplayWebMedium.eot" | asset_url }} ");
-  src: url(" {{ "EksellDisplayWebMedium.eot?#iefix" | asset_url }} ") format("embedded-opentype"), url(" {{ "EksellDisplayWebMedium.woff2" | asset_url }} ") format("woff2"), url(" {{ "EksellDisplayWebMedium.woff" | asset_url }} ") format("woff");
+  font-family: "Manege Light";
+  src: url(" {{ 'ManegeLight.eot' | asset_url }} ");
+  src: url(" {{ 'ManegeLight.eot?#iefix' | asset_url }} ") format("embedded-opentype"), url(" {{ 'ManegeLight.woff2' | asset_url }} ") format("woff2"), url(" {{ 'ManegeLight.woff' | asset_url }} ") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
-/*
-TEMPLATE:
 @font-face {
-  font-family: 'Font 1';
-  src: url('../fonts/font1.woff2') format('woff2'),
-       url('../fonts/font1.woff') format('woff'),
-       url('../fonts/font1.ttf') format('truetype'),
-       url('../fonts/font1.eot') format('embedded-opentype');
+  font-family: "Wremena Light";
+  src: url(" {{ 'WremenaLight.eot' | asset_url }} ");
+  src: url(" {{ 'WremenaLight.eot?#iefix' | asset_url }} ") format("embedded-opentype"), url(" {{ 'WremenaLight.woff2' | asset_url }} ") format("woff2"), url(" {{ 'WremenaLight.woff' | asset_url }} ") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
-*/
 
 /* --------------------------------------------------------------------------
 Fonts
 -----------------------------------------------------------------------------*/
-$markRegular: 'Mark Regular', sans-serif;
-$saolMedium: 'Saol Medium', sans-serif;
+$apercu: "Apercu Regular", serif;
+$manege: "Manege Light", serif;
+$wremena: "Wremena Light", serif;
 
-$bodyTextFont: $markRegular;
-$headingFont: $saolMedium;
+$bodyTextFont: $wremena;
+$headingFont: $manege;
+$monoFont: $apercu;

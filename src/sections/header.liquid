@@ -1,34 +1,42 @@
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
   <div class="nav-wrapper" role="banner">
 
+    <div class="close-mobile-nav"></div>
+
     <div class="container">
-      <!--   LOGO   -->
-      {%- include 'nav-logo' -%}
+      <div class="inner">
+        <!--   LOGO   -->
+        {%- include 'nav-logo' -%}
 
-      <!--   NAV   -->
-      {%- include 'nav-menu' -%}
+        <!--   NAV   -->
+        {%- include 'nav-menu' -%}
 
-      <!-- SEARCH -->
+        <!-- Social Icons -->
+        {%- include 'social-icons' -%}
 
-      {%- include 'nav-search' -%}
+        <!-- SEARCH -->
+        <!-- {%- include 'nav-search' -%} -->
+        <!-- ACCOUNT LINKS -->
+        <!-- {% if shop.customer_accounts_enabled %}
+          {%- include 'nav-account-links' -%}
+        {% endif %} -->
 
-      <!-- ACCOUNT LINKS -->
-      {% if shop.customer_accounts_enabled %}
-        {%- include 'nav-account-links' -%}
-      {% endif %}
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-      <!--   CART   -->
-      {%- include 'nav-cart-link' -%}
+        <!--   CART   -->
+        {%- include 'nav-cart-link' -%}
+      </div>
     </div>
 
-    <div class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+
 
   </div>
 </div>
+
 {% schema %}
   {
     "name": "Header",

@@ -4,32 +4,26 @@ Font Sizes
 $baseSize: 10px;
 $tabletBaseSize: 9px;
 $mobileBaseSize: 8px;
-$bodyDesktopFontSize: 1.8rem;
-$bodyMobileFontSize: 1.6rem;
-$bodyTextFontSize: 1.8rem;
-
-$largeHeadingFontSize: 2.7rem;
-$mediumHeadingFontSize: 2.4rem;
-$smallHeadingFontSize: 2rem;
+$bodyDesktopFontSize: 2rem;
+$bodyMobileFontSize: 2rem;
 
 /* --------------------------------------------------------------------------
 Font Styles
 -----------------------------------------------------------------------------*/
-$bodyTextLineHeight: 1.6;
-$bodyTextLetterSpacing: 0.05rem;
+$bodyTextLineHeight: (30 / 20);
+$bodyTextLetterSpacing: 0;
 
 /* --------------------------------------------------------------------------
 Typography
 -----------------------------------------------------------------------------*/
 html {
   font-size: $baseSize;
-  font-size: 0.76923076vw;
+  font-size: 0.6944444444vw;
 }
 
 body {
   background-color: $primaryBgColor;
   font-family: $bodyTextFont;
-  font-size: $bodyTextFontSize;
   color: $primaryTextColor;
   line-height: $bodyTextLineHeight;
   letter-spacing: $bodyTextLetterSpacing;
@@ -61,22 +55,31 @@ Headings
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: $headingFont;
   font-weight: normal;
   font-style: normal;
+  letter-spacing: 0;
 }
 
 h1 {
-  font-size: $largeHeadingFontSize;
+  font-size: 4.5rem;
+  line-height: (50 / 45);
+  @include mobile-only {
+    font-size: 3.5rem;
+    line-height: (40 / 35);
+  }
 }
 
 h2 {
-  font-size: $mediumHeadingFontSize;
-}
-
-h3 {
-  font-size: $smallHeadingFontSize;
+  font-size: 3rem;
+  line-height: (40 / 30);
+  @include mobile-only {
+    font-size: 2.5rem;
+    line-height: (35 / 25);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -84,9 +87,10 @@ h3 {
 -----------------------------------------------------------------------------*/
 %smallCaps {
   text-transform: uppercase;
-  font-size: $smallHeadingFontSize;
-  line-height: 1.6;
-  letter-spacing: 0.1rem;
+  font-family: $monoFont;
+  font-size: 1.1rem;
+  line-height: (18 / 11);
+  letter-spacing: 0.234rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -94,16 +98,23 @@ Rules
 -----------------------------------------------------------------------------*/
 hr {
   border: 0;
-  border-bottom: $border;
+  border-bottom: 0.5px solid $black;
 }
 
 /* --------------------------------------------------------------------------
 Responsive Design
 -----------------------------------------------------------------------------*/
+/* Tablet ================== */
+@include tablet-only {
+  html {
+    font-size: 0.85vw;
+  }
+}
+
 /* Mobile ================== */
 @include mobile-only {
   html {
-    font-size: 2.1vw;
+    font-size: 1.8vw;
   }
 }
 
@@ -117,7 +128,7 @@ Responsive Design
 /* Large Mobile ================== */
 @media only screen and (max-width: 768px) and (min-width: 580px) {
   html {
-    font-size: 1.8vw;
+    // font-size: 1.8vw;
   }
 }
 

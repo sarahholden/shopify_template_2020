@@ -62,7 +62,7 @@ $(document).ready(function() {
   /* ---------------------------------------------
   HAMBURGER MENU
   ------------------------------------------------ */
-  let lastScrollPosition = 0;
+  // let lastScrollPosition = 0;
 
   $('.hamburger').on('click', function(e) {
     e.preventDefault();
@@ -70,12 +70,17 @@ $(document).ready(function() {
     if ($('body').hasClass('open-mobile-nav')) {
       $('body').removeClass('open-mobile-nav');
       // Once the body is unfixed, scroll to the last position
-      $(window).scrollTop(lastScrollPosition);
+      // $(window).scrollTop(lastScrollPosition);
     } else {
       // Record last scroll position (for fixed body)
-      lastScrollPosition = $(window).scrollTop();
+      // lastScrollPosition = $(window).scrollTop();
       $('body').addClass('open-mobile-nav');
     }
+  });
+
+
+  $('.close-mobile-nav').on('click', function () {
+    $('body').removeClass('open-mobile-nav');
   });
 
 

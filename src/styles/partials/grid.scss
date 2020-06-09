@@ -8,14 +8,16 @@ $gridRowGutterSize: 1.5rem;
 Grid Styles
 -----------------------------------------------------------------------------*/
 [class*='cols'] {
-	display: -ms-grid;
-	display: grid;
-	-ms-grid-rows: auto;
-	grid-template-rows: auto;
-	grid-column-gap: $gridColumnGutterSize;
-	grid-row-gap: $gridRowGutterSize;
-	-ms-grid-columns: 1fr;
-	grid-template-columns: 1fr;
+	@include tablet-up {
+		display: -ms-grid;
+		display: grid;
+		-ms-grid-rows: auto;
+		grid-template-rows: auto;
+		grid-column-gap: $gridColumnGutterSize;
+		grid-row-gap: $gridRowGutterSize;
+		-ms-grid-columns: 1fr;
+		grid-template-columns: 1fr;
+	}
 }
 
 .no-gutters {
@@ -78,6 +80,12 @@ Grid Styles
 	}
 	@include desktop-up {
 		grid-template-columns: repeat(6, 1fr);
+	}
+}
+
+.cols-footer {
+	@include tablet-up {
+		grid-template-columns: 13fr 37fr 50fr;
 	}
 }
 
@@ -159,14 +167,14 @@ Grid Styles
 
 	/* Use floats for older browsers to turn elements into columns for screens larger than the tablet-up breakpoint in variables.scss */
 	@include tablet-up {
-		[class^='cols'] {
-			margin-left: (-$gridColumnGutterSize);
-			> * {
-				float: left;
-				margin-left: $gridColumnGutterSize;
-			}
-		}
-
+		// [class^='cols'] {
+		// 	margin-left: (-$gridColumnGutterSize);
+		// 	> * {
+		// 		float: left;
+		// 		margin-left: $gridColumnGutterSize;
+		// 	}
+		// }
+		//
 		// .cols-2-sm > *. .cols-2-lg > *. .cols-2.swiper-cols > *. .cols-2 > * {
 		// 	width: calc(50% - #{$gridColumnGutterSize});
 		// }

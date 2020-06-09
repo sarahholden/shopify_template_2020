@@ -33,7 +33,8 @@
     <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
     <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <form id="add-item-form" action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
+      {% if product.available %}{% include 'subscription-product' %}{% endif %}
       {% unless product.has_only_default_variant %}
         {% for option in product.options_with_values %}
           <div class="selector-wrapper js">
@@ -57,7 +58,7 @@
         {% endfor %}
       {% endunless %}
 
-      <select name="id" class="no-js" data-product-select>
+      <select id="variant-id" name="id" class="no-js" data-product-select data-productid="{{product.id}}">
         {% for variant in product.variants %}
           <option
             {% if variant == current_variant %}selected="selected"{% endif %}
@@ -68,8 +69,8 @@
         {% endfor %}
       </select>
 
-      <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1">
+      <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+      <input type="number" id="quantity" name="quantity" value="1" min="1">
 
       <div data-price-wrapper>
         <span data-product-price>
@@ -117,6 +118,8 @@
     </script>
   {% endunless %}
 </div>
+
+{%- include 'add-to-cart' -%}
 
 {% schema %}
   {
