@@ -1,0 +1,79 @@
+<section class="sample-section">
+  {% if section.settings.subheading != blank %}
+  <h3 class="small-caps">
+    {{ section.settings.subheading }}
+  </h3>
+  {% endif %}
+  {% if section.settings.heading != blank %}
+    <h2 class="h1">{{ section.settings.heading }}</h2>
+  {% endif %}
+  {% if section.settings.desc != blank %}
+    <div class="desc">
+      {{ section.settings.desc }}
+    </div>
+  {% endif %}
+  {% if section.settings.button_text != blank %}
+  <a href="{{ section.settings.button_url }}" class="btn btn--grey">
+    {{ section.settings.button_text }}
+  </a>
+  {% endif %}
+  {% assign bg_image = section.settings.image %}
+  {% if bg_image != blank %}
+    <div class="bg-image-wrapper">
+        <div class="lazyload bg-image"
+          data-bgset="{% include 'bgset', image: bg_image %}"
+          data-sizes="auto"
+          style="background-position: {{ section.settings.image_focal_point }}; background-color: {{ section.settings.image_background_color }};"
+          data-anim="scale"
+        >
+        </div>
+    </div>
+  {% endif %}
+</section>
+
+
+{% schema %}
+  {
+    "name": "Sample Section",
+    "settings": [
+      {
+        "id": "title",
+        "type": "textarea",
+        "label": "Heading"
+      },
+      {
+        "id": "subheading",
+        "type": "textarea",
+        "label": "Subheading"
+      },
+      {
+        "id": "desc",
+        "type": "richtext",
+        "label": "Description"
+      },
+      {
+        "id": "button_url",
+        "type": "url",
+        "label": "Button URL"
+      },
+      {
+        "id": "button_text",
+        "type": "text",
+        "label": "Button Text"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Sample Section",
+        "category": "Sections"
+      }
+    ]
+  }
+
+{% endschema %}

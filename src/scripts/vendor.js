@@ -8,10 +8,6 @@
  */
 // =require vendor/splitText.min.js
 
-/*!
- * Selectric
- */
-// =require vendor/selectric.js
 
 // Attempts to preserve comments that likely contain licensing information,
 // even if the comment does not have directives such as `@license` or `/*!`.
@@ -23,3 +19,8 @@
 // 2. A regular expression matches the string of the comment.
 //    For example: `MIT`, `@license`, or `Copyright`.
 // 3. There is a comment at the *previous* line, and it matches 1, 2, or 3.
+
+// =require vendor/selectric.js
+// =require vendor/ls.rias.min.js
+// =require vendor/ls.bgset.min.js
+// =require vendor/lazysizes.min.js

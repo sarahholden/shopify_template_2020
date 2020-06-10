@@ -1,0 +1,271 @@
+<header>
+
+  <!-- ======================================
+  BACKGROUND IMAGES
+  =========================================== -->
+  <!-- TABLET UP -->
+  {% assign bg_image = section.settings.hero_image %}
+  {% if bg_image != blank %}
+    <div class="bg-image-wrapper hide-mobile">
+        <div class="lazyload bg-image"
+          data-bgset="{% include 'bgset', image: bg_image %}"
+          data-sizes="auto"
+          style="background-position: {{ section.settings.hero_image_focal_point }}; background-color: {{ section.settings.hero_image_background_color }};"
+          data-anim="scale"
+        >
+        </div>
+    </div>
+  {% endif %}
+
+  <!-- MOBILE ONLY -->
+  {% assign bg_image = section.settings.mobile_hero_image %}
+  {% if bg_image != blank %}
+    <div class="bg-image-wrapper mobile-image-wrapper show-mobile">
+        <div class="lazyload bg-image"
+          data-bgset="{% include 'bgset', image: bg_image %}"
+          data-sizes="auto"
+          style="background-position: {{ section.settings.mobile_hero_image_focal_point }}; background-color: {{ section.settings.mobile_hero_image_background_color }};"
+          data-anim="scale"
+        >
+        </div>
+    </div>
+  {% endif %}
+
+  <!-- ======================================
+  PRODUCT INFO
+  =========================================== -->
+  <div class="hero-intro-info">
+    <div class="container">
+      <div class="cols-2">
+
+        <!-- ======================================
+        PRODUCT IMAGE LINKS
+        =========================================== -->
+        {% for block in section.blocks %}
+          {% case block.type %}
+          {% when 'product_links' %}
+            <div>
+              <a href="{{ all_products[block.settings.product].url }}">
+                {% if block.settings.title != blank %}
+                  <div class="text-wrapper">
+                    <h2 class="h1">
+                      {{ block.settings.title }}
+                    </h2>
+                  </div>
+                {% endif %}
+                {% assign bg_image = block.settings.image %}
+                {% if bg_image != blank %}
+                  <div class="bg-image-wrapper">
+                      <div class="lazyload bg-image"
+                        data-bgset="{% include 'bgset', image: bg_image %}"
+                        data-sizes="auto"
+                        style="background-position: bottom center; "
+                        data-anim="scale"
+                      >
+                      </div>
+                  </div>
+                {% endif %}
+              </a>
+            </div>
+          {% endcase %}
+        {% endfor %}
+
+        <!-- ======================================
+        INTRO INFO TEXT CONTENT
+        =========================================== -->
+        <div>
+          {% if section.settings.info_block_heading != blank %}
+            <h2 class="h1">{{ section.settings.info_block_heading | newline_to_br}}</h2>
+          {% endif %}
+          {% if section.settings.info_block_button_url != blank and section.settings.info_block_button_text != blank %}
+            <a href="{{ section.settings.info_block_button_url }}"
+               class="btn btn--grey">
+              {{ section.settings.info_block_button_text }}
+            </a>
+          {% endif %}
+        </div>
+        <div>
+          {% if section.settings.info_block_desc != blank %}
+            <div class="desc">
+              {{ section.settings.info_block_desc }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</header>
+
+
+{% schema %}
+  {
+    "name": "Homepage Hero",
+    "settings": [
+      {
+        "id": "hero_image",
+        "type": "image_picker",
+        "label": "Hero Image"
+      },
+      {
+        "id": "hero_image_focal_point",
+        "type": "select",
+        "label": "Hero Image Focal Point",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "top left",
+            "label": "Top Left"
+          },
+          {
+            "value": "bottom left",
+            "label": "Bottom Left"
+          },
+          {
+            "value": "center left",
+            "label": "Center Left"
+          },
+          {
+            "value": "top center",
+            "label": "Top Center"
+          },
+          {
+            "value": "bottom center",
+            "label": "Bottom Center"
+          },
+          {
+            "value": "top right",
+            "label": "Top Right"
+          },
+          {
+            "value": "bottom right",
+            "label": "Bottom Right"
+          }
+        ]
+      },
+      {
+        "id": "hero_image_background_color",
+        "type": "color",
+        "label": "Hero Image BackgroundColor"
+      },
+      {
+        "id": "mobile_hero_image",
+        "type": "image_picker",
+        "label": "Mobile Hero Image"
+      },
+      {
+        "id": "mobile_hero_image_focal_point",
+        "type": "select",
+        "label": "Mobile Hero Image Focal Point",
+        "default": "center",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "top left",
+            "label": "Top Left"
+          },
+          {
+            "value": "bottom left",
+            "label": "Bottom Left"
+          },
+          {
+            "value": "center left",
+            "label": "Center Left"
+          },
+          {
+            "value": "top center",
+            "label": "Top Center"
+          },
+          {
+            "value": "bottom center",
+            "label": "Bottom Center"
+          },
+          {
+            "value": "top right",
+            "label": "Top Right"
+          },
+          {
+            "value": "bottom right",
+            "label": "Bottom Right"
+          }
+        ]
+      },
+      {
+        "id": "mobile_hero_image_background_color",
+        "type": "color",
+        "label": "Mobile Hero Image BackgroundColor"
+      },
+
+      {
+       "type": "header",
+       "content":   "Intro Info Squares"
+     },
+     {
+       "id": "info_block_heading",
+       "type": "textarea",
+       "label": "Info Block Heading",
+       "default": "The Ultimate All-In-One Pet Supplement"
+     },
+     {
+       "id": "info_block_button_text",
+       "type": "text",
+       "label": "Info Block Button Text",
+       "default": "Learn More"
+     },
+     {
+       "id": "info_block_button_url",
+       "type": "url",
+       "label": "Info Block Button URL"
+     },
+     {
+       "id": "info_block_desc",
+       "type": "richtext",
+       "label": "Info Block Body Text"
+     }
+
+    ],
+
+    "blocks": [
+      {
+        "type": "product_links",
+        "name": "Product Image Links",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Heading",
+            "info": "Example: Shop Canine"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Background Image",
+            "info": "Crop/resize image to 1000 x 747px"
+          },
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Homepage Hero",
+        "category": "Hero"
+      }
+    ]
+  }
+
+{% endschema %}

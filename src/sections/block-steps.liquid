@@ -1,0 +1,98 @@
+<section class="steps-section">
+  <div class="container padded">
+    {% if section.settings.subheading != blank %}
+      <h3 class="small-caps">
+        {{ section.settings.subheading }}
+      </h3>
+    {% endif %}
+
+    {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+
+
+    {% assign count = 1 %}
+    <div class="cols-3">
+      {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'Steps' %}
+          <div>
+
+            {%- assign lazy_image = block.settings.image -%}
+            {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload"
+                data-src="{{ img_url }}"
+                data-widths="[360, 540, 720, 900, 1080, 1600]"
+                data-aspectratio="{{ lazy_image.aspect_ratio }}"
+                data-sizes="auto"
+                role="presentation"
+                alt="{{ lazy_image.alt }}">
+            <p class="small-caps count">{{ count }}</p>
+            {% if block.settings.title != blank %}
+              {{ block.settings.title }}
+            {% endif %}
+            {% if block.settings.desc != blank %}
+              {{ block.settings.desc }}
+            {% endif %}
+          </div>
+            {% assign count = count | plus: 1 %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+
+
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Steps Section",
+    "settings": [
+      {
+        "id": "title",
+        "type": "textarea",
+        "label": "Title"
+      },
+      {
+        "id": "subheading",
+        "type": "textarea",
+        "label": "Subheading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Steps",
+        "name": "Steps",
+        "limit": 3,
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Step Title"
+          },
+          {
+            "id": "desc",
+            "type": "textarea",
+            "label": "Step Description"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image",
+            "info": "Add a square image"
+          }
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Steps Section",
+        "category": "Sections"
+      }
+    ]
+  }
+
+{% endschema %}
