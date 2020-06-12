@@ -1,0 +1,55 @@
+<!-- ============================
+HEADER
+================================= -->
+<header>
+  <div class="container">
+    <h1 class="main-heading">{{ section.settings.title }}</h1>
+  </div>
+</header>
+
+
+{%- include 'block-faq-items', page_name: 'facts' -%}
+
+
+{% schema %}
+{
+  "name": "Canine FAQ Section",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "left_col_heading",
+      "type": "text",
+      "label": "Left Column Heading"
+    },
+    {
+      "id": "right_col_heading",
+      "type": "text",
+      "label": "Right Column Heading"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Description"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

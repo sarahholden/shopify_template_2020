@@ -1,0 +1,119 @@
+<section class="container ">
+  <div class="cols-2">
+    <div class="padded">
+      {% if section.settings.email_col_title != blank %}
+        <h1 class="h2">
+          {{ section.settings.email_col_title }}
+        </h1>
+      {% endif %}
+      <div class="cols-2">
+        {% if section.settings.general_inquiries_text != blank %}
+        <div class="desc">
+          {{ section.settings.general_inquiries_text }}
+        </div>
+        {% endif %}
+        {% if section.settings.pr_marketing_text != blank %}
+        <div class="desc">
+          {{ section.settings.pr_marketing_text }}
+        </div>
+        {% endif %}
+      </div>
+
+
+    </div>
+    <div  class="padded">
+      {% if section.settings.form_col_title != blank %}
+        <h2>{{ section.settings.form_col_title }}</h2>
+      {% endif %}
+      {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <p class="form-success">
+            {% if section.settings.thank_you_message != blank %}
+              {{ section.settings.thank_you_message }}
+            {% endif %}
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <label class="visually-hidden" for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+        <input type="text"
+          name="contact[name]"
+          id="ContactFormName"
+          placeholder="{{ 'contact.form.name' | t }}"
+          value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+
+        <label class="visually-hidden" for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+        <input type="email"
+          name="contact[email]"
+          id="ContactFormEmail"
+          placeholder="{{ 'contact.form.email' | t }}"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off">
+        <label class="visually-hidden" for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+        <textarea rows="10"
+          name="contact[body]"
+          id="ContactFormMessage"
+          placeholder="{{ 'contact.form.message' | t }}">
+          {%- if form.body -%}
+            {{- form.body -}}
+          {%- endif -%}
+        </textarea>
+        <button type="submit"  class="btn btn--grey">
+          {% if section.settings.button_text != blank %}
+            {{ section.settings.button_text }}
+          {% endif %}
+        </button>
+
+      {% endform %}
+
+
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Contact Page Content",
+  "class": "page-contact",
+  "settings": [
+    {
+      "id": "email_col_title",
+      "type": "text",
+      "label": "Contact Details Heading"
+    },
+    {
+      "id": "general_inquiries_text",
+      "type": "richtext",
+      "label": "General Inquiries Text"
+    },
+    {
+      "id": "pr_marketing_text",
+      "type": "richtext",
+      "label": "PR / Marketing Text"
+    },
+    {
+      "id": "form_col_title",
+      "type": "text",
+      "label": "Message Form Heading"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button Text"
+    },
+    {
+      "id": "thank_you_message",
+      "type": "richtext",
+      "label": "Thank You Message"
+    }
+
+
+  ]
+}
+{% endschema %}

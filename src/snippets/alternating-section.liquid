@@ -1,0 +1,49 @@
+<section class="alternating-image-blocks">
+  <div class="image-col">
+    <div class="cropped-image-wrapper">
+      {% if section.settings.image != blank %}
+        {% assign image = section.settings.image %}
+        {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+        <img
+        class="lazyload fade-in"
+        data-src="{{ img_url }}"
+        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ image.aspect_ratio }}"
+        data-sizes="auto"
+        alt="{{ image.alt | escape }}"
+        data-anim="scale"
+        >
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="desc paw-list container padded">
+    {% if section.settings.heading != blank %}
+      <h2 class="h1">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+    {% if section.settings.desc != blank %}
+      <div class="desc">
+        {{ section.settings.desc }}
+      </div>
+    {% endif %}
+    {% for block in section.blocks %}
+      {% case block.type %}
+      {% when 'list_item' %}
+        {% if block.settings.title != blank %}
+          <h2>
+            {{ block.settings.title }}
+          </h2>
+        {% endif %}
+        {% if block.settings.desc != blank %}
+          <div class="desc">
+            {{ block.settings.desc }}
+          </div>
+        {% endif %}
+      {% endcase %}
+    {% endfor %}
+
+  </div>
+
+</section>

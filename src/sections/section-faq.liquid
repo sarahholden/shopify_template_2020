@@ -1,3 +1,87 @@
-FAQ
 
-{%- include 'faq-section' -%}
+<header>
+  <div class="container">
+    {% if section.settings.image != blank %}
+    {%- assign lazy_image = section.settings.image -%}
+    {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <img class="lazyload hide-mobile"
+          data-src="{{ img_url }}"
+          data-widths="[360, 540, 720, 900, 1080, 1600]"
+          data-aspectratio="{{ lazy_image.aspect_ratio }}"
+          data-sizes="auto"
+          role="presentation"
+          alt="{{ lazy_image.alt }}">
+        {%- assign lazy_image = section.settings.mobile_image -%}
+        {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <img class="lazyload show-mobile"
+          data-src="{{ img_url }}"
+          data-widths="[360, 540, 720, 900, 1080, 1600]"
+          data-aspectratio="{{ lazy_image.aspect_ratio }}"
+          data-sizes="auto"
+          role="presentation"
+          alt="{{ lazy_image.alt }}">
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h1>{{ section.settings.title }}</h1>
+    {% endif %}
+  </div>
+</header>
+
+
+{%- include 'block-faq-items', page_name: 'faq' -%}
+
+
+
+{% schema %}
+{
+  "name": "All FAQ Page Content",
+  "class": "page-faq",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "mobile_image",
+      "type": "image_picker",
+      "label": "Mobile Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_section_heading",
+      "name": "FAQ Heading (Topic)",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Description"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

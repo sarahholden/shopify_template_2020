@@ -1,17 +1,79 @@
+<section class="benefit-section">
+  <div class="container padded">
+    <div class="cols-2 no-gutters">
+      <div>
+        <!-- Heading & Subheading -->
+        {% if section.settings.subheading != blank %}
+          <h3 class="small-caps">
+            {{ section.settings.subheading }}
+          </h3>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+      </div>
+      <div>
+        {% if section.settings.desc != blank %}
+          <div class="desc">
+            {{ section.settings.desc }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="benefits-image">
+    {%- assign lazy_image = section.settings.desktop_image -%}
+    {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    <img class="lazyload lazy-load hide-mobile"
+        data-src="{{ img_url }}"
+        data-widths="[360, 540, 720, 900, 1080, 1600]"
+        data-aspectratio="{{ lazy_image.aspect_ratio }}"
+        data-sizes="auto"
+        role="presentation"
+        alt="{{ lazy_image.alt }}">
+    {%- assign lazy_image = section.settings.mobile_image -%}
+    {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    <img class="lazyload lazy-load show-mobile"
+        data-src="{{ img_url }}"
+        data-widths="[360, 540, 720, 900, 1080, 1600]"
+        data-aspectratio="{{ lazy_image.aspect_ratio }}"
+        data-sizes="auto"
+        role="presentation"
+        alt="{{ lazy_image.alt }}">
+  </div>
+</section>
+
+
 {% schema %}
   {
     "name": "Benefit Section",
-    "class": "benefit-section",
     "settings": [
       {
         "id": "heading",
         "type": "textarea",
-        "label": "Heading"
+        "label": "Heading",
+        "default": "Main Heading"
       },
       {
         "id": "subheading",
         "type": "textarea",
-        "label": "Subheading"
+        "label": "Subheading",
+        "default": "Subheading"
+      },
+      {
+        "id": "desc",
+        "type": "richtext",
+        "label": "Description"
+      },
+      {
+        "id": "desktop_image",
+        "type": "image_picker",
+        "label": "Benefit Callout Image"
+      },
+      {
+        "id": "mobile_image",
+        "type": "image_picker",
+        "label": "Mobile Benefit Callout Image"
       }
     ],
     "presets": [

@@ -1,0 +1,16 @@
+{%- if format == 'multi' -%}
+  <div  class="topic-header small-caps multi">
+    {% if section.settings.left_col_heading != blank %}
+      {{ section.settings.left_col_heading }}
+    {% endif %}
+    {% if section.settings.right_col_heading != blank %}
+      {{ section.settings.right_col_heading }}
+    {% endif %}
+  </div>
+{%- else -%}
+  <div id="{{ block.settings.title }}" class="topic-header small-caps multi">
+    {% if block.settings.title != blank %}
+      {{ block.settings.title }}
+    {% endif %}
+  </div>
+{%- endif -%}

@@ -1,0 +1,40 @@
+{%- include 'alternating-section' -%}
+
+{% schema %}
+{
+  "name": "Facts Intro Laboratory",
+  "class": "facts-nutrition-section",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "textarea",
+      "label": "Heading"
+    },
+
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List Item",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

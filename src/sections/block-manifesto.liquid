@@ -1,7 +1,65 @@
+<section class="manifesto-section">
+  <div class="container padded">
+    <div class="cols-2 no-gutters">
+
+      <!-- ======================================
+      COLLAGE IMAGES
+      =========================================== -->
+      <div class="image-collage">
+        <div class="image-wrapper top-image">
+          {%- assign lazy_image = section.settings.top_image -%}
+          {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <img class="lazyload lazy-load"
+              data-src="{{ img_url }}"
+              data-widths="[360, 540, 720, 900, 1080, 1600]"
+              data-aspectratio="{{ lazy_image.aspect_ratio }}"
+              data-sizes="auto"
+              role="presentation"
+              alt="{{ lazy_image.alt }}">
+        </div>
+        <div class="image-wrapper bottom-image">
+          {%- assign lazy_image = section.settings.bottom_image -%}
+          {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <img class="lazyload lazy-load"
+              data-src="{{ img_url }}"
+              data-widths="[360, 540, 720, 900, 1080, 1600]"
+              data-aspectratio="{{ lazy_image.aspect_ratio }}"
+              data-sizes="auto"
+              role="presentation"
+              alt="{{ lazy_image.alt }}">
+        </div>
+      </div>
+
+      <!-- ======================================
+      HEADING & TEXT
+      =========================================== -->
+      <div>
+        {% if section.settings.subheading != blank %}
+          <h3 class="small-caps">
+            {{ section.settings.subheading }}
+          </h3>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_url }}" class="btn--grey">
+          {{ section.settings.button_text }}
+        </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
+
 {% schema %}
   {
     "name": "Manifesto Section",
-    "class": "manifesto-section",
     "settings": [
       {
         "id": "heading",
@@ -12,6 +70,27 @@
         "id": "subheading",
         "type": "textarea",
         "label": "Subheading"
+      },
+      {
+        "id": "button_text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "id": "button_link",
+        "type": "url",
+        "label": "Button Link"
+      },
+      {
+        "id": "top_image",
+        "type": "image_picker",
+        "label": "Top Image"
+      },
+      {
+        "id": "bottom_image",
+        "type": "image_picker",
+        "label": "Bottom Image"
       }
     ],
     "presets": [

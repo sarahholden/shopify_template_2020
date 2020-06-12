@@ -1,21 +1,32 @@
-<!-- ============================
-HEADER
-================================= -->
-<header>
-  <div class="container">
-    <h1 class="main-heading">{{ section.settings.title }}</h1>
-  </div>
-</header>
 
 
 <!-- ============================
 FAQs
 ================================= -->
 <section class="container">
-  <div class="accordion list-animation-wrapper">
+  {%- if page_name == 'faq' -%}
     {% for block in section.blocks %}
       {% case block.type %}
+      {% when 'faq_section_heading' %}
+        {% if block.settings.title != blank %}
+          <a href="#{{ block.settings.title }}" class="js-scroll-to small-caps topic-link">
+            {{ block.settings.title }}
+          </a>
+        {% endif %}
+      {% endcase %}
+    {% endfor %}
+  {%- endif -%}
+  <div class="accordion list-animation-wrapper">
+    {%- if page_name == 'facts' -%}
+      {%- include 'block-faq-section-header', format: 'multi' -%}
+    {%- endif -%}
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'faq_section_heading' %}
+          {%- include 'block-faq-section-header' -%}
+
         {% when 'faq_item' %}
+
           <div class="accordion-panel animate-item">
             <h2 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h3>
             <div class="accordion-text">
