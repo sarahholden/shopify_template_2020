@@ -1,0 +1,36 @@
+{%- include 'alternating-section', format: 'img-right circle-image' -%}
+
+
+{% schema %}
+{
+  "name": "About Give Back",
+  "settings": [
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "heading",
+      "type": "textarea",
+      "label": "Heading"
+    },
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "image_alt",
+      "type": "text",
+      "label": "Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and accessibility for visually impaired customers."
+    }
+  ]
+}
+{% endschema %}

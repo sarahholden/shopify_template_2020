@@ -46,3 +46,39 @@ Section Comment
   padding: 0;
   border: 0;
 }
+
+/* --------------------------------------------------------------------------
+  GENERAL PAGES
+-----------------------------------------------------------------------------*/
+.page-general {
+  @include tablet-up {
+    padding-top: 8rem;
+    padding-bottom: 10rem;
+  }
+  .inner {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 {
+    margin-bottom: 4rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  h2 {
+    @extend .h2;
+    margin-top: 5rem;
+    margin-bottom: 0.8rem;
+
+  }
+  p + p {
+    margin-top: 2rem;
+  }
+  a {
+    text-decoration: underline;
+  }
+  em {
+    font-style: italic;
+
+  }
+}

@@ -1,0 +1,48 @@
+<section class="values-section">
+  <div class="container padded">
+    {% if section.settings.title != blank %}
+      <h3 class="small-caps">{{ section.settings.title }}</h3>
+    {% endif %}
+    <div class="cols-4 no-gutters">
+      {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'quality_grid_item' %}
+          <div>
+            {% if block.settings.title != blank %}
+              <h2 class="h1">{{ block.settings.title | newline_to_br }}</h2>
+            {% endif %}
+          </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "About Values Section",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quality_grid_item",
+      "name": "Quality Grid Item",
+      "settings": [
+        {
+          "id": "title",
+          "type": "textarea",
+          "label": "Title"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

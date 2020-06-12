@@ -1,0 +1,47 @@
+{%- include 'alternating-section', format: 'img-left' -%}
+
+
+{% schema %}
+{
+  "name": "About Image Left",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "textarea",
+      "label": "Heading"
+    },
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button Text"
+    },
+    {
+      "id": "button_url",
+      "type": "url",
+      "label": "Button URL"
+    },
+    {
+      "id": "button_alt",
+      "type": "text",
+      "label": "Button ADA description",
+      "info": "Use for links with nondescriptive text like 'Learn More'"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "image_alt",
+      "type": "text",
+      "label": "Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and accessibility for visually impaired customers."
+    }
+  ]
+}
+{% endschema %}

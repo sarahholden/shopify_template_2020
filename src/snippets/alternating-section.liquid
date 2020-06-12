@@ -1,8 +1,9 @@
-<section class="alternating-image-blocks">
+<section class="alternating-image-blocks {{ format }}">
   <div class="image-col">
-    <div class="cropped-image-wrapper">
-      {% if section.settings.image != blank %}
+    <div>
+      <div class="cropped-image-wrapper">
         {% assign image = section.settings.image %}
+        {% assign alt_text = section.settings.image_alt | escape %}
         {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
         <img
         class="lazyload fade-in"
@@ -10,14 +11,19 @@
         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
         data-aspectratio="{{ image.aspect_ratio }}"
         data-sizes="auto"
-        alt="{{ image.alt | escape }}"
+        alt="{{ alt_text }}"
         data-anim="scale"
         >
-      {% endif %}
+      </div>
     </div>
   </div>
 
   <div class="desc paw-list container padded">
+    {% if section.settings.subheading != blank %}
+      <h3 class="small-caps">
+        {{ section.settings.subheading }}
+      </h3>
+    {% endif %}
     {% if section.settings.heading != blank %}
       <h2 class="h1">
         {{ section.settings.heading }}
@@ -43,6 +49,13 @@
         {% endif %}
       {% endcase %}
     {% endfor %}
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_url }}"
+        class="btn btn--grey"
+        {% if section.settings.button_alt != blank %}alt="{{ section.settings.button_alt }}"{% endif %}>
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
 
   </div>
 
