@@ -1,42 +1,47 @@
 <header>
+  <div data-anim="scroll">
+    <!-- ======================================
+    BACKGROUND IMAGES
+    =========================================== -->
+    <!-- TABLET UP -->
+    {% assign bg_image = section.settings.hero_image %}
+    {% if bg_image != blank %}
+      <div class="bg-image-wrapper hide-mobile">
+          <div class="lazyload bg-image"
+            data-bgset="{% include 'bgset', image: bg_image %}"
+            data-sizes="110vw"
+            data-anim="scale"
+            data-scale-from="1"
+            data-scale-to="1.05"
+            style="background-position: {{ section.settings.hero_image_focal_point }}; background-color: {{ section.settings.hero_image_background_color }};">
+          </div>
+      </div>
+    {% endif %}
 
-  <!-- ======================================
-  BACKGROUND IMAGES
-  =========================================== -->
-  <!-- TABLET UP -->
-  {% assign bg_image = section.settings.hero_image %}
-  {% if bg_image != blank %}
-    <div class="bg-image-wrapper hide-mobile">
-        <div class="lazyload bg-image"
-          data-bgset="{% include 'bgset', image: bg_image %}"
-          data-sizes="auto"
-          style="background-position: {{ section.settings.hero_image_focal_point }}; background-color: {{ section.settings.hero_image_background_color }};"
-          data-anim="scale"
-        >
-        </div>
-    </div>
-  {% endif %}
+    <!-- MOBILE ONLY -->
+    {% assign bg_image = section.settings.mobile_hero_image %}
+    {% if bg_image != blank %}
+      <div class="bg-image-wrapper mobile-image-wrapper show-mobile">
+          <div class="lazyload bg-image lazy-fade"
+            data-bgset="{% include 'bgset', image: bg_image %}"
+            data-sizes="auto"
+            style="background-position: {{ section.settings.mobile_hero_image_focal_point }}; background-color: {{ section.settings.mobile_hero_image_background_color }};"
+            data-anim="scale"
+            data-scale-from="1"
+            data-scale-to="1.05"
+          >
+          </div>
+      </div>
+    {% endif %}
 
-  <!-- MOBILE ONLY -->
-  {% assign bg_image = section.settings.mobile_hero_image %}
-  {% if bg_image != blank %}
-    <div class="bg-image-wrapper mobile-image-wrapper show-mobile">
-        <div class="lazyload bg-image"
-          data-bgset="{% include 'bgset', image: bg_image %}"
-          data-sizes="auto"
-          style="background-position: {{ section.settings.mobile_hero_image_focal_point }}; background-color: {{ section.settings.mobile_hero_image_background_color }};"
-          data-anim="scale"
-        >
-        </div>
-    </div>
-  {% endif %}
+  </div>
 
   <!-- ======================================
   PRODUCT INFO
   =========================================== -->
-  <div class="hero-intro-info">
+  <div class="hero-intro-info" >
     <div class="container">
-      <div class="cols-2">
+      <div class="cols-2" >
 
         <!-- ======================================
         PRODUCT IMAGE LINKS
@@ -44,11 +49,12 @@
         {% for block in section.blocks %}
           {% case block.type %}
           {% when 'product_links' %}
-            <div>
+            <div class="product-image-link" data-anim="scroll">
+              <div class="overlay"></div>
               <a href="{{ all_products[block.settings.product].url }}">
                 {% if block.settings.title != blank %}
                   <div class="text-wrapper">
-                    <h2 class="h1">
+                    <h2 class="h1" data-anim="slide" data-anim-order="1">
                       {{ block.settings.title }}
                     </h2>
                   </div>
@@ -56,12 +62,10 @@
                 {% assign bg_image = block.settings.image %}
                 {% if bg_image != blank %}
                   <div class="bg-image-wrapper">
-                      <div class="lazyload bg-image"
+                      <div class="lazyload bg-image lazy-fade"
                         data-bgset="{% include 'bgset', image: bg_image %}"
                         data-sizes="auto"
-                        style="background-position: bottom center; "
-                        data-anim="scale"
-                      >
+                        style="background-position: bottom center;">
                       </div>
                   </div>
                 {% endif %}
@@ -73,20 +77,25 @@
         <!-- ======================================
         INTRO INFO TEXT CONTENT
         =========================================== -->
-        <div>
+        <div class="intro-info-block" data-anim="scroll">
           {% if section.settings.info_block_heading != blank %}
-            <h2 class="h1">{{ section.settings.info_block_heading | newline_to_br}}</h2>
+            <h2 class="h1" data-break="lines-masked">{{ section.settings.info_block_heading | newline_to_br}}</h2>
           {% endif %}
+          <div class="desc show-mobile" data-break="lines-masked-desc">
+            {{ section.settings.info_block_desc }}
+          </div>
           {% if section.settings.info_block_button_url != blank and section.settings.info_block_button_text != blank %}
-            <a href="{{ section.settings.info_block_button_url }}"
-               class="btn btn--grey">
-              {{ section.settings.info_block_button_text }}
-            </a>
+            <div data-anim="slide" data-anim-order="2">
+              <a href="{{ section.settings.info_block_button_url }}"
+                 class="btn btn--grey">
+                {{ section.settings.info_block_button_text }}
+              </a>
+            </div>
           {% endif %}
         </div>
-        <div>
+        <div class="intro-info-block hide-mobile" data-anim="scroll">
           {% if section.settings.info_block_desc != blank %}
-            <div class="desc">
+            <div class="desc" data-break="lines-masked-desc">
               {{ section.settings.info_block_desc }}
             </div>
           {% endif %}

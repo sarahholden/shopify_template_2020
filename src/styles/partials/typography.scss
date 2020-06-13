@@ -84,13 +84,21 @@ h2 {
   }
 }
 
+.heading {
+  margin-bottom: 2.4rem;
+}
+
+.subheading {
+  margin-bottom: 2rem;
+}
+
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
 %smallCaps,
 .small-caps {
   text-transform: uppercase;
-  font-family: $monoFont;
+  font-family: $mono;
   font-size: 1.1rem;
   line-height: (18 / 11);
   letter-spacing: 0.234rem;
@@ -123,6 +131,31 @@ h2 {
   }
   p + p {
     margin-top: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  PAW PRINT LIST
+-----------------------------------------------------------------------------*/
+.paw-list {
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding-left: 7rem;
+      position: relative;
+      margin-bottom: 2.8rem;
+      .paw-print {
+        display: block;
+        position: absolute;
+        top: 0.2rem;
+        left: 0;
+        width: 3.1rem;
+      }
+    }
+    h2 {
+      margin-bottom: 1rem;
+    }
   }
 }
 

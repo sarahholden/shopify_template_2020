@@ -1,30 +1,30 @@
-<section class="benefit-section">
-  <div class="container padded">
+<section class="benefit-section" >
+  <div class="container padded" data-anim="scroll">
+    <!-- Heading & Subheading -->
+    {% if section.settings.subheading != blank %}
+    <h3 class="small-caps subheading"  data-anim="slide" data-anim-order="1">
+      {{ section.settings.subheading }}
+    </h3>
+    {% endif %}
     <div class="cols-2 no-gutters">
       <div>
-        <!-- Heading & Subheading -->
-        {% if section.settings.subheading != blank %}
-          <h3 class="small-caps">
-            {{ section.settings.subheading }}
-          </h3>
-        {% endif %}
         {% if section.settings.heading != blank %}
-          <h2>{{ section.settings.heading }}</h2>
+          <h2 class="h1"  data-break="lines-masked">{{ section.settings.heading }}</h2>
         {% endif %}
       </div>
-      <div>
+      <div class="v-aligner">
         {% if section.settings.desc != blank %}
-          <div class="desc">
+          <div class="desc" data-break="lines-masked-desc">
             {{ section.settings.desc }}
           </div>
         {% endif %}
       </div>
     </div>
   </div>
-  <div class="benefits-image">
+  <div class="benefits-image" data-anim="scroll">
     {%- assign lazy_image = section.settings.desktop_image -%}
     {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-    <img class="lazyload lazy-load hide-mobile"
+    <img class="lazyload lazy-load lazy-fade hide-mobile"
         data-src="{{ img_url }}"
         data-widths="[360, 540, 720, 900, 1080, 1600]"
         data-aspectratio="{{ lazy_image.aspect_ratio }}"
@@ -33,7 +33,7 @@
         alt="{{ lazy_image.alt }}">
     {%- assign lazy_image = section.settings.mobile_image -%}
     {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-    <img class="lazyload lazy-load show-mobile"
+    <img class="lazyload lazy-load lazy-fade show-mobile"
         data-src="{{ img_url }}"
         data-widths="[360, 540, 720, 900, 1080, 1600]"
         data-aspectratio="{{ lazy_image.aspect_ratio }}"

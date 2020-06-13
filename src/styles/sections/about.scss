@@ -1,0 +1,39 @@
+/* --------------------------------------------------------------------------
+  ABOUT
+-----------------------------------------------------------------------------*/
+.page-about .values-section {
+  padding-top: 4.2rem;
+  padding-bottom: 4.2rem;
+  @include mobile-only {
+    padding: 0;
+  }
+  .inner {
+    background: $black;
+    color: white;
+  }
+  h3 {
+    padding-top: 2.7rem;
+    padding-bottom: 2.2rem;
+    padding-left: 3rem;
+  }
+
+  .values-col {
+    border-top: 0.05rem solid #FEFEFE;
+    padding: 3rem 3rem 7rem;
+    @include mobile-only {
+      padding: 2.5rem 2.8rem;
+    }
+    &:not(:last-of-type) {
+      @include tablet-up {
+        border-right: 0.05rem solid #FEFEFE;
+      }
+      @include mobile-only {
+        border-bottom: 0.05rem solid #FEFEFE;
+        border-top: 0;
+      }
+    }
+    &:first-of-type {
+      border-top: 0.05rem solid #FEFEFE;
+    }
+  }
+}

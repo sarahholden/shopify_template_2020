@@ -1,15 +1,15 @@
-<section class="values-section">
-  <div class="container padded">
+<section class="values-section container padded" data-anim="scroll">
+  <div class="inner">
     {% if section.settings.title != blank %}
-      <h3 class="small-caps">{{ section.settings.title }}</h3>
+      <h3 class="small-caps" data-anim="slide" data-anim-order="1">{{ section.settings.title }}</h3>
     {% endif %}
-    <div class="cols-4 no-gutters">
+    <div class="cols-4 no-gutters value-columns list-animation-wrapper">
       {% for block in section.blocks %}
         {% case block.type %}
         {% when 'quality_grid_item' %}
-          <div>
+          <div class="values-col">
             {% if block.settings.title != blank %}
-              <h2 class="h1">{{ block.settings.title | newline_to_br }}</h2>
+              <h2 class="h1 animate-item">{{ block.settings.title | newline_to_br }}</h2>
             {% endif %}
           </div>
         {% endcase %}
@@ -17,8 +17,6 @@
     </div>
   </div>
 </section>
-
-
 
 {% schema %}
 {

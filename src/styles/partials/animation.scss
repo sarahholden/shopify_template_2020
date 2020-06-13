@@ -1,0 +1,118 @@
+/* --------------------------------------------------------------------------
+  TEXT ANIMATIONS
+-----------------------------------------------------------------------------*/
+[data-break="lines-masked"],
+[data-break="lines-masked-desc"] {
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
+  [class^="split-line-"] {
+    overflow: hidden;
+    padding-bottom: 0.2rem;
+    margin-bottom: -.2rem;
+  }
+}
+
+[data-break="lines-masked"],
+[data-break="lines-masked-desc"] {
+  .split-line-child {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.6s $ease;
+  }
+}
+
+.js-animate [data-break="lines-masked"],
+.js-animate [data-break="lines-masked-desc"] {
+  .split-line-child {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+[data-anim="scale-up"] {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.8s $ease;
+}
+
+.js-animate [data-anim="scale-up"] {
+  opacity: 1;
+  transform: none;
+  transition: all 0.8s $ease;
+}
+
+[data-anim="slide"] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.8s $ease;
+}
+
+.js-animate [data-anim="slide"] {
+  opacity: 1;
+  transform: none;
+  transition: all 0.8s $ease;
+}
+
+@for $i from 1 through 30 {
+  .js-animate [data-anim-order="#{$i}"],
+  .split-line-#{$i} .split-line-child {
+    transition-delay: ($i - 1) * 0.1s;
+  }
+}
+//
+// .js-animate [data-anim-order="1"],
+// .split-line-1 .split-line-child {
+//   transition-delay: 0;
+// }
+// .js-animate [data-anim-order="2"],
+// .split-line-2 .split-line-child {
+//   transition-delay: 0.1s;
+// }
+// .js-animate [data-anim-order="3"],
+// .split-line-3 .split-line-child {
+//   transition-delay: 0.2s;
+// }
+// .js-animate [data-anim-order="4"],
+// .split-line-4 .split-line-child {
+//   transition-delay: 0.3s;
+// }
+// .js-animate [data-anim-order="5"],
+// .split-line-5 .split-line-child {
+//   transition-delay: 0.4s;
+// }
+// .js-animate [data-anim-order="6"],
+// .split-line-6 .split-line-child {
+//   transition-delay: 0.5s;
+// }
+// .js-animate [data-anim-order="7"],
+// .split-line-7 .split-line-child {
+//   transition-delay: 0.6s;
+// }
+// .js-animate [data-anim-order="8"],
+// .split-line-7 .split-line-child {
+//   transition-delay: 0.7s;
+// }
+// .js-animate [data-anim-order="9"],
+// .split-line-7 .split-line-child {
+//   transition-delay: 0.8s;
+// }
+// .js-animate [data-anim-order="10"],
+// .split-line-7 .split-line-child {
+//   transition-delay: 0.9s;
+// }
+
+/* --------------------------------------------------------------------------
+  ANIMATE ITEM
+-----------------------------------------------------------------------------*/
+.list-animation-wrapper .animate-item,
+.list-animation-wrapper li {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.5s $ease;
+  &.fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,85 @@
+/* --------------------------------------------------------------------------
+  GENERAL STYLES
+-----------------------------------------------------------------------------*/
+.thumbs-wrapper {
+  border-top: $border;
+  border-bottom: $border;
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT THUMBNAIL
+-----------------------------------------------------------------------------*/
+.product-thumb {
+  &:nth-of-type(odd) {
+    @include tablet-up {
+      border-right: $border;
+    }
+  }
+
+  .cropped-image-wrapper {
+    padding-bottom: 47vw;
+    transition: all 0.4s $ease;
+    @include mobile-only {
+      padding-bottom: 84vw;
+    }
+  }
+  .images-thumb-wrapper {
+    display: block;
+    position: relative;
+    @include mobile-only {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  &:hover {
+    .hover-image {
+      opacity: 1;
+    }
+    .featured-image {
+      opacity: 0;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  BOTTOM ROW - TITLE & BUY NOW
+-----------------------------------------------------------------------------*/
+.product-thumb {
+  &:nth-of-type(even) .product-bottom-row {
+    @include tablet-up {
+      padding-left: 3.8rem;
+    }
+  }
+  .product-bottom-row {
+    border-top: $border;
+    display: block;
+    @include tablet-up {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    h2 {
+      @include mobile-only {
+        padding: 1.2rem 0;
+      }
+    }
+    .btn {
+      @include tablet-up {
+        border-left: $border;
+      }
+      @include mobile-only {
+        width: 100%;
+        border-top: $border;
+        border-bottom: $border;
+      }
+    }
+  }
+}

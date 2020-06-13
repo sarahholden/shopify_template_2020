@@ -16,7 +16,7 @@ FAQs
       {% endcase %}
     {% endfor %}
   {%- endif -%}
-  <div class="accordion list-animation-wrapper">
+  <div class="accordion list-animation-wrapper" data-anim="scroll">
     {%- if page_name == 'facts' -%}
       {%- include 'block-faq-section-header', format: 'multi' -%}
     {%- endif -%}

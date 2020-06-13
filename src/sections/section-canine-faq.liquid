@@ -1,15 +1,17 @@
 <!-- ============================
 HEADER
 ================================= -->
-<header>
+<div class="padded canine-facts-faq" data-anim="scroll">
   <div class="container">
-    <h1 class="main-heading">{{ section.settings.title }}</h1>
+    <header>
+      <div >
+        <h1 class="main-heading" data-anim="slide" data-anim-order="1">{{ section.settings.title }}</h1>
+      </div>
+    </header>
+
   </div>
-</header>
-
-
-{%- include 'block-faq-items', page_name: 'facts' -%}
-
+  {%- include 'block-faq-items', page_name: 'facts' -%}
+</div>
 
 {% schema %}
 {

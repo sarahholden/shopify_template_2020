@@ -1,62 +1,79 @@
-<section class="alternating-image-blocks {{ format }}">
-  <div class="image-col">
-    <div>
-      <div class="cropped-image-wrapper">
-        {% assign image = section.settings.image %}
-        {% assign alt_text = section.settings.image_alt | escape %}
-        {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-        <img
-        class="lazyload fade-in"
-        data-src="{{ img_url }}"
-        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-        data-aspectratio="{{ image.aspect_ratio }}"
-        data-sizes="auto"
-        alt="{{ alt_text }}"
-        data-anim="scale"
-        >
-      </div>
-    </div>
-  </div>
-
-  <div class="desc paw-list container padded">
-    {% if section.settings.subheading != blank %}
-      <h3 class="small-caps">
-        {{ section.settings.subheading }}
-      </h3>
-    {% endif %}
-    {% if section.settings.heading != blank %}
-      <h2 class="h1">
-        {{ section.settings.heading }}
-      </h2>
-    {% endif %}
-    {% if section.settings.desc != blank %}
-      <div class="desc">
-        {{ section.settings.desc }}
-      </div>
-    {% endif %}
-    {% for block in section.blocks %}
-      {% case block.type %}
-      {% when 'list_item' %}
-        {% if block.settings.title != blank %}
-          <h2>
-            {{ block.settings.title }}
+<div class="">
+  <section class="alternating-image-blocks container {{ format }}">
+    <div class="inner">
+      <div class="text-col container padded" data-anim="scroll">
+        {% if section.settings.subheading != blank %}
+          <h3 class="small-caps" data-anim="slide" data-anim-order="1">
+            {{ section.settings.subheading }}
+          </h3>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="h1" data-anim="slide" data-anim-order="2">
+            {{ section.settings.heading | newline_to_br }}
           </h2>
         {% endif %}
-        {% if block.settings.desc != blank %}
-          <div class="desc">
-            {{ block.settings.desc }}
+        {% if section.settings.desc != blank %}
+          <div class="desc" data-anim="slide" data-anim-order="3">
+            {{ section.settings.desc }}
           </div>
         {% endif %}
-      {% endcase %}
-    {% endfor %}
-    {% if section.settings.button_text != blank %}
-      <a href="{{ section.settings.button_url }}"
-        class="btn btn--grey"
-        {% if section.settings.button_alt != blank %}alt="{{ section.settings.button_alt }}"{% endif %}>
-        {{ section.settings.button_text }}
-      </a>
-    {% endif %}
+        {% if section.blocks.size > 0 %}
+        <div class="paw-list desc list-animation-wrapper">
+          <ul>
+            {% for block in section.blocks %}
+              {% case block.type %}
+              {% when 'list_item' %}
+                <li class="animate-item">
+                  <div class="paw-print">
+                    <img src="{{ 'paw-bullet.png' | asset_url }}" alt="" role="presentation">
+                  </div>
+                  {% if block.settings.title != blank %}
+                  <h2 >
+                    {{ block.settings.title }}
+                  </h2>
+                  {% endif %}
+                  {% if block.settings.desc != blank %}
+                  <div class="desc">
+                    {{ block.settings.desc }}
+                  </div>
+                  {% endif %}
+                </li>
+              {% endcase %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if section.settings.button_text != blank %}
+          <div class="button-wrapper" data-anim="slide" data-anim-order="5">
+            <a href="{{ section.settings.button_url }}"
+              class="btn btn--grey"
+              {% if section.settings.button_alt != blank %}alt="{{ section.settings.button_alt }}"{% endif %}>
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
 
-  </div>
+      </div>
+      <div class="image-col" data-anim="scroll">
+        <div>
+          <div class="cropped-image-wrapper">
+            {% assign image = section.settings.image %}
+            {% assign alt_text = section.settings.image_alt | escape %}
+            {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img
+            class="lazyload lazy-fade"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ alt_text }}"
+            data-anim="scale"
+            data-duration="200%"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
+</div>

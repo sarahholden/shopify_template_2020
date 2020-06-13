@@ -1,14 +1,19 @@
 {%- if format == 'multi' -%}
-  <div  class="topic-header small-caps multi">
+  <div  class="faq-topic-header small-caps multi" data-anim="slide" data-anim-order="1">
     {% if section.settings.left_col_heading != blank %}
-      {{ section.settings.left_col_heading }}
+      <p class="left-col-heading">
+        {{ section.settings.left_col_heading }}
+      </p>
     {% endif %}
+    <span class="show-mobile">&nbsp;/&nbsp;</span>
     {% if section.settings.right_col_heading != blank %}
-      {{ section.settings.right_col_heading }}
+      <p class="right-col-heading">
+        {{ section.settings.right_col_heading }}
+      </p>
     {% endif %}
   </div>
 {%- else -%}
-  <div id="{{ block.settings.title }}" class="topic-header small-caps multi">
+  <div id="{{ block.settings.title }}" class="faq-topic-header small-caps multi" data-anim="slide" data-anim-order="1">
     {% if block.settings.title != blank %}
       {{ block.settings.title }}
     {% endif %}

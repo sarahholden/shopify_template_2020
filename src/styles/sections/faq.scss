@@ -1,4 +1,23 @@
 /* --------------------------------------------------------------------------
+  FAQ HEADER
+-----------------------------------------------------------------------------*/
+.faq-topic-header {
+  background: $darkGreyBackground;
+  padding: 1.7rem 2rem;
+  display: flex;
+  border-top: $border;
+  border-bottom: $border;
+  @include tablet-up {
+    justify-content: space-between;
+    .left-col-heading,
+    .right-col-heading {
+      width: 50%;
+    }
+
+  }
+}
+
+/* --------------------------------------------------------------------------
 Accordions
 -----------------------------------------------------------------------------*/
 /* Accordion Panel Styles ---------------- */

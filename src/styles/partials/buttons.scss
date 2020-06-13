@@ -11,15 +11,15 @@ button {
   outline: none;
   display: inline-block;
   background-color: transparent;
-  padding: 2.1rem 3.3rem 2.2rem;
+  padding: 2.1rem 3.3rem;
   &:hover {}
 }
 
 .btn--grey {
-  background: $darkGreyBackground;
+  background: $grayButton;
   color: $black;
   &:hover {
-    background: $grayButton;
+    background: darken($grayButton, 8%);
     color: $black;
   }
 }

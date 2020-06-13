@@ -1,4 +1,4 @@
-<section class="manifesto-section">
+<section class="manifesto-section" data-anim="scroll">
   <div class="container padded">
     <div class="cols-2 no-gutters">
 
@@ -15,7 +15,11 @@
               data-aspectratio="{{ lazy_image.aspect_ratio }}"
               data-sizes="auto"
               role="presentation"
+              data-anim="parallax"
+              data-translate-from="0"
+              data-translate-to="30"
               alt="{{ lazy_image.alt }}">
+
         </div>
         <div class="image-wrapper bottom-image">
           {%- assign lazy_image = section.settings.bottom_image -%}
@@ -26,6 +30,9 @@
               data-aspectratio="{{ lazy_image.aspect_ratio }}"
               data-sizes="auto"
               role="presentation"
+              data-anim="parallax"
+              data-translate-from=""
+              data-translate-to="-30"
               alt="{{ lazy_image.alt }}">
         </div>
       </div>
@@ -35,17 +42,19 @@
       =========================================== -->
       <div>
         {% if section.settings.subheading != blank %}
-          <h3 class="small-caps">
+          <h3 class="small-caps" data-anim="slide" data-anim-order="1">
             {{ section.settings.subheading }}
           </h3>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h2>{{ section.settings.heading }}</h2>
+          <h2 class="h1" data-break="lines-masked">{{ section.settings.heading }}</h2>
         {% endif %}
         {% if section.settings.button_text != blank %}
-        <a href="{{ section.settings.button_url }}" class="btn--grey">
-          {{ section.settings.button_text }}
-        </a>
+          <div data-anim="slide" data-anim-order="1">
+            <a href="{{ section.settings.button_url }}" class="btn btn--grey">
+              {{ section.settings.button_text }}
+            </a>
+          </div>
         {% endif %}
       </div>
 
