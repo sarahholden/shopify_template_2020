@@ -18,9 +18,10 @@ Body Open Mobile Nav Styles
   background: white;
   border-top: 2.1rem solid $black;
   z-index: 300;
+  position: relative;
   @include mobile-only {
     border-top: 1.7rem solid $black;
-    height: 6rem;
+    height: 7.2rem;
   }
   .inner {
     @extend %stretch-aligner;
@@ -56,7 +57,7 @@ Header Navigation Styles
     @include tablet-up {
       display: inline-block;
       padding: $footerTabletUpPadding;
-      min-width: 11.7rem;
+      min-width: 11.61rem;
       text-align: center;
     }
     &:hover {

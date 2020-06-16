@@ -1,30 +1,30 @@
 <script type="text/javascript">
-  $('#add-item-form').on('submit', function (e) {
-    e.preventDefault();
-    let variantId = $('#variant-id').val();
-    let quantity = $('#quantity').val();
-
-    CartJS.addItem(variantId, quantity);
-    $('body').addClass('open-cart');
-     $('#quantity').val('1');
-     updatePrice();
-  });
-
-  $('#quantity').on('change', function () {
-    var newQuantity = parseInt($('#quantity').val(), 10);
-
-    if (newQuantity < 1) {
-      $('#quantity').val('1');
-    }
-    updatePrice();
-  });
-
-  function updatePrice () {
-    var pricePerUnit = $('#total').data('price-per');
-    var newQuantity = parseInt($('#quantity').val(), 10);
-    var updatedAmount = ((newQuantity * pricePerUnit) / 100).toFixed(2);
-    $('#total').text('$' + updatedAmount);
-  }
+  // $('#add-item-form').on('submit', function (e) {
+  //   e.preventDefault();
+  //   let variantId = $('#variant-id').val();
+  //   let quantity = $('#quantity').val();
+  //
+  //   CartJS.addItem(variantId, quantity);
+  //   $('body').addClass('open-cart');
+  //    $('#quantity').val('1');
+  //    updatePrice();
+  // });
+  //
+  // $('#quantity').on('change', function () {
+  //   var newQuantity = parseInt($('#quantity').val(), 10);
+  //
+  //   if (newQuantity < 1) {
+  //     $('#quantity').val('1');
+  //   }
+  //   updatePrice();
+  // });
+  //
+  // function updatePrice () {
+  //   var pricePerUnit = $('#total').data('price-per');
+  //   var newQuantity = parseInt($('#quantity').val(), 10);
+  //   var updatedAmount = ((newQuantity * pricePerUnit) / 100).toFixed(2);
+  //   $('#total').text('$' + updatedAmount);
+  // }
 
 
 </script>

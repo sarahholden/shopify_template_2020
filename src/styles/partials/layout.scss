@@ -12,8 +12,7 @@ Default Box sizing, Overflow Styles
 	box-sizing: border-box;
 }
 
-body,
-html {
+body {
 	overflow-x: hidden;
 }
 
@@ -70,16 +69,35 @@ Vertical & Horizontal Alignment
 /* --------------------------------------------------------------------------
 Centered Layout
 -----------------------------------------------------------------------------*/
-
+$desktopSidePadding: 3.5rem;
 $mobileSidePadding: 2.6rem;
 $mobileTotalSidePadding: 5.2rem;
 
 .container {
-	padding-left: 3.5rem;
-	padding-right: 3.5rem;
+	padding-left: $desktopSidePadding;
+	padding-right: $desktopSidePadding;
 	@include mobile-only {
 		padding-left: $mobileSidePadding;
 		padding-right: $mobileSidePadding;
+	}
+}
+
+.container-mobile {
+	@include mobile-only {
+		padding-left: $mobileSidePadding;
+		padding-right: $mobileSidePadding;
+	}
+}
+
+.container-right-lg {
+	@include tablet-up {
+		padding-right: $desktopSidePadding;
+	}
+}
+
+.container-left-lg {
+	@include tablet-up {
+		padding-left: $desktopSidePadding !important;
 	}
 }
 

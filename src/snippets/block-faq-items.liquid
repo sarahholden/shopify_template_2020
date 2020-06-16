@@ -3,18 +3,20 @@
 <!-- ============================
 FAQs
 ================================= -->
-<section class="container">
+<section class="container faq-section-wrapper">
   {%- if page_name == 'faq' -%}
-    {% for block in section.blocks %}
-      {% case block.type %}
-      {% when 'faq_section_heading' %}
-        {% if block.settings.title != blank %}
-          <a href="#{{ block.settings.title }}" class="js-scroll-to small-caps topic-link">
-            {{ block.settings.title }}
-          </a>
-        {% endif %}
-      {% endcase %}
-    {% endfor %}
+    <div class="topic-links">
+      {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'faq_section_heading' %}
+          {% if block.settings.title != blank %}
+            <a href="#{{ block.settings.title | handleize }}" class="js-scroll-to small-caps topic-link">
+              {{ block.settings.title }}
+            </a>
+          {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
   {%- endif -%}
   <div class="accordion list-animation-wrapper" data-anim="scroll">
     {%- if page_name == 'facts' -%}
@@ -27,8 +29,8 @@ FAQs
 
         {% when 'faq_item' %}
 
-          <div class="accordion-panel animate-item">
-            <h2 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h3>
+          <div class="accordion-panel cols-2 animate-item">
+            <h2 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h2>
             <div class="accordion-text">
               <div class="inner">
                 {{ block.settings.desc }}

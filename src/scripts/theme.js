@@ -175,6 +175,28 @@ $(document).ready(function() {
   //   }
   // });
 
+  const swiper = new Swiper('.swiper-container-product', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: 'true'
+    },
+    speed: 600,
+    allowTouchMove: true,
+    loop: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    autoplay: {
+      delay: 10000,
+      disableOnInteraction: true
+    },
+    navigation: {
+      nextEl: '.swiper-next',
+      prevEl: '.swiper-prev',
+    },
+  });
+
   /* ---------------------------------------------
     PROMO SWIPER
   ------------------------------------------------ */
@@ -362,21 +384,21 @@ $(document).ready(function() {
   /* ---------------------------------------------
   SMOOTH SCROLL
   ------------------------------------------------ */
-  // $('.scroll-to').on('click', function(e) {
-  //   e.preventDefault();
-  //
-  //   var thisTarget = $(this).attr('href');
-  //
-  //   if (thisTarget == '#bottom') {
-  //     var targetOffset = $('#top').offset().top + $('#top').outerHeight() - $(window).height();
-  //   } else {
-  //     var targetOffset = $(thisTarget).offset().top;
-  //   }
-  //
-  //   $('html, body').animate({
-  //     scrollTop: targetOffset
-  //   }, 600);
-  // });
+  $('.js-scroll-to').on('click', function(e) {
+    e.preventDefault();
+
+    var thisTarget = $(this).attr('href');
+
+    if (thisTarget == '#bottom') {
+      var targetOffset = $('#top').offset().top + $('#top').outerHeight() - $(window).height();
+    } else {
+      var targetOffset = $(thisTarget).offset().top;
+    }
+
+    $('html, body').animate({
+      scrollTop: targetOffset
+    }, 600);
+  });
 
   /* ---------------------------------------------
   PROMO POPUP

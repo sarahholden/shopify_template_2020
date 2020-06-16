@@ -4,22 +4,24 @@
     {% if section.settings.image != blank %}
     {%- assign lazy_image = section.settings.image -%}
     {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-      <img class="lazyload hide-mobile"
-          data-src="{{ img_url }}"
-          data-widths="[360, 540, 720, 900, 1080, 1600]"
-          data-aspectratio="{{ lazy_image.aspect_ratio }}"
-          data-sizes="auto"
-          role="presentation"
-          alt="{{ lazy_image.alt }}">
-        {%- assign lazy_image = section.settings.mobile_image -%}
-        {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-        <img class="lazyload show-mobile"
-          data-src="{{ img_url }}"
-          data-widths="[360, 540, 720, 900, 1080, 1600]"
-          data-aspectratio="{{ lazy_image.aspect_ratio }}"
-          data-sizes="auto"
-          role="presentation"
-          alt="{{ lazy_image.alt }}">
+      <div class="image-wrapper">
+        <img class="lazyload hide-mobile"
+            data-src="{{ img_url }}"
+            data-widths="[360, 540, 720, 900, 1080, 1600]"
+            data-aspectratio="{{ lazy_image.aspect_ratio }}"
+            data-sizes="auto"
+            role="presentation"
+            alt="{{ lazy_image.alt }}">
+          {%- assign lazy_image = section.settings.mobile_image -%}
+          {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <img class="lazyload show-mobile"
+            data-src="{{ img_url }}"
+            data-widths="[360, 540, 720, 900, 1080, 1600]"
+            data-aspectratio="{{ lazy_image.aspect_ratio }}"
+            data-sizes="auto"
+            role="presentation"
+            alt="{{ lazy_image.alt }}">
+      </div>
     {% endif %}
     {% if section.settings.title != blank %}
       <h1>{{ section.settings.title }}</h1>

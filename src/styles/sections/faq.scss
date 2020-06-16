@@ -1,4 +1,47 @@
 /* --------------------------------------------------------------------------
+  FAQ PAGE - HEADER
+-----------------------------------------------------------------------------*/
+.page-faq header {
+  .image-wrapper {
+    @include tablet-up {
+      border-bottom: $border;
+    }
+    @include mobile-only {
+      width: calc(100% + $mobileTotalSidePadding);
+      margin-left: -$mobileSidePadding;
+      margin-right: -$mobileSidePadding;
+    }
+  }
+  h1 {
+    margin-top: 3.4rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  FAQ SECTION WRAPPER
+-----------------------------------------------------------------------------*/
+.faq-section-wrapper {
+  margin-bottom: 5.55rem;
+}
+
+/* --------------------------------------------------------------------------
+  TOPIC LINKS
+-----------------------------------------------------------------------------*/
+.topic-links {
+  a {
+    display: inline-block;
+    margin-right: 6rem;
+    margin-bottom: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    @include mobile-only {
+      margin-right: 4.6rem;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
   FAQ HEADER
 -----------------------------------------------------------------------------*/
 .faq-topic-header {
@@ -17,6 +60,13 @@
   }
 }
 
+.accordion-panel + .faq-topic-header {
+  margin-top: 9.2rem;
+  @include mobile-only {
+    margin-top: 8.4rem;
+  }
+}
+
 /* --------------------------------------------------------------------------
 Accordions
 -----------------------------------------------------------------------------*/
@@ -24,11 +74,13 @@ Accordions
 .accordion-panel {
   border-bottom: 1px solid $borderColor;
   padding: 2rem 0;
+  @include tablet-up {
+    grid-column-gap: 6rem;
+  }
   &:first-of-type {
     border-top: 1px solid $borderColor;
   }
   h2 {
-    @extend %smallCaps;
     margin-bottom: 0;
     .text {
       transform: translateY(3px);
@@ -38,6 +90,7 @@ Accordions
 }
 
 /* Accordion Text Styles ---------------- */
+
 .accordion-text {
   max-height: 0;
   overflow: hidden;
@@ -47,7 +100,10 @@ Accordions
   p,
   ul {
     transition: all 0.3s ease-in-out;
-    opacity: 0;
+    @include mobile-only {
+      opacity: 0;
+
+    }
   }
   a {
     color: $primaryAnchorColor;
@@ -56,10 +112,19 @@ Accordions
     }
   }
   p:first-of-type {
-    margin-top: 1.4rem;
+    @include mobile-only {
+      margin-top: 1.4rem;
+    }
   }
   p:last-of-type {
     margin-bottom: 1.2rem;
+  }
+}
+
+/* SHOW PREVIEW SNIPPET ON FAQ PAGE & FACTS */
+.faq-section-wrapper .accordion-text {
+  @include tablet-up {
+    max-height: 5.4rem;
   }
 }
 
@@ -68,8 +133,10 @@ Accordions
   cursor: pointer;
   position: relative;
   margin-top: 0;
-  padding-right: 4.5rem;
-
+  padding-right: 6rem;
+  @include mobile-only {
+    padding-right: 4.5rem;
+  }
   /* Plus / Minus icon */
   .icon {
     cursor: pointer;
@@ -77,8 +144,15 @@ Accordions
     right: 1.4rem;
     top: 47%;
     transform: translateY(-50%);
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    @include tablet-up {
+      top: 2.6rem;
+    }
+    @include mobile-only {
+      width: 2rem;
+      height: 2rem;
+    }
   }
   .icon::after,
   .icon::before {
@@ -87,7 +161,7 @@ Accordions
     position: absolute;
     top: 50%;
     width: 100%;
-    border-bottom: 2px solid $borderColor;
+    border-bottom: 0.05rem solid $borderColor;
   }
   .icon::before {
     transition: all 0.3s ease-in-out;

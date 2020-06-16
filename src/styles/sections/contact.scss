@@ -1,0 +1,26 @@
+
+/* LINE DOWN MIDDLE OF PAGE ================== */
+#contact #MainContent {
+  @include tablet-up {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      // transform: translateX(-50%);
+      width: 0.05rem;
+      height: 100%;
+      border-left: $border;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  EMAIL US COLUMN
+-----------------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------------
+  LEAVE A MESSAGE COLUMN
+-----------------------------------------------------------------------------*/

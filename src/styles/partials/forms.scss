@@ -33,6 +33,43 @@ textarea {
 	color: lighten($primaryTextColor, 5%);
 }
 
+/* NUMBER INPUT ================== */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+/* --------------------------------------------------------------------------
+  RADIO STYLES
+-----------------------------------------------------------------------------*/
+%inactive-radio {
+	position: relative;
+	padding-left: 4rem;
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1.7rem;
+		height: 1.7rem;
+		outline: $border;
+		border: 2px solid $darkGreyBackground;
+		background: $darkGreyBackground;
+	}
+}
+%active-radio {
+	&::before {
+		background: $primaryTextColor;
+	}
+}
+
 /* --------------------------------------------------------------------------
 Validation
 -----------------------------------------------------------------------------*/

@@ -1,3 +1,270 @@
+/* --------------------------------------------------------------------------
+  PRODUCT DETAIL PAGE
+-----------------------------------------------------------------------------*/
+/* Don't hide overflow - so left column can stick ================== */
+.template-product {
+  overflow: visible;
+}
+
+/* LINE DOWN MIDDLE OF PAGE ================== */
+.template-product #MainContent {
+  @include tablet-up {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      // transform: translateX(-50%);
+      width: 0.05rem;
+      height: 100%;
+      border-left: $border;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT INFO / FORM STYLES (RIGHT COLUMN)
+-----------------------------------------------------------------------------*/
+.page-product-detail .product-info-col {
+  border-left: $border;
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT TITLE AND DESCRIPTION
+-----------------------------------------------------------------------------*/
+.page-product-detail .product-into-info {
+  padding-bottom: 3.6rem;
+  border-bottom: $border;
+  @include tablet-up {
+    padding-top: 5.65rem;
+  }
+  @include mobile-only {
+    padding-top: 4.75rem;
+  }
+  h1 {
+    border-top: $border;
+    border-bottom: $border;
+    padding-top: 0.9rem;
+    padding-bottom: 0.65rem;
+  }
+  .desc {
+    padding-top: 2.85rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  SUBSCRIBE AND SAVE
+-----------------------------------------------------------------------------*/
+.subscribe-and-save {
+  @extend %smallCaps;
+  background: $darkGreyBackground;
+  overflow: hidden;
+
+  /* Style like other form rows */
+  #rc_radio_options > .rc_block {
+    @extend .container-left-lg;
+    @extend .container-mobile;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: $border;
+    border-radius: 0;
+    @include tablet-up {
+      display: flex;
+    }
+  }
+
+  div.rc_block__type--active label.rc_label {
+    color: $primaryTextColor;
+  }
+
+  /* Reset Styles */
+  div#rc_container {
+    margin-bottom: 0;
+  }
+  label.rc_label__deliver_every {
+    padding: 0;
+  }
+  div.rc_block__type--active {
+    background: transparent;
+  }
+
+  /* Delivery Options */
+  #rc_autodeliver_options {
+    @include mobile-only {
+      padding-left: 4rem;
+    }
+  }
+
+  /* Hide info tooltip */
+  .rc_popup {
+    display: none;
+  }
+  img {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+/* RADIO INPUT STYLES ================== */
+.subscribe-and-save {
+
+  input[type="radio"] + label.rc_label {
+    @extend %inactive-radio;
+  }
+  div.rc_block__type--active input[type="radio"] + label.rc_label {
+    @extend %active-radio;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT FORM
+-----------------------------------------------------------------------------*/
+.page-product-detail form {
+
+  .form-cell {
+    @extend %smallCaps;
+    @extend .container-mobile;
+    background: $darkGreyBackground;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
+  }
+  label {
+    @extend %smallCaps;
+    margin-right: 2.2rem;
+  }
+  input {
+    margin: 0;
+    width: auto;
+    padding: 0;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+/* QUANTITY ================== */
+.page-product-detail .quantity-wrapper {
+  border-top: $border;
+  input[type="number"] {
+    @extend %smallCaps;
+    border: $border;
+    width: 3rem;
+    text-align: center;
+    padding: 0.4rem 0;
+  }
+}
+
+/* RADIO STYLES ================== */
+.page-product-detail form {
+  input[type="radio"] {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  .selector-wrapper {
+    input + label {
+      @extend %inactive-radio;
+    }
+    input[type="radio"]:checked + label {
+      @extend %active-radio;
+
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT INFORMATION ACCORDIONS
+-----------------------------------------------------------------------------*/
+.page-product-detail .product-accordions {
+  padding-top: 5.55rem;
+  padding-bottom: 4.55rem;
+
+  .ingredients {
+    @extend %smallCaps;
+  }
+  .accordion-toggle {
+    @extend %smallCaps;
+  }
+  .accordion-toggle .icon {
+    top: 46%;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .inner {
+    padding-top: 3.2rem;
+    padding-bottom: 2rem;
+    @include mobile-only {
+      padding-top: 2.4rem;
+      padding-bottom: 2rem;
+
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  PRODUCT SWIPER
+-----------------------------------------------------------------------------*/
+.product-images-col {
+  @include tablet-up {
+    overflow-y: scroll;
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 70px;
+  }
+  @include mobile-only {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+}
+
+.swiper-container-product {
+  padding: 3rem 5rem 4rem !important;
+
+  @include mobile-only {
+    padding: 2rem 4rem 5rem !important;
+  }
+  .swiper-next,
+  .swiper-prev {
+    position: absolute;
+    width: 3.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-prev {
+    left: 0;
+  }
+  .swiper-next {
+    right: 0;
+  }
+  .swiper-pagination {
+    bottom: 0;
+  }
+  .swiper-pagination-bullet {
+    width: 1rem;
+    height: 1rem;
+    background: transparent;
+    border: $border;
+    opacity: 1;
+    margin: 0 0.7rem;
+  }
+  .swiper-pagination-bullet-active {
+    background: $primaryTextColor;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  SOCIAL SHARING
+-----------------------------------------------------------------------------*/
 .social-sharing svg {
   display: block;
   width: 2rem;

@@ -156,6 +156,15 @@ Grid Styles
 	}
 }
 
+.product-columns {
+	@include tablet-up {
+		display: flex;
+		> div {
+			width: 50%;
+		}
+	}
+}
+
 /* Styles for IE & OLDER BROWSERS that don't support CSS Grid using Modernizr's .no-cssgrid class  */
 .no-cssgrid {
 	[class^='cols'] {
