@@ -1,6 +1,4 @@
-<div data-anim="scroll">
-  {%- include 'block-newsletter', form_type: 'block' -%}
-</div>
+{%- include 'block-newsletter', form_type: 'popup' -%}
 
 {% schema %}
   {
@@ -32,12 +30,6 @@
         "type": "text",
         "label": "Image Alt",
         "info": "Write a brief description of this image to improve search engine optimization (SEO) and accessibility for visually impaired customers."
-      }
-    ],
-    "presets": [
-      {
-        "name": "Newsletter Section",
-        "category": "Sections"
       }
     ]
   }

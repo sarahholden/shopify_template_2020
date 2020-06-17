@@ -1,0 +1,347 @@
+/* --------------------------------------------------------------------------
+  POPUP
+-----------------------------------------------------------------------------*/
+/* OPEN POPUP ================== */
+.show-email-popup {
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  #sh-klaviyo-form {
+    display: block;
+  }
+  .close-popup-overlay {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s $ease;
+    pointer-events: auto;
+  }
+  .email-popup-form-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s $ease 0.3s;
+    pointer-events: auto;
+  }
+}
+
+// Styles when email is successfully submitted, right before closing
+.email-submitted {
+  .close-popup {
+    display: none;
+  }
+}
+
+/* POPUP FORM STYLES ================== */
+.email-popup-form-wrapper {
+  position: fixed;
+  min-height: 55.2rem;
+  max-height: calc(100vh - 8rem);
+  overflow-y: scroll;
+  width: calc(100vw - 6rem);
+  max-width: 107rem;
+  z-index: 500;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s $ease;
+  #sh-klaviyo-form {
+    display: none !important;
+  }
+  .flex-columns-2 {
+    @include tablet-up {
+      flex-direction: row-reverse;
+    }
+    > div {
+      @include tablet-up {
+        width: calc(50% - 1.9rem);
+      }
+    }
+  }
+}
+
+/* CROPPED IMAGE ================== */
+.email-popup-form-wrapper {
+  .cropped-image-wrapper {
+    padding-bottom: 97%;
+    @include mobile-only {
+      margin-bottom: 3rem;
+      padding-bottom: 97%;
+    }
+  }
+}
+
+/* SEMI-TRANSPARENT CLICKABLE CLOSE OVERLAY ================== */
+.close-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .8);
+  z-index: 490;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s $ease 0.3s;
+}
+
+/* POPUP CLOSE BUTTON ================== */
+.form-outer-wrapper {
+  position: relative;
+  .close-popup {
+    position: absolute;
+    bottom: 1.8rem;
+    left: 17rem;
+    @include mobile-only {
+      width: 9.4rem;
+      bottom: 0;
+      left: 63%;
+      text-align: left;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  GENERAL NEWSLETTER STYLES
+-----------------------------------------------------------------------------*/
+.newsletter-section {
+  background: black;
+  color: white;
+  .padded {
+    @include tablet-up {
+      padding-bottom: 4rem;
+    }
+  }
+  .cols-2 {
+    @include tablet-up {
+      grid-column-gap: 7.5rem;
+    }
+  }
+  h3 {
+    margin-bottom: 3rem;
+    @include mobile-only {
+      margin-bottom: 1.7rem;
+    }
+  }
+  .h1 {
+    border-bottom: 0.05rem solid white;
+    padding-bottom: 3rem;
+    @include mobile-only {
+      font-size: 2.5rem;
+      padding-bottom: 4.5rem;
+    }
+  }
+}
+
+/* CROPPED IMAGE ================== */
+.email-block-form-wrapper {
+  .cropped-image-wrapper {
+    padding-bottom: 82%;
+    @include mobile-only {
+      margin-bottom: 3rem;
+      padding-bottom: 97%;
+    }
+  }
+}
+
+.newsletter-section .image-col {
+  @include tablet-up {
+    display: flex;
+    .cropped-image-wrapper {
+      height: auto;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  KLAVIYO FORM RESET
+-----------------------------------------------------------------------------*/
+#sh-klaviyo-form {
+  form {
+    padding: 0 !important;
+  }
+  input[type="email"],
+  input[type="text"] {
+    @extend %smallCaps;
+    border: none !important;
+    outline: none !important;
+    display: block !important;
+    width: 100% !important;
+    border-bottom: 0.05rem solid white !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 2.8rem 0 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.234rem !important;
+    color: white;
+  }
+
+  input[type="email"] {
+    margin-bottom: 3rem;
+  }
+}
+
+/* PLACEHOLDER TEXT ================== */
+#sh-klaviyo-form {
+  ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: white !important;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.234rem !important;
+    transition: all 0.3s ease-in-out;
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white !important;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.234rem !important;
+  }
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    color: white !important;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.234rem !important;
+  }
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: white !important;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.234rem !important;
+
+  }
+  input:focus::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(255, 255, 255, .7) !important;
+  }
+  input:focus::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(255, 255, 255, .7) !important;
+  }
+  input:focus:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(255, 255, 255, .7) !important;
+  }
+  input:focus:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(255, 255, 255, .7) !important;
+  }
+}
+
+/* BUTTON STYLES ================== */
+#sh-klaviyo-form {
+  button {
+    @extend %smallCaps;
+    cursor: pointer !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease-in-out !important;
+    outline: none !important;
+    display: inline-block !important;
+    background-color: transparent !important;
+    color: black !important;
+    padding: 2.1rem 3.3rem !important;
+    line-height: 1 !important;
+    width: auto !important;
+    margin-top: 2rem;
+    // Remove for other sites
+    background: $darkGrey !important;
+    color: white !important;
+    &:hover {
+      background: lighten($darkGrey, 10%) !important;
+      color: white !important;
+    }
+  }
+
+}
+
+/* RADIO STYLES ================== */
+#sh-klaviyo-form {
+  label,
+  label div {
+    color: white !important;
+    text-transform: uppercase !important;
+    font-family: $mono !important;
+    font-size: 1.1rem !important;
+    line-height: (18 / 11) !important;
+    letter-spacing: 0.234rem !important;
+  }
+  input[type="radio"] + label {
+    position: relative !important;
+    padding-left: 4rem !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 2rem !important;
+    svg {
+      display: none !important;
+    }
+    &::before {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%);
+      left: 0 !important;
+      width: 1.4rem !important;
+      height: 1.4rem !important;
+      border: 2px solid black !important;
+      background: black !important;
+      outline: 1px solid white !important;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      background: white !important;
+    }
+  }
+
+}
+
+/* THANK YOU CONFIRMATION STYLES ================== */
+#sh-klaviyo-form .ql-editor {
+  margin-top: 2rem !important;
+  p,
+  strong {
+    color: white !important;
+    text-align: left !important;
+  }
+  p {
+    font-family: $bodyTextFont !important;
+    color: white !important;
+    line-height: $bodyTextLineHeight !important;
+    letter-spacing: $bodyTextLetterSpacing !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-size: $bodyDesktopFontSize !important;
+    @include mobile-only {
+      font-size: $bodyMobileFontSize !important;
+    }
+  }
+  strong {
+    display: block !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 3rem !important;
+    line-height: (40 / 30) !important;
+    font-family: $headingFont !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    letter-spacing: 0 !important;
+    @include mobile-only {
+      font-size: 2.5rem !important;
+      line-height: (35 / 25) !important;
+    }
+  }
+}

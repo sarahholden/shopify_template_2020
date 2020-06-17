@@ -24,3 +24,4 @@
 // =require vendor/ls.rias.min.js
 // =require vendor/ls.bgset.min.js
 // =require vendor/lazysizes.min.js
+// =require vendor/autosize.min.js

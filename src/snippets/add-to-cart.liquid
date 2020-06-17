@@ -1,30 +1,68 @@
 <script type="text/javascript">
-  // $('#add-item-form').on('submit', function (e) {
-  //   e.preventDefault();
-  //   let variantId = $('#variant-id').val();
-  //   let quantity = $('#quantity').val();
-  //
-  //   CartJS.addItem(variantId, quantity);
-  //   $('body').addClass('open-cart');
-  //    $('#quantity').val('1');
-  //    updatePrice();
-  // });
-  //
-  // $('#quantity').on('change', function () {
-  //   var newQuantity = parseInt($('#quantity').val(), 10);
-  //
-  //   if (newQuantity < 1) {
-  //     $('#quantity').val('1');
-  //   }
-  //   updatePrice();
-  // });
-  //
-  // function updatePrice () {
-  //   var pricePerUnit = $('#total').data('price-per');
-  //   var newQuantity = parseInt($('#quantity').val(), 10);
-  //   var updatedAmount = ((newQuantity * pricePerUnit) / 100).toFixed(2);
-  //   $('#total').text('$' + updatedAmount);
-  // }
+
+  function addItemToCart(variant_id, qty, frequency, unit_type) {
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+      "properties": {
+        "shipping_interval_frequency": frequency,
+        "shipping_interval_unit_type": unit_type
+      }
+    }
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function(response) {
+        // window.location.href = '/cart';
+      }
+    });
+    // window.location = '/checkout';
+  }
+
+  $('#add-item-form').on('submit', function (e) {
+    e.preventDefault();
+    // let variantId = $('#variant-id').val();
+    // let quantity = $('#quantity').val();
+    //
+
+    // $('body').addClass('open-cart');
+    //  $('#quantity').val('1');
+    //  updatePrice();
+    // addItemToCart(949931647, 1, "1", "Months")
+    console.log($('.rc_select__frequency').val());
+    console.log($('[name="properties[shipping_interval_unit_type]"]').val());
+    console.log($('[name="purchase_type"]:checked').val());
+    // console.log($('#rc_duplicate_selector').val());
+    console.log($('[name="id"]').val());
+    // console.log($('#variant-id').val());
+    var selectedId = $('[name="id"]').val();
+    var purchaseType = $('[name="purchase_type"]:checked').val();
+    if (purchaseType == 'autodeliver') {
+      var shippingInterval = $('[name="properties[shipping_interval_unit_type]"]').val();
+      var numberMonths = $('.rc_select__frequency').val();
+      addItemToCart(selectedId, 1, numberMonths, shippingInterval);
+    } else {
+      addItemToCart(selectedId, 1);
+    }
+  });
+
+  $('#quantity').on('change', function () {
+    var newQuantity = parseInt($('#quantity').val(), 10);
+
+    if (newQuantity < 1) {
+      $('#quantity').val('1');
+    }
+    updatePrice();
+  });
+
+  function updatePrice () {
+    var pricePerUnit = $('#total').data('price-per');
+    var newQuantity = parseInt($('#quantity').val(), 10);
+    var updatedAmount = ((newQuantity * pricePerUnit) / 100).toFixed(2);
+    $('#total').text('$' + updatedAmount);
+  }
 
 
 </script>

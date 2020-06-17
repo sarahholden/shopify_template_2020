@@ -18,9 +18,77 @@
 }
 
 /* --------------------------------------------------------------------------
+  CONTACT PAGE GENERAL STYLES
+-----------------------------------------------------------------------------*/
+.page-contact {
+  .xl-gutters {
+    @include tablet-up {
+      grid-column-gap: 12rem;
+    }
+  }
+  h2 {
+    margin-bottom: 3.3rem;
+    @include mobile-only {
+      margin-bottom: 2.8rem;
+    }
+  }
+  .desc a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
   EMAIL US COLUMN
 -----------------------------------------------------------------------------*/
-
+.page-contact .form-col {
+  @include mobile-only {
+    border-top: $border;
+  }
+}
 /* --------------------------------------------------------------------------
   LEAVE A MESSAGE COLUMN
 -----------------------------------------------------------------------------*/
+.page-contact {
+  .form-wrapper {
+    border-top: $border;
+  }
+  textarea {
+    height: 15rem;
+    margin-bottom: 4.3rem;
+    line-height: $bodyTextLineHeight;
+    resize: none;
+    padding: 0;
+  }
+  label {
+    margin-top: 2.2rem;
+    margin-bottom: 2.2rem;
+    display: block;
+  }
+}
+
+/* SUCCESS MESSAGE ================== */
+.success-message {
+  h2 {
+    margin-bottom: 2.2rem;
+  }
+}
+
+#challenge {
+  main {
+    padding-top: 6rem;
+    text-align: center;
+  }
+  .shopify-challenge__message {
+    margin-bottom: 3rem;
+  }
+  input[type="submit"] {
+    @extend .btn;
+    @extend .btn--grey;
+    width: auto;
+    display: inline-block;
+    margin-top: 3rem;
+  }
+}

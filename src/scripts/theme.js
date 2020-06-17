@@ -401,8 +401,17 @@ $(document).ready(function() {
   });
 
   /* ---------------------------------------------
+  CONTACT FORM - TEXTAREA GROWS
+  ------------------------------------------------ */
+  if ($('[data-textarea-behavior="autosize"]').length > 0) {
+    $('[data-textarea-behavior="autosize"]').autoResize();
+  }
+
+  /* ---------------------------------------------
   PROMO POPUP
   ------------------------------------------------ */
+  let lastScrollPosition = 0;
+
   function getCookie(name) {
     const dc = document.cookie;
     const prefix = `${name}=`;
@@ -430,28 +439,50 @@ $(document).ready(function() {
 
   // if (true) {
   if (hasVisited === null) {
-    $('#email-popup').addClass('popped-up');
+    setTimeout(function () {
+      // Record last scroll position (for fixed body)
+      lastScrollPosition = $(window).scrollTop();
 
-    // Set a cookie so the popup only shows once every 30 days
-    const date = new Date();
-    const days = 30;
+      $('body').addClass('show-email-popup');
+      $('.email-popup-form-wrapper').addClass('js-animate');
 
-    // Get unix milliseconds at current time plus number of days
-    date.setTime(+date + days * 86400000); // 24 * 60 * 60 * 1000
-    window.document.cookie = `${'show-email-popup' +
-      '=' +
-      'no' +
-      '; expires='}${date.toGMTString()}; path=/`;
+    }, 10000);
   }
   // }
 
-  $('.close-email-popup').on('click', function(e) {
-    e.preventDefault();
-    $('#email-popup').removeClass('popped-up');
+  // CLOSE EMAIL POPUP (CONTINUE WITHOUT ENTERING EMAIL)
+  $('.js-close-email-popup').on('click', function() {
+    $('body').removeClass('show-email-popup');
+
+    // Once the body is unfixed, scroll to the last position
+      $(window).scrollTop(lastScrollPosition);
   });
 
-  $('#email-popup form').on('submit', function(e) {
-    e.preventDefault();
-    $('#email-popup').removeClass('popped-up');
+  // SUCCESSFULL KLAVIYO SUBMISSION
+  window.addEventListener("klaviyoForms", function(e) {
+    if (e.detail.type == 'submit') {
+
+      // Add any styles for successfull submission
+      $('body').addClass('email-submitted');
+
+      // Briefly show success message, then hide popup
+      setTimeout(function () {
+        $('body').removeClass('show-email-popup email-submitted');
+
+        // Once the body is unfixed, scroll to the last position
+          $(window).scrollTop(lastScrollPosition);
+
+        // Set a cookie so the popup only shows once every 30 days
+        const date = new Date();
+        const days = 30;
+
+        // Get unix milliseconds at current time plus number of days
+        date.setTime(+date + days * 86400000); // 24 * 60 * 60 * 1000
+        window.document.cookie = `${'show-email-popup' +
+          '=' +
+          'no' +
+          '; expires='}${date.toGMTString()}; path=/`;
+      }, 2000);
+    }
   });
 });

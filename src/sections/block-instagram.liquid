@@ -1,18 +1,56 @@
+{%- unless section.settings.hide_instagram_section -%}
+  <section class="container padded">
+    <div class="cols-2 no-gutters">
+      <div>
+        <h2 class="h1">{{ section.settings.heading | newline_to_br }}</h2>
+      </div>
+      <div>
+        <div class="desc">
+          {{ section.settings.desc }}
+        </div>
+      </div>
+    </div>
+    <a href="{{ section.settings.link }}" class="instagram-handle-row small-caps">
+      {{ section.settings.handle }}
+    </a>
+    <div class="sh-insta-feed">
+      <div id="insta-feed"></div>
+    </div>
+  </section>
+
+{%- endunless -%}
+
 {% schema %}
   {
     "name": "Instagram Section",
     "class": "instagram-section",
     "settings": [
       {
+        "id": "hide_instagram_section",
+        "type": "checkbox",
+        "label": "Hide Instagram Section"
+      },
+      {
         "id": "heading",
         "type": "textarea",
         "label": "Heading"
       },
       {
-        "id": "subheading",
+        "id": "desc",
         "type": "textarea",
-        "label": "Subheading"
+        "label": "Intro Text"
+      },
+      {
+        "id": "handle",
+        "type": "text",
+        "label": "Handle"
+      },
+      {
+        "id": "link",
+        "type": "url",
+        "label": "Link"
       }
+
     ],
     "presets": [
       {

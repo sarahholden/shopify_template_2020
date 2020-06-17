@@ -1,79 +1,92 @@
-<section class="container ">
-  <div class="cols-2">
-    <div class="padded">
+<section class="container-large " data-anim="scroll">
+  <div class="cols-2 xl-gutters">
+    <div class="padded container-mobile">
       {% if section.settings.email_col_title != blank %}
-        <h1 class="h2">
+        <h2 data-anim="slide" data-anim-order="1">
           {{ section.settings.email_col_title }}
-        </h1>
+        </h2>
       {% endif %}
       <div class="cols-2">
         {% if section.settings.general_inquiries_text != blank %}
-        <div class="desc">
+        <div class="desc" data-anim="slide" data-anim-order="2">
           {{ section.settings.general_inquiries_text }}
         </div>
         {% endif %}
         {% if section.settings.pr_marketing_text != blank %}
-        <div class="desc">
+        <div class="desc" data-anim="slide" data-anim-order="2">
           {{ section.settings.pr_marketing_text }}
         </div>
         {% endif %}
       </div>
 
-
     </div>
-    <div  class="padded">
-      {% if section.settings.form_col_title != blank %}
-        <h2>{{ section.settings.form_col_title }}</h2>
-      {% endif %}
-      {% form 'contact' %}
+    <div class="padded form-col container-mobile">
 
-        {% if form.posted_successfully? %}
-          <p class="form-success">
-            {% if section.settings.thank_you_message != blank %}
-              {{ section.settings.thank_you_message }}
+        {% form 'contact' %}
+
+          {{ form.errors | default_errors }}
+
+          {% if form.posted_successfully? %}
+            <div class="success-message">
+              {% if section.settings.thank_you_heading != blank %}
+                <h2>{{ section.settings.thank_you_heading }}</h2>
+              {% endif %}
+              {% if section.settings.thank_you_message != blank %}
+                <div class="desc">
+                  {{ section.settings.thank_you_message }}
+                </div>
+              {% endif %}
+            </div>
+
+          {% else %}
+            {% if section.settings.form_col_title != blank %}
+              <h2 data-anim="slide" data-anim-order="1">{{ section.settings.form_col_title }}</h2>
             {% endif %}
-          </p>
-        {% endif %}
 
-        {{ form.errors | default_errors }}
+            <div class="form-wrapper" data-anim="slide" data-anim-order="2">
+              <label class="visually-hidden" for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+              <input type="text"
+                name="contact[name]"
+                id="ContactFormName"
+                placeholder="Your Name"
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
 
-        <label class="visually-hidden" for="ContactFormName">{{ 'contact.form.name' | t }}</label>
-        <input type="text"
-          name="contact[name]"
-          id="ContactFormName"
-          placeholder="{{ 'contact.form.name' | t }}"
-          value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-
-        <label class="visually-hidden" for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
-        <input type="email"
-          name="contact[email]"
-          id="ContactFormEmail"
-          placeholder="{{ 'contact.form.email' | t }}"
-          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-          spellcheck="false"
-          autocomplete="off"
-          autocapitalize="off">
-        <label class="visually-hidden" for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
-        <textarea rows="10"
-          name="contact[body]"
-          id="ContactFormMessage"
-          placeholder="{{ 'contact.form.message' | t }}">
-          {%- if form.body -%}
-            {{- form.body -}}
-          {%- endif -%}
-        </textarea>
-        <button type="submit"  class="btn btn--grey">
-          {% if section.settings.button_text != blank %}
-            {{ section.settings.button_text }}
+              <label class="visually-hidden" for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+              <input type="email"
+                name="contact[email]"
+                required
+                id="ContactFormEmail"
+                placeholder="Your Email"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off">
+              <label for="ContactFormMessage" class="small-caps">Message:</label>
+              <textarea rows="10"
+                name="contact[body]"
+                id="ContactFormMessage"
+                data-textarea-behavior="autosize"
+                required
+                >
+                {%- if form.body -%}
+                  {{- form.body -}}
+                {%- endif -%}
+              </textarea>
+              <button type="submit"  class="btn btn--grey">
+                {% if section.settings.button_text != blank %}
+                  {{ section.settings.button_text }}
+                {% endif %}
+              </button>
+            </div>
           {% endif %}
-        </button>
-      {% endform %}
+
+        {% endform %}
+
 
 
     </div>
   </div>
 </section>
-
 
 
 {% schema %}
@@ -107,8 +120,13 @@
       "label": "Button Text"
     },
     {
+      "id": "thank_you_heading",
+      "type": "text",
+      "label": "Thank You Heading"
+    },
+    {
       "id": "thank_you_message",
-      "type": "richtext",
+      "type": "textarea",
       "label": "Thank You Message"
     }
 

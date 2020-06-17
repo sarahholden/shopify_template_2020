@@ -89,6 +89,16 @@
   div.rc_block__type--active {
     background: transparent;
   }
+  .rc_label__delivery {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
 
   /* Delivery Options */
   #rc_autodeliver_options {
@@ -149,7 +159,7 @@
 
 /* QUANTITY ================== */
 .page-product-detail .quantity-wrapper {
-  border-top: $border;
+  // border-top: $border;
   input[type="number"] {
     @extend %smallCaps;
     border: $border;
@@ -178,6 +188,19 @@
     input[type="radio"]:checked + label {
       @extend %active-radio;
 
+    }
+  }
+}
+
+/* SPACER ROW ================== */
+.page-product-detail form {
+  .spacer-row {
+    border-top: $border;
+    background: $darkGreyBackground;
+    width: 100%;
+    height: 5.6rem;
+    @include mobile-only {
+      height: 5rem;
     }
   }
 }

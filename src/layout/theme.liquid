@@ -93,6 +93,7 @@
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
+  {% section 'block-newsletter-popup' %}
   {% section 'promo-bar' %}
   {% section 'header' %}
 
@@ -114,7 +115,8 @@
       CartJS.init({{ cart | json }});
     });
   </script>
-  
+
   {% include 'subscription-theme-footer' %}
+
 </body>
 </html>

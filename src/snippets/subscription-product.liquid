@@ -163,56 +163,65 @@
 			{% endif %}
 		</select>
 		<div id="rc_radio_options" role="radiogroup" aria-labelledby="Purchase options">
-			{% unless subscription_only %}
-				<div class="rc_block rc_block__type rc_block__type__onetime {% unless select_subscription_first %}rc_block__type--active{% endunless %}">
-					<input type="radio" id="rc_purchase_type_onetime" name="purchase_type" value="onetime" {% unless select_subscription_first %}checked{% endunless %} class="rc_radio rc_radio__onetime">
-					<label for="rc_purchase_type_onetime" class="rc_label rc_label__onetime">
-						{{ label_onetime }}{% if discount_percentage > 0 %}:{% endif %}
-						{% if discount_percentage > 0 %}
-							<span id="rc_price_onetime" class="rc_price rc_price__onetime" aria-label="original price"></span>
-						{% endif %}
-					</label>
-				</div>
-			{% endunless %}
+
 			<div class="rc_block rc_block__type rc_block__type__autodeliver {% if select_subscription_first %}rc_block__type--active{% endif %}" {% if subscription_only and shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
 				<input type="radio" name="purchase_type" id="rc_purchase_type_autodeliver" value="autodeliver" {% if select_subscription_first %}checked{% endif %} class="rc_radio rc_radio__autodeliver" {% if subscription_only %}style="display: none;"{% endif %}>
 				{% unless subscription_only %}
 					<label for="rc_purchase_type_autodeliver" class="rc_label rc_label__autodeliver">
 						{{ label_autodeliver }}
+            <div id="rc_autodeliver_options" class="rc_block rc_block__type__options">
+              <label for="rc_shipping_interval_frequency" class="rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
+                <span class="rc_label__delivery">{{ label_deliver_every }}</span>
+                {% if shipping_interval_frequency.size == 1 %}
+                  <span class="rc_label__frequency">
+                    {{ shipping_interval_frequency[0] }}
+                    {% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+                      {{ label_unit_type | remove: 's' }}
+                    {% else %}
+                      {{ label_unit_type }}
+                    {% endif %}
+                  </span>
+                {% endif %}
+                <select name="" id="rc_shipping_interval_frequency" class="rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
+                  {% for frequency in shipping_interval_frequency %}
+                    <option value="{{ frequency }}">
+                      {{ frequency }}
+                      {% if frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+                        {{ label_unit_type | remove: 's' }}
+                      {% else %}
+                        {{ label_unit_type }}
+                      {% endif %}
+                    </option>
+                  {% endfor %}
+                </select>
+              </label>
+            </div>
 						{% if discount_percentage > 0 %}
-							<span class="rc_label__discount" aria-label="subscription discount">({{ discount_percentage }}%):</span>
+							<span class="rc_label__discount visually-hidden" aria-label="subscription discount">({{ discount_percentage }}%)</span>
 							<span id="rc_price_autodeliver" class="rc_price rc_price__autodeliver" aria-label="recurring price"></span>
 						{% endif %}
+
 					</label>
 				{% endunless %}
-				<div id="rc_autodeliver_options" class="rc_block rc_block__type__options">
-					<label for="rc_shipping_interval_frequency" class="rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
-						<span class="rc_label__delivery">{{ label_deliver_every }}</span>
-						{% if shipping_interval_frequency.size == 1 %}
-							<span class="rc_label__frequency">
-								{{ shipping_interval_frequency[0] }}
-								{% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
-									{{ label_unit_type | remove: 's' }}
-								{% else %}
-									{{ label_unit_type }}
-								{% endif %}
-							</span>
-						{% endif %}
-						<select name="" id="rc_shipping_interval_frequency" class="rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
-							{% for frequency in shipping_interval_frequency %}
-								<option value="{{ frequency }}">
-									{{ frequency }}
-									{% if frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
-										{{ label_unit_type | remove: 's' }}
-									{% else %}
-										{{ label_unit_type }}
-									{% endif %}
-								</option>
-							{% endfor %}
-						</select>
-					</label>
-				</div>
+
 			</div>
+      {% unless subscription_only %}
+        <div class="rc_block rc_block__type rc_block__type__onetime {% unless select_subscription_first %}rc_block__type--active{% endunless %}">
+          <input type="radio" id="rc_purchase_type_onetime" name="purchase_type" value="onetime" {% unless select_subscription_first %}checked{% endunless %} class="rc_radio rc_radio__onetime">
+          <label for="rc_purchase_type_onetime" class="rc_label rc_label__onetime">
+            {{ label_onetime }}{% if discount_percentage > 0 %}{% endif %}
+
+            <!-- Added Quantity field inline -->
+            <div class="quantity-wrapper">
+              <label for="quantity">{{ 'products.product.quantity' | t }}:</label>
+              <input type="number" id="quantity" name="quantity" value="1" min="1">
+            </div>
+            {% if discount_percentage > 0 %}
+              <span id="rc_price_onetime" class="rc_price rc_price__onetime" aria-label="original price"></span>
+            {% endif %}
+          </label>
+        </div>
+      {% endunless %}
 		</div>
 		<div class="rc_popup">
 			{% if show_widget %}

@@ -156,6 +156,16 @@ Grid Styles
 	}
 }
 
+.flex-columns-2 {
+	@include tablet-up {
+		display: flex;
+		justify-content: space-between;
+		> div {
+			width: calc(50% - 3.75rem);
+		}
+	}
+}
+
 .product-columns {
 	@include tablet-up {
 		display: flex;

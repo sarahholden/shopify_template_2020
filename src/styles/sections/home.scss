@@ -333,3 +333,66 @@
     width: 60%;
   }
 }
+
+/* --------------------------------------------------------------------------
+  INSTAGRAM
+-----------------------------------------------------------------------------*/
+.instagram-section {
+  h2 {
+    @include tablet-up {
+      max-width: 46.5rem;
+    }
+  }
+  .desc {
+    @include tablet-up {
+      padding-left: 3.75rem;
+    }
+  }
+  .instagram-handle-row {
+    margin-top: 4.7rem;
+    padding-top: 1.55rem;
+    padding-bottom: 1.55rem;
+    border-top: $border;
+    border-bottom: $border;
+    text-align: center;
+    display: block;
+    @include mobile-only {
+      margin-top: 4rem;
+    }
+  }
+
+  .sh-insta-feed #insta-feed {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 0;
+    @include mobile-only {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    > a {
+      padding: 3.6rem !important;
+      border-right: $border !important;
+      border-bottom: $border !important;
+      &:first-of-type {
+        padding-left: 0 !important;
+      }
+      &:last-of-type {
+        border-right: 0 !important;
+        padding-right: 0 !important;
+      }
+      @include mobile-only {
+        &:nth-of-type(odd) {
+          padding-left: 0 !important;
+        }
+        &:nth-of-type(even) {
+          border-right: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+    }
+    .instafeed-container {
+      width: 100% !important;
+      display: block;
+      padding-top: 100% !important;
+    }
+  }
+}

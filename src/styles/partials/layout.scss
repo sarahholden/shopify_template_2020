@@ -82,6 +82,13 @@ $mobileTotalSidePadding: 5.2rem;
 	}
 }
 
+.container-large {
+	@include tablet-up {
+		padding-left: $desktopSidePadding;
+		padding-right: $desktopSidePadding;
+	}
+}
+
 .container-mobile {
 	@include mobile-only {
 		padding-left: $mobileSidePadding;

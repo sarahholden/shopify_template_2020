@@ -12,6 +12,7 @@ button {
   display: inline-block;
   background-color: transparent;
   padding: 2.1rem 3.3rem;
+  line-height: 1;
   &:hover {}
 }
 
@@ -21,6 +22,16 @@ button {
   &:hover {
     background: darken($grayButton, 8%);
     color: $black;
+  }
+}
+
+.btn--dark-grey {
+  background: $darkGrey;
+  color: white;
+
+  &:hover {
+    background: $darkGrey;
+    color: white;
   }
 }
 
@@ -43,4 +54,7 @@ button {
   background-color: transparent;
   outline: none;
   border-radius: 0;
+  &.small-caps {
+    @extend %smallCaps;
+  }
 }
