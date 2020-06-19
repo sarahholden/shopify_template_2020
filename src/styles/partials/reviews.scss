@@ -29,6 +29,10 @@
   }
   .yotpo-first-review {
     padding-bottom: 6rem;
+    @include mobile-only {
+      padding-bottom: 3rem;
+      margin-top: 0;
+    }
   }
 }
 
@@ -38,6 +42,9 @@
   .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes {
     padding-top: 0;
     padding-bottom: 4rem;
+    @include mobile-only {
+      height: auto !important;
+    }
   }
 }
 
@@ -103,6 +110,9 @@
     line-height: 1;
     background: $grayButton;
     color: $black;
+    @include mobile-only {
+      letter-spacing: 0.156rem;
+    }
     &:hover {
       background: darken($grayButton, 8%);
       color: $black;
@@ -129,6 +139,19 @@
   display: none !important;
 }
 
+/* NAME & STARS ================== */
+#sh-yotpo {
+  .yotpo .yotpo-comment .yotpo-header .yotpo-header-element,
+  .yotpo .yotpo-onsite-upload .yotpo-header .yotpo-header-element,
+  .yotpo .yotpo-question .yotpo-header .yotpo-header-element,
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element {
+    @include mobile-only {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
 /* NAME ================== */
 #sh-yotpo {
   .yotpo .yotpo-comment .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
@@ -136,8 +159,12 @@
   .yotpo .yotpo-question .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
   .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-user-name {
     @extend %smallCaps;
+    @include mobile-only {
+      margin-top: 2rem;
 
+    }
   }
+
 }
 
 /* VERIFIED USER ================== */
@@ -159,6 +186,13 @@
   .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-review-date {
     @extend %smallCaps;
     color: black !important;
+  }
+  @include mobile-only {
+    .yotpo-review-date {
+      position: absolute;
+      top: 1rem;
+      right: 0;
+    }
   }
 }
 
@@ -219,8 +253,17 @@
 }
 
 /* REVIEW BODY COPY ================== */
+/* READ MORE TEXT ================== */
 #sh-yotpo {
-  .content-review {
+  .content-review,
+  .yotpo .yotpo-comment .rest-content-collapsed,
+  .yotpo .yotpo-comment .yotpo-read-more,
+  .yotpo .yotpo-onsite-upload .rest-content-collapsed,
+  .yotpo .yotpo-onsite-upload .yotpo-read-more,
+  .yotpo .yotpo-question .rest-content-collapsed,
+  .yotpo .yotpo-question .yotpo-read-more,
+  .yotpo .yotpo-review .rest-content-collapsed,
+  .yotpo .yotpo-review .yotpo-read-more {
     font-family: $bodyTextFont;
     line-height: $bodyTextLineHeight;
     letter-spacing: $bodyTextLetterSpacing;
@@ -240,6 +283,15 @@
   .socialize-wrapper,
   .yotpo-helpful {
     display: none !important;
+  }
+}
+
+#sh-yotpo {
+  .yotpo .yotpo-modal-dialog.yotpo-small .yotpo-footer,
+  .yotpo.yotpo-main-widget.yotpo-small .yotpo-footer {
+    @include mobile-only {
+      display: none !important;
+    }
   }
 }
 

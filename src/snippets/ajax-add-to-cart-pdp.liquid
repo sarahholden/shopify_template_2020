@@ -1,4 +1,4 @@
-{%- include 'add-to-cart-drawer' -%}
+{%- include 'ajax-cart-helpers' -%}
 
 <script type="text/javascript">
 
@@ -8,14 +8,15 @@
   function addItemToCart(variant_id, qty, frequency, unit_type) {
 
     // COMPILE DATA, INCLUDING RECHARGE DATA
-    data = {
+    var data = {
       'id': variant_id,
       'quantity': qty,
       'properties': {
         'shipping_interval_frequency': frequency,
         'shipping_interval_unit_type': unit_type
       }
-    }
+    };
+
 
     // ADD NEW CART ITEM
     $.ajax({
@@ -24,7 +25,7 @@
       data: data,
       dataType: 'json',
       success: function(lineItem, textStatus, jqXHR) {
-        console.log(lineItem);
+        // console.log(lineItem);
 
         // HIDE EMPTY STATE
         $('.js-empty-state').hide();

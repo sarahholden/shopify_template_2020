@@ -98,6 +98,11 @@ footer .social-icon-list {
 		&:last-of-type {
 			padding-right: 0;
 		}
+		&:not(:first-of-type) {
+			@include mobile-only {
+				margin-left: 0;
+			}
+		}
 	}
 }
 

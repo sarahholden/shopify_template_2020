@@ -43,7 +43,7 @@
     padding-top: 5.65rem;
   }
   @include mobile-only {
-    padding-top: 4.75rem;
+    padding-top: 3rem;
   }
   h1 {
     border-top: $border;
@@ -96,6 +96,20 @@
       padding-bottom: 2.1rem !important;
       display: flex !important;
       margin-right: 0 !important;
+      &.rc_label__autodeliver {
+        padding-bottom: 0.8rem !important;
+      }
+      position: relative;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 23%;
+        width: 1px;
+        height: 100%;
+        background: $primaryTextColor;
+      }
     }
 
     // Left column (with two inner columns)
@@ -369,13 +383,14 @@
 .product-images-col {
   @include tablet-up {
     overflow-y: scroll;
-    height: calc(90vh - 70px);
+    height: calc(100vh - 70px);
     position: sticky;
     top: 70px;
   }
   @include mobile-only {
     padding-left: 1.4rem;
     padding-right: 1.4rem;
+    padding-top: 2rem;
   }
 }
 

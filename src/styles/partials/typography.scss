@@ -146,6 +146,12 @@ h2 {
       padding-left: 7rem;
       position: relative;
       margin-bottom: 2.8rem;
+      @include mobile-only {
+        padding-left: 6rem;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
       .paw-print {
         display: block;
         position: absolute;

@@ -1,4 +1,4 @@
-{%- include 'add-to-cart-drawer' -%}
+{%- include 'ajax-cart-helpers' -%}
 
 <script type="text/javascript">
 
@@ -54,9 +54,6 @@ $(document).ready(function() {
     addItemToCartDrawer(lineItem);
   }
 
-
-
-
   /* ---------------------------------------------
   ADD ITEMS TO CART ON PAGE LOAD
   ------------------------------------------------ */
@@ -68,16 +65,21 @@ $(document).ready(function() {
     var variant_id = $(cartItem).attr('data-product-id');
     var frequency = $(cartItem).attr('data-frequency');
     var unit_type = $(cartItem).attr('data-interval-unit');
-    // $(cartItem).find('.subtract-one').show();
+    var properties = {};
+
+    if (frequency && unit_type) {
+      properties = {
+        'shipping_interval_frequency': frequency,
+        'shipping_interval_unit_type': unit_type
+      };
+    }
 
     var addToCartData = {
       'id': variant_id,
       'quantity': 1,
-      'properties': {
-        'shipping_interval_frequency': frequency,
-        'shipping_interval_unit_type': unit_type
-      }
+      'properties': properties
     };
+
 
     // var addToCartData = {
     //   'id': variant_id,
@@ -90,7 +92,6 @@ $(document).ready(function() {
       data: addToCartData,
       dataType: 'json',
       success: function (lineItem) {
-        console.log(lineItem);
         updateLineItem(cartItem, lineItem);
 
         // Update total cart count
@@ -106,6 +107,22 @@ $(document).ready(function() {
     var cartItem = $(this).closest('.js-cart-item');
     var $itemCountWrapper = $(cartItem).find('.js-count-placeholder');
     var variant_id = $(cartItem).data('product-id');
+    // var frequency = $(cartItem).attr('data-frequency');
+    // var unit_type = $(cartItem).attr('data-interval-unit');
+    // var properties = {};
+    //
+    // if (frequency && unit_type) {
+    //   properties = {
+    //     'shipping_interval_frequency': frequency,
+    //     'shipping_interval_unit_type': unit_type
+    //   };
+    // }
+    //
+    // var addToCartData = {
+    //   'id': variant_id,
+    //   'quantity': 1,
+    //   'properties': properties
+    // };
 
     var addToCartData = {
       updates: {}
@@ -115,8 +132,9 @@ $(document).ready(function() {
     updatedQuantity = parseInt(updatedQuantity, 10);
     updatedQuantity -= 1;
 
-
     addToCartData.updates[variant_id] = updatedQuantity;
+
+    console.log(addToCartData);
 
     if (updatedQuantity >= 0) {
       $.ajax({

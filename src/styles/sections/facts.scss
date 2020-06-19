@@ -13,4 +13,8 @@
 
 .canine-facts-faq {
   margin-top: 10rem;
+  @include mobile-only {
+    margin-top: 3rem;
+    padding-bottom: 0;
+  }
 }

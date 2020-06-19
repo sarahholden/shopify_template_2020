@@ -1,9 +1,16 @@
 <script type="text/javascript">
 
+  /* ---------------------------------------------
+  FORMAT CURRENCY
+  ------------------------------------------------ */
   Handlebars.registerHelper('formatCurrency', function(value) {
     return Shopify.formatMoney(value, "{{ shop.money_format }}");
   });
 
+
+  /* ---------------------------------------------
+  ADD ITEM TO CART DRAWER
+  ------------------------------------------------ */
   function addItemToCartDrawer (lineItem) {
     // HANDLEBARS
     var source = $('#cart-item-template').html();
@@ -19,18 +26,30 @@
 
       if (properties.shipping_interval_frequency && properties.shipping_interval_unit_type) {
         lineItem.subscription_text = 'Subscribe';
-        var subscriptionInterval = properties.shipping_interval_frequency;
-        var frequencyType = properties.shipping_interval_unit_type;
-        if (subscriptionInterval == '1' &&  frequencyType == 'Months') {
+        var lineItemIntervalUnit = properties.shipping_interval_frequency;
+        var lineItemfrequency = properties.shipping_interval_unit_type;
+        if (lineItemIntervalUnit == '1' &&  lineItemfrequency == 'Months') {
           lineItem.frequency = 'Delever every month';
         } else {
           // example: Deliver every 2 Months
-          lineItem.frequency = 'Delever every ' + subscriptionInterval + ' ' + frequencyType;
+          lineItem.frequency = 'Delever every ' + lineItemIntervalUnit + ' ' + lineItemfrequency;
         }
       }
     }
 
-    $('[data-product-id="' + lineItem.variant_id + '"]').remove();
+    // FIND PRODUCTS WITH THE SAME VARIANT ID
+    // IF RECHARGE FREQUENCY AND INTERVAL IS THE SAME, REMOVE OLD CART ITEMS
+    // (SO THAT ALL ITEMS ARE GROUPED TOGETHER, NOT REPEATED IN THE LIST)
+    var $duplicateVariantId = $('[data-product-id="' + lineItem.variant_id + '"]');
+
+    $.each($duplicateVariantId, function () {
+      var frequency = $(this).attr('data-frequency');
+      var intervalUnit = $(this).attr('data-interval-unit');
+      console.log(frequency, lineItemfrequency, intervalUnit, lineItemIntervalUnit);
+      if (frequency == lineItemfrequency && intervalUnit == lineItemIntervalUnit) {
+        $(this).remove();
+      }
+    });
 
     var html = template(lineItem);
     $('#cart-items-container').prepend(html);

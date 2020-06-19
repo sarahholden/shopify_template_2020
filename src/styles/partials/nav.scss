@@ -65,6 +65,7 @@ Header Navigation Styles
       display: inline-block;
       padding: $footerTabletUpPadding;
       min-width: 11.61rem;
+      min-width: 8.08vw;
       text-align: center;
     }
     &:hover {
@@ -97,6 +98,7 @@ Logo Styles
   margin-top: 0.9rem;
   margin-bottom: 1.5rem;
   @include tablet-up {
+    width: 10.75vw;
     margin: 1rem 6.05rem 1.6rem 0.1rem;
   }
 }

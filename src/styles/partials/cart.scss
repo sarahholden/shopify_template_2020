@@ -98,11 +98,21 @@ $mobileBorderHeight: 1.7rem;
       font-size: 2rem;
     }
   }
+
+  .number-input-wrapper,
   h4 {
     @extend %smallCaps;
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
   }
+
+  .subscribe-text {
+    h4 {
+      padding-top: 0.8rem;
+      padding-bottom: 0;
+    }
+  }
+
   .quantity-cell {
     @extend %smallCaps;
   }

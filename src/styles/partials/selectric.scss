@@ -4,10 +4,12 @@ $selectric-text-color: $primaryTextColor !default; // Color used in label
 $selectric-bg-color: $darkGreyBackground !default; // Background color
 $selectric-btn-bg-color: $darkGreyBackground !default; // Button background color
 $selectric-height: 5.6rem !default; // Outer height
+$selectric-mobile-height: 4rem !default; // Outer height
 $selectric-spacing: 10px !default; // Label left padding
 $selectric-border-width: 0 !default; // Outer border width
 $selectric-border-radius: 0 !default; // Border radius
 $selectric-inner-height: $selectric-height - ($selectric-border-width * 2) !default; // Inner height
+$selectric-inner-height-mobile: $selectric-mobile-height - ($selectric-border-width * 2) !default; // Inner height
 $selectric-font-size: 1.1rem !default; // Font size
 
 .selectric-wrapper {
@@ -16,6 +18,9 @@ $selectric-font-size: 1.1rem !default; // Font size
   width: 17.5rem;
   @include tablet-up {
     height: $selectric-height;
+  }
+  @include mobile-only {
+    height: $selectric-mobile-height;
   }
 }
 
@@ -43,6 +48,10 @@ $selectric-font-size: 1.1rem !default; // Font size
     color: $selectric-text-color;
     height: $selectric-inner-height;
     user-select: none;
+    @include mobile-only {
+      line-height: $selectric-inner-height-mobile;
+      height: $selectric-inner-height-mobile;
+    }
   }
 
   .button {
@@ -58,7 +67,13 @@ $selectric-font-size: 1.1rem !default; // Font size
     text-align: center;
     font: 0/0 a;
     *font: 20px /#{$selectric-inner-height} Lucida Sans Unicode, Arial Unicode MS, Arial;
+    @include mobile-only {
+      width: $selectric-inner-height-mobile;
+      height: $selectric-inner-height-mobile;
+      line-height: $selectric-inner-height-mobile;
+      *font: 20px /#{$selectric-inner-height-mobile} Lucida Sans Unicode, Arial Unicode MS, Arial;
 
+    }
     &:after {
       content: ' ';
       position: absolute;
