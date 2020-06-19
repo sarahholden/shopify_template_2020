@@ -1,39 +1,78 @@
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <div class="nav-wrapper" role="banner">
+  <div class="nav-wrapper-placeholder">
+    <div class="nav-wrapper {% if section.settings.show_promo_bar == true %}no-border-top{% endif %}" role="banner">
 
-    <div class="close-mobile-nav"></div>
 
-    <div class="container">
-      <div class="inner">
-        <!--   LOGO   -->
-        {%- include 'nav-logo' -%}
+      {% if section.settings.show_promo_bar == true %}
+        <!-- ==============================
+        PROMO BAR
+        =================================== -->
+        {% assign promoCount = 0 %}
+        <section class="promo-bar"
+          style="{% if section.settings.promo_bar_bg_color != blank %}background-color: {{ section.settings.promo_bar_bg_color }};{% endif %} {% if section.settings.promo_bar_text_color != blank %}color: {{ section.settings.promo_bar_text_color }};{% endif %} ">
+          <div class="swiper-container swiper-container-promo">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                {% when 'promo_carousel_message' %}
+                  <div class="swiper-slide">
+                    <div class="desc">
+                      {{ block.settings.promo_bar_text }}
+                    </div>
+                  </div>
+                  {% assign promoCount = promoCount | plus: 1 %}
+                {% endcase %}
+              {% endfor %}
+            </div>
+            {%- if promoCount > 1 -%}
+              <div class="swiper-next swiper-arrow">
+                <img src="{{ 'promo_arrow_right.svg' | asset_url }}" alt="" width="">
+              </div>
+              <div class="swiper-prev swiper-arrow">
+                <img src="{{ 'promo_arrow_left.svg' | asset_url }}" alt="" width="">
+              </div>
+            {%- endif -%}
+          </div>
+        </section>
+      {% endif %}
 
-        <!--   NAV   -->
-        {%- include 'nav-menu' -%}
 
-        <!-- Social Icons -->
-        {%- include 'social-icons' -%}
 
-        <!-- SEARCH -->
-        <!-- {%- include 'nav-search' -%} -->
-        <!-- ACCOUNT LINKS -->
-        <!-- {% if shop.customer_accounts_enabled %}
-          {%- include 'nav-account-links' -%}
-        {% endif %} -->
 
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+      <div class="close-mobile-nav"></div>
+
+      <div class="container">
+        <div class="inner">
+          <!--   LOGO   -->
+          {%- include 'nav-logo' -%}
+
+          <!--   NAV   -->
+          {%- include 'nav-menu' -%}
+
+          <!-- Social Icons -->
+          {%- include 'social-icons' -%}
+
+          <!-- SEARCH -->
+          <!-- {%- include 'nav-search' -%} -->
+          <!-- ACCOUNT LINKS -->
+          <!-- {% if shop.customer_accounts_enabled %}
+            {%- include 'nav-account-links' -%}
+          {% endif %} -->
+
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!--   CART   -->
+          {%- include 'nav-cart-link' -%}
         </div>
-
-        <!--   CART   -->
-        {%- include 'nav-cart-link' -%}
       </div>
+
+
+
     </div>
-
-
-
   </div>
 </div>
 
@@ -42,15 +81,38 @@
     "name": "Sitewide Header",
     "settings": [
       {
-        "type": "url",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
         "type": "link_list",
         "id": "main_linklist",
         "label": "Menu",
         "default": "main-menu"
+      },
+      {
+        "id": "show_promo_bar",
+        "type": "checkbox",
+        "label": "Show Promo Bar"
+      },
+      {
+        "id": "promo_bar_bg_color",
+        "type": "color",
+        "label": "Promo Bar Bg Color"
+      },
+      {
+        "id": "promo_bar_text_color",
+        "type": "color",
+        "label": "Promo Bar Text Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "promo_carousel_message",
+        "name": "Promo Bar Message",
+        "settings": [
+          {
+            "id": "promo_bar_text",
+            "type": "richtext",
+            "label": "Promo Bar Text"
+          }
+        ]
       }
     ]
   }

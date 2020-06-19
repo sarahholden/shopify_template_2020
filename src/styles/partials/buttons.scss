@@ -19,9 +19,11 @@ button {
 .btn--grey {
   background: $grayButton;
   color: $black;
+  border: 0.2rem solid transparent;
   &:hover {
     background: darken($grayButton, 8%);
     color: $black;
+    // transform: translateY(.2rem);
   }
 }
 

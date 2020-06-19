@@ -33,6 +33,7 @@ Vertical & Horizontal Alignment
 }
 
 %split-aligner {
+	display: flex;
 	justify-content: space-between;
 }
 

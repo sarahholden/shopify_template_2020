@@ -1,18 +1,22 @@
-$selectric-main-color: #383938 !default; // Color used in border
-$selectric-secondary-color: #bbb !default; // Color used in button
-$selectric-text-color: #444 !default; // Color used in label
-$selectric-bg-color: #ffffff !default; // Background color
-$selectric-btn-bg-color: #ffffff !default; // Button background color
-$selectric-height: 40px !default; // Outer height
+$selectric-main-color: $primaryTextColor !default; // Color used in border
+$selectric-secondary-color: $primaryTextColor !default; // Color used in button
+$selectric-text-color: $primaryTextColor !default; // Color used in label
+$selectric-bg-color: $darkGreyBackground !default; // Background color
+$selectric-btn-bg-color: $darkGreyBackground !default; // Button background color
+$selectric-height: 5.6rem !default; // Outer height
 $selectric-spacing: 10px !default; // Label left padding
-$selectric-border-width: 1px !default; // Outer border width
+$selectric-border-width: 0 !default; // Outer border width
 $selectric-border-radius: 0 !default; // Border radius
 $selectric-inner-height: $selectric-height - ($selectric-border-width * 2) !default; // Inner height
-$selectric-font-size: 12px !default; // Font size
+$selectric-font-size: 1.1rem !default; // Font size
 
 .selectric-wrapper {
-  position: relative;
   cursor: pointer;
+  position: relative;
+  width: 17.5rem;
+  @include tablet-up {
+    height: $selectric-height;
+  }
 }
 
 .selectric-responsive {
@@ -27,11 +31,13 @@ $selectric-font-size: 12px !default; // Font size
   overflow: hidden;
 
   .label {
+    @include tablet-up {
+      margin: 0 3rem;
+    }
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0 $selectric-inner-height 0 $selectric-spacing;
     font-size: $selectric-font-size;
     line-height: $selectric-inner-height;
     color: $selectric-text-color;
@@ -56,16 +62,18 @@ $selectric-font-size: 12px !default; // Font size
     &:after {
       content: ' ';
       position: absolute;
-      top: 0;
-      right: 0;
+      top: -.7rem;
+      right: 3rem;
       bottom: 0;
       left: 0;
       margin: auto;
       width: 0;
       height: 0;
-      border: 4px solid transparent;
-      border-top-color: $selectric-secondary-color;
-      border-bottom: none;
+      border: solid #000;
+      border-width: 0 1px 1px 0;
+      display: inline-block;
+      padding: 0.45rem;
+      transform: rotate(45deg);
     }
   }
 }
@@ -185,29 +193,29 @@ $selectric-font-size: 12px !default; // Font size
     padding: 0;
     margin: 0;
     font-size: $selectric-font-size;
-    line-height: 20px;
+    line-height: 5.6rem;
     min-height: 20px;
   }
 
   li {
     display: block;
-    padding: 10px;
-    color: #666;
+    padding: 0 3rem;
+    color: black;
     cursor: pointer;
 
     &.selected {
       background: #e0e0e0;
-      color: #444;
+      color: black;
     }
 
     &.highlighted {
-      background: #d0d0d0;
-      color: #444;
+      background: $shopHover;
+      color: black;
     }
 
     &:hover {
       background: #d5d5d5;
-      color: #444;
+      color: black;
     }
   }
 
@@ -227,7 +235,7 @@ $selectric-font-size: 12px !default; // Font size
       cursor: default;
       user-select: none;
       background: none;
-      color: #444;
+      color: black;
     }
 
     &.disabled li {

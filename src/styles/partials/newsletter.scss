@@ -1,34 +1,6 @@
 /* --------------------------------------------------------------------------
   POPUP
 -----------------------------------------------------------------------------*/
-/* OPEN POPUP ================== */
-.show-email-popup {
-  height: 100vh;
-  position: fixed;
-  overflow: hidden;
-  #sh-klaviyo-form {
-    display: block;
-  }
-  .close-popup-overlay {
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.4s $ease;
-    pointer-events: auto;
-  }
-  .email-popup-form-wrapper {
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.4s $ease 0.3s;
-    pointer-events: auto;
-  }
-}
-
-// Styles when email is successfully submitted, right before closing
-.email-submitted {
-  .close-popup {
-    display: none;
-  }
-}
 
 /* POPUP FORM STYLES ================== */
 .email-popup-form-wrapper {
@@ -100,6 +72,38 @@
       left: 63%;
       text-align: left;
     }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  POPUP ANIMATION
+-----------------------------------------------------------------------------*/
+/* OPEN POPUP ================== */
+.show-email-popup {
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  #sh-klaviyo-form {
+    display: block !important;
+  }
+  .close-popup-overlay {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s $ease;
+    pointer-events: auto;
+  }
+  .email-popup-form-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s $ease 0.3s;
+    pointer-events: auto;
+  }
+}
+
+// Styles when email is successfully submitted, right before closing
+.email-submitted {
+  .close-popup {
+    display: none;
   }
 }
 

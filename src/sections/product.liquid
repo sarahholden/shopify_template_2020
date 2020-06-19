@@ -13,7 +13,7 @@
     <div class="container product-images-col">
 
       {% if product.images.size > 0 %}
-        <div class="swiper-container swiper-container-product">
+        <div class="swiper-container swiper-has-arrows swiper-container-product">
           <div class="swiper-wrapper">
           {% for image in product.images %}
             <div class="swiper-slide">
@@ -39,7 +39,7 @@
       {% endif %}
     </div>
     <div class="product-info-col">
-      <div class="container-right-lg container-mobile product-into-info">
+      <div class="container-right-lg container-mobile product-intro-info">
         <h1 class="h2 container-left-lg">{{ product.title }}</h1>
         <div class="rte desc container-left-lg">
           {{ product.description }}
@@ -118,33 +118,35 @@
 
           <div class="spacer-row"></div>
 
-
+          {%- assign featured_image_url = featured_image | img_url: '650x' -%}
           <button
             type="submit"
             name="add"
-            class="btn btn--black"
+            class="js-add-to-cart-btn btn btn--black"
             data-add-to-cart
+            data-original-handle="{{ product.handle }}"
+            data-original-title="{{ product.title }}"
+            data-original-image="{{ featured_image_url }}"
             {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-              <span data-price-wrapper>
+              <span class="price-wrapper" data-price-wrapper>
                 <span data-product-price>
                   {{ current_variant.price | money }}
                 </span>
+                <span class="js-price temp-hidden">
+                  {{ current_variant.price | money }}
+                </span>
 
-                {% if product.compare_at_price_max > product.price %}
+                <!-- {% if product.compare_at_price_max > product.price %}
                   <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
                   <s data-compare-price>
                     {% if current_variant.compare_at_price > current_variant.price %}
                       {{ current_variant.compare_at_price | money }}
                     {% endif %}
                   </s>
-                {% endif %}
+                {% endif %} -->
               </span>
-              <span data-add-to-cart-text>
-                {% if current_variant.available %}
-                  {{ 'products.product.add_to_cart' | t }}
-                {% else %}
-                  {{ 'products.product.sold_out' | t }}
-                {% endif %}
+              <span data-add-to-cart-text class="js-add-to-cart-text">
+                Subscribe Now
               </span>
           </button>
         </form>
@@ -187,13 +189,38 @@
             {%- include 'block-faq-product', class_name: 'accordion-5'  -%}
           {% endif %}
         </div>
-
       </div>
 
 
-      {% if section.settings.show_share_buttons %}
-        {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-      {% endif %}
+      <!-- ======================================
+      PRODUCT REVIEWS
+      =========================================== -->
+      <!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
+
+      <div class="container-right-lg container-mobile">
+        <div id="sh-yotpo">
+          <div class="yotpo yotpo-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}" data-price="{{ variant.price | money_without_currency }}"
+            data-currency=“{{ shop.currency }}” data-description=“{{ product.description | escape }}“>
+            {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+              {%- assign time_now = 'now' | date: '%s' %}
+              {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+              {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
+              {%- assign yotpo_main_widget_last_updated = product.metafields.yotpo.main_widget_update_time | date: '%s' %}
+              {%- assign diff_seconds_from_last_main_widget_update = time_now | minus: yotpo_main_widget_last_updated %}
+              {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_main_widget_last_updated and diff_seconds_from_last_main_widget_update < 86400 -%}
+                {%- assign yotpo_main_widget_obsolete = false %}
+              {%- else %}
+                {%- assign yotpo_main_widget_obsolete = true %}
+              {%- endif %}
+              {%- if yotpo_offload_content == 'yes' and yotpo_main_widget_obsolete != true -%}
+                {%- for field in product.metafields.yotpo_reviews -%}
+                  {{ field | last }}
+                {%- endfor -%}
+              {%- endif %}
+            </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -208,7 +235,7 @@
   {% endunless %}
 </div>
 
-{%- include 'add-to-cart' -%}
+{%- include 'ajax-add-to-cart-pdp' -%}
 
 {% schema %}
   {

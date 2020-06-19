@@ -37,7 +37,9 @@
       {% if variant_map %}
         {% capture variant_to_duplicate %}{ {% for variant in variant_map %}{% if variant[1]['discount_variant_id'] %}{{ variant[0] }}:'{{ variant[1]['discount_variant_id'] }}',{% endif %}{% endfor %} }{% endcapture %}
         {% capture variant_to_price %}{ {% for variant in product.variants %}{{ variant.id }}:'{{ variant.price }}',{% endfor %} }{% endcapture %}
+        {% capture sh_original_price %} {% for variant in product.variants %}{{ variant.price }}{% endfor %} {% endcapture %}
         {% capture duplicate_to_price %}{ {% for variant in variant_map %}{% if variant[1]['discount_variant_id'] %}{{ variant[1]['discount_variant_id'] }}:'{{ variant[1]['discount_variant_price'] | replace: ".", "" }}',{% endif %}{% endfor %} }{% endcapture %}
+        {% capture sh_subscription_price %} {% for variant in variant_map %}{% if variant[1]['discount_variant_id'] %}{{ variant[1]['discount_variant_price'] | replace: ".", "" }}{% endif %}{% endfor %}{% endcapture %}
       {% endif %}
     	{% comment %}Discount settings{% endcomment %}
     	{% assign discount_percentage = subscription_product.discount_percentage | round: 2 %}
@@ -167,39 +169,52 @@
 			<div class="rc_block rc_block__type rc_block__type__autodeliver {% if select_subscription_first %}rc_block__type--active{% endif %}" {% if subscription_only and shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
 				<input type="radio" name="purchase_type" id="rc_purchase_type_autodeliver" value="autodeliver" {% if select_subscription_first %}checked{% endif %} class="rc_radio rc_radio__autodeliver" {% if subscription_only %}style="display: none;"{% endif %}>
 				{% unless subscription_only %}
-					<label for="rc_purchase_type_autodeliver" class="rc_label rc_label__autodeliver">
-						{{ label_autodeliver }}
-            <div id="rc_autodeliver_options" class="rc_block rc_block__type__options">
-              <label for="rc_shipping_interval_frequency" class="rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
-                <span class="rc_label__delivery">{{ label_deliver_every }}</span>
-                {% if shipping_interval_frequency.size == 1 %}
-                  <span class="rc_label__frequency">
-                    {{ shipping_interval_frequency[0] }}
-                    {% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+					<label for="rc_purchase_type_autodeliver" class="sh-row-wrapper rc_label rc_label__autodeliver">
+            <span class="sh-left-col">
+              <div class="sh-inner-col-1">
+                {{ label_autodeliver }}
+              </div>
+              <div id="rc_autodeliver_options" class="rc_block rc_block__type__options sh-inner-col-2">
+                <label for="rc_shipping_interval_frequency" class=" rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
+                  <span class="rc_label__delivery inner-cell-left">{{ label_deliver_every }}</span>
+                  <span class="inner-cell-right">
+                    {% if shipping_interval_frequency.size == 1 %}
+                    <span class="rc_label__frequency">
+                      {{ shipping_interval_frequency[0] }}
+                      {% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
                       {{ label_unit_type | remove: 's' }}
-                    {% else %}
-                      {{ label_unit_type }}
-                    {% endif %}
-                  </span>
-                {% endif %}
-                <select name="" id="rc_shipping_interval_frequency" class="rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
-                  {% for frequency in shipping_interval_frequency %}
-                    <option value="{{ frequency }}">
-                      {{ frequency }}
-                      {% if frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
-                        {{ label_unit_type | remove: 's' }}
                       {% else %}
-                        {{ label_unit_type }}
+                      {{ label_unit_type }}
                       {% endif %}
-                    </option>
-                  {% endfor %}
-                </select>
-              </label>
-            </div>
-						{% if discount_percentage > 0 %}
-							<span class="rc_label__discount visually-hidden" aria-label="subscription discount">({{ discount_percentage }}%)</span>
-							<span id="rc_price_autodeliver" class="rc_price rc_price__autodeliver" aria-label="recurring price"></span>
-						{% endif %}
+                    </span>
+                    {% endif %}
+                    <select name="" id="rc_shipping_interval_frequency" class="styled-select selectric-responsive rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
+                      {% for frequency in shipping_interval_frequency %}
+                      <option value="{{ frequency }}">
+
+                        {% if frequency == "1" and label_unit_type == 'Months' %}
+                          Monthly
+                        {% elsif frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+                          {{ frequency }}
+                          {{ label_unit_type | remove: 's' }}
+                        {% else %}
+                          {{ frequency }}
+                          {{ label_unit_type }}
+                        {% endif %}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </span>
+                </label>
+              </div>
+            </span>
+            <span class="sh-right-col">
+              {% if discount_percentage > 0 %}
+              {% assign discounted_price =  variant[1]['discount_variant_price'] | replace: ".", "" %}
+              <span class="rc_label__discount visually-hidden" aria-label="subscription discount">({{ discount_percentage }}%)</span>
+              <span id="rc_price_autodeliver" class="rc_price rc_price__autodeliver" aria-label="recurring price" data-subscription-unit-price="{{ sh_subscription_price }}"></span>
+              {% endif %}
+            </span>
 
 					</label>
 				{% endunless %}
@@ -208,16 +223,19 @@
       {% unless subscription_only %}
         <div class="rc_block rc_block__type rc_block__type__onetime {% unless select_subscription_first %}rc_block__type--active{% endunless %}">
           <input type="radio" id="rc_purchase_type_onetime" name="purchase_type" value="onetime" {% unless select_subscription_first %}checked{% endunless %} class="rc_radio rc_radio__onetime">
-          <label for="rc_purchase_type_onetime" class="rc_label rc_label__onetime">
-            {{ label_onetime }}{% if discount_percentage > 0 %}{% endif %}
-
-            <!-- Added Quantity field inline -->
-            <div class="quantity-wrapper">
-              <label for="quantity">{{ 'products.product.quantity' | t }}:</label>
-              <input type="number" id="quantity" name="quantity" value="1" min="1">
-            </div>
+          <label for="rc_purchase_type_onetime" class="sh-row-wrapper rc_label rc_label__onetime">
+            <span class="sh-left-col">
+              <span class="sh-inner-col-1">
+                {{ label_onetime }}{% if discount_percentage > 0 %}{% endif %}
+              </span>
+              <!-- Added Quantity field inline -->
+              <div class="quantity-wrapper sh-inner-col-2">
+                <label for="quantity">{{ 'products.product.quantity' | t }}:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="20" disabled>
+              </div>
+            </span>
             {% if discount_percentage > 0 %}
-              <span id="rc_price_onetime" class="rc_price rc_price__onetime" aria-label="original price"></span>
+              <span id="rc_price_onetime" class="rc_price rc_price__onetime sh-right-col" aria-label="original price" data-onetime-unit-price="{{ sh_original_price }}"></span>
             {% endif %}
           </label>
         </div>
@@ -270,6 +288,7 @@
 					variant_to_price: {% if variant_to_price %}{{ variant_to_price }}{% else %}{ {% for variant in product.variants %}{{ variant.id }}:'{{ variant.price }}', {% endfor %} }{% endif %},
 					duplicate_to_price: {% if duplicate_to_price %}{{ duplicate_to_price }}{% else %}{ {% for variant in product.variants %}{{ variant.metafields.subscriptions.discount_variant_id }}: '{{ variant.metafields.subscriptions.discount_variant_price | replace: ".", "" }}', {% endfor %} }{% endif %},
 				};
+
 			if (document.readyState === "complete" || document.readyState === "loaded") {
 				if (!window.ReCharge) { window.ReCharge = new rcWidget(options); }
 				ReCharge.addProduct(myProduct);

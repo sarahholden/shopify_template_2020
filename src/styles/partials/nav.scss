@@ -13,15 +13,22 @@ Body Open Mobile Nav Styles
 /* --------------------------------------------------------------------------
   General Nav Styles
 -----------------------------------------------------------------------------*/
+// ALSO USED FOR CART.SCSS
+$desktopBorderHeight: 2.1rem;
+$mobileBorderHeight: 1.7rem;
 .nav-wrapper {
   @extend %smallCaps;
   background: white;
-  border-top: 2.1rem solid $black;
   z-index: 300;
   position: relative;
   @include mobile-only {
-    border-top: 1.7rem solid $black;
     height: 7.2rem;
+  }
+  &:not(.no-border-top) {
+    border-top: $desktopBorderHeight solid $black;
+    @include mobile-only {
+      border-top: $mobileBorderHeight solid $black;
+    }
   }
   .inner {
     @extend %stretch-aligner;
@@ -98,7 +105,7 @@ Logo Styles
 @include mobile-only {
   .nav-wrapper nav {
     position: fixed;
-    top: 7.7rem;
+    top: 7.3rem;
     // top: 0;
     right: 0;
     width: 18.7rem;
@@ -124,6 +131,8 @@ Logo Styles
       display: block;
       font-size: 11px;
       border-bottom: $border;
+      opacity: 0;
+      transition: all 0.8s $ease;
     }
   }
 }
@@ -134,6 +143,9 @@ Logo Styles
     /* Styles for when the user clicks the hamburger icon */
     transform: none;
     visibility: visible;
+    a {
+      opacity: 1;
+    }
   }
   .close-mobile-nav {
     position: fixed;
@@ -142,6 +154,31 @@ Logo Styles
     left: 0;
     right: 0;
     bottom: 0;
+  }
+}
+
+@for $i from 1 through 30 {
+  .open-mobile-nav .nav-wrapper li:nth-of-type(#{$i}) a {
+    transition-delay: $i * 0.08s;
+  }
+}
+
+/* SCROLLED NAVIGATION STYLES ================== */
+.nav-wrapper.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: none;
+  transform: translateY(-102%);
+  &.scroll-down {
+    transition: none;
+    transform: translateY(-102%);
+  }
+  &.scroll-up {
+    transition: transform 0.3s ease-in-out;
+    transform: none;
+    top: 0;
   }
 }
 
@@ -299,5 +336,85 @@ Hamburger Icon styles
       }
     }
 
+  }
+}
+/* --------------------------------------------------------------------------
+  PROMO BAR
+-----------------------------------------------------------------------------*/
+.promo-bar {
+  background: $black;
+  color: white;
+  padding: 0.8rem $desktopSidePadding;
+  @include mobile-only {
+    padding: 0.8rem $mobileSidePadding;
+  }
+  .desc {
+    @extend %smallCaps;
+    text-align: center;
+    text-transform: uppercase;
+    width: calc(100% - 28.6rem);
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(-100%);
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    @include mobile-only {
+      width: calc(100% - 8rem);
+    }
+    a {
+      text-decoration: underline;
+      color: white;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  .swiper-slide-active {
+    .desc {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* PROMO NAVIGATION ARROWS ================== */
+.promo-bar {
+  position: relative;
+  .swiper-arrow {
+    width: 4.9rem;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    @include mobile-only {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      width: auto;
+    }
+    img {
+      width: 0.9rem;
+    }
+  }
+  .swiper-prev {
+    left: $desktopSidePadding;
+    outline: none;
+    @include mobile-only {
+      left: $mobileSidePadding;
+    }
+  }
+  .swiper-next {
+    right: $desktopSidePadding;
+    outline: none;
+    @include mobile-only {
+      right: $mobileSidePadding;
+    }
   }
 }

@@ -1,17 +1,104 @@
+{%- unless section.settings.hide_reviews -%}
+  <section class="reviews-section " data-anim="scroll">
+    {% if section.settings.heading != blank %}
+      <h3 class="small-caps" data-anim="slide" data-anim-order="1">{{ section.settings.heading }}</h3>
+    {% endif %}
+
+    <div class="container">
+      <div class="inner"  data-anim="slide" data-anim-order="2">
+        <div class="swiper-has-arrows swiper-container swiper-container-reviews">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+            {% case block.type %}
+            {% when 'reviews' %}
+            <section class="swiper-slide review-item">
+              {% if block.settings.title != blank %}
+                <h2>{{ block.settings.title | newline_to_br }}</h2>
+              {% endif %}
+              {% if block.settings.number_stars != blank %}
+                {% assign starNumber = block.settings.number_stars | times: 1 %}
+                <div class="star-rating-wrapper">
+                  {% for i in (1..5) %}
+                    {% if i <= starNumber %}
+                      {%- include 'icon-star-filled' -%}
+                    {% else %}
+                      {%- include 'icon-star-empty' -%}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+              {% endif %}
+              {% if block.settings.name != blank %}
+                <p class="customer-name small-caps">{{ block.settings.name }}</p>
+              {% endif %}
+              {% if block.settings.desc != blank %}
+                <div class="desc">
+                  {{ block.settings.desc }}
+                </div>
+              {% endif %}
+            </section>
+            {% endcase %}
+            {% endfor %}
+          </div>
+          <button type="button" class="swiper-prev text-only" aria-label="View Previous Image">
+            {%- include 'icon-arrow-left' -%}
+          </button>
+          <button type="button" class="swiper-next text-only" aria-label="View Next Image">
+            {%- include 'icon-arrow-right' -%}
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+{%- endunless -%}
+
+
 {% schema %}
   {
     "name": "Reviews Section",
     "class": "reviews-section",
     "settings": [
       {
+        "id": "hide_reviews",
+        "type": "checkbox",
+        "label": "Hide Reviews"
+      },
+      {
         "id": "heading",
         "type": "textarea",
         "label": "Heading"
-      },
+      }
+    ],
+    "blocks": [
       {
-        "id": "subheading",
-        "type": "textarea",
-        "label": "Subheading"
+        "type": "reviews",
+        "name": "Reviews",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Review Title"
+          },
+          {
+            "id": "number_stars",
+            "type": "text",
+            "label": "Number Stars",
+            "default": "5"
+          },
+          {
+            "id": "desc",
+            "type": "richtext",
+            "label": "Review Body"
+          },
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Customer Name"
+          }
+
+        ]
       }
     ],
     "presets": [

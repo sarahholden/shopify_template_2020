@@ -1,0 +1,401 @@
+/* --------------------------------------------------------------------------
+  REVIEWS WIDGET OVERRIDES
+-----------------------------------------------------------------------------*/
+#sh-yotpo {
+  padding-bottom: 5rem;
+}
+
+#sh-yotpo .font-color-gray {
+  color: black !important;
+}
+
+#sh-yotpo {
+  .yotpo .yotpo-regular-box {
+    margin: 0;
+    padding-left: $desktopSidePadding;
+    padding-right: 0;
+    border-top: 0;
+    @include mobile-only {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+/* EMPTY STATE ================== */
+#sh-yotpo {
+  .yotpo-no-reviews .yotpo-bottomline-empty-state {
+    display: none !important;
+  }
+  .yotpo-first-review {
+    padding-bottom: 6rem;
+  }
+}
+
+/* REVIEW SUMMARY ROW ================== */
+#sh-yotpo {
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline.yotpo-bottomline-2-boxes,
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes {
+    padding-top: 0;
+    padding-bottom: 4rem;
+  }
+}
+
+/* REVIEW SUMMARY ================== */
+#sh-yotpo .yotpo-stars-and-sum-reviews {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* REVIEW SUMMARY - NUMBER OF REVIEWS ================== */
+#sh-yotpo {
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline .based-on,
+  .yotpo.yotpo-main-widget .yotpo-bottomline .based-on {
+    font-family: $headingFont;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0;
+    font-size: 3rem;
+    line-height: (40 / 30);
+    margin-bottom: 0.2rem;
+    @include mobile-only {
+      font-size: 2.5rem;
+      line-height: (35 / 25);
+    }
+  }
+}
+
+/* WRITE A REVIEW - BUTTON ================== */
+#sh-yotpo {
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button,
+  .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button {
+    @extend %smallCaps;
+    // cursor: pointer;
+    // color: black;
+    // border: 0;
+    // border-radius: 0;
+    // transition: all 0.3s ease-in-out;
+    // outline: none;
+    // background-color: transparent;
+    // padding: 2.1rem 3.3rem;
+    // line-height: 1;
+    top: 1.5rem;
+    background: transparent;
+    color: $black;
+    &:hover {
+      background: transparent;
+      color: $black;
+      text-decoration: underline;
+    }
+  }
+
+  // FIRST REVIEW BUTTON
+  .write-first-review-button {
+    @extend %smallCaps;
+    cursor: pointer;
+    color: black;
+    border: 0;
+    border-radius: 0;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: transparent;
+    padding: 2.1rem 3.3rem;
+    line-height: 1;
+    background: $grayButton;
+    color: $black;
+    &:hover {
+      background: darken($grayButton, 8%);
+      color: $black;
+    }
+  }
+
+  // Write icon
+  .yotpo-icon-write {
+    display: none;
+  }
+
+  // Button text
+  .yotpo.yotpo-main-widget .yotpo-icon-btn .yotpo-icon-button-text {
+    @extend %smallCaps;
+    color: black;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+/* POWERED BY YOTPO - HIDE ================== */
+#sh-yotpo .yotpo .yotpo-small-box {
+  display: none !important;
+}
+
+/* NAME ================== */
+#sh-yotpo {
+  .yotpo .yotpo-comment .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
+  .yotpo .yotpo-onsite-upload .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
+  .yotpo .yotpo-question .yotpo-header .yotpo-header-element .y-label.yotpo-user-name,
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-user-name {
+    @extend %smallCaps;
+
+  }
+}
+
+/* VERIFIED USER ================== */
+#sh-yotpo {
+  .label-with-tooltip.pull-left {
+    display: none !important;
+  }
+}
+
+/* PROFILE PIC ================== */
+#sh-yotpo {
+  .yotpo .yotpo-review .yotpo-header .yotpo-icon-profile {
+    display: none !important;
+  }
+}
+
+/* REVIEW DATE ================== */
+#sh-yotpo {
+  .yotpo .yotpo-review .yotpo-header .yotpo-header-element .y-label.yotpo-review-date {
+    @extend %smallCaps;
+    color: black !important;
+  }
+}
+
+/* REVIEW STARS ================== */
+#sh-yotpo {
+  .yotpo .yotpo-comment .yotpo-header .yotpo-review-stars .yotpo-icon,
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline .yotpo-icon-empty-star,
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline .yotpo-icon-half-star,
+  .yotpo .yotpo-modal-dialog .yotpo-bottomline .yotpo-icon-star,
+  .yotpo .yotpo-onsite-upload .yotpo-header .yotpo-review-stars .yotpo-icon,
+  .yotpo .yotpo-question .yotpo-header .yotpo-review-stars .yotpo-icon,
+  .yotpo .yotpo-review .yotpo-header .yotpo-review-stars .yotpo-icon,
+  .yotpo.yotpo-main-widget .yotpo-bottomline .yotpo-icon-empty-star,
+  .yotpo.yotpo-main-widget .yotpo-bottomline .yotpo-icon-half-star,
+  .yotpo.yotpo-main-widget .yotpo-bottomline .yotpo-icon-star {
+    font-size: 1.7rem;
+  }
+}
+
+/* REVIEW ITEMS ================== */
+#sh-yotpo .yotpo {
+  .yotpo-review {
+    border-top: $border;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* REVIEW BODY ================== */
+#sh-yotpo {
+  .yotpo .yotpo-comment .yotpo-main,
+  .yotpo .yotpo-onsite-upload .yotpo-main,
+  .yotpo .yotpo-question .yotpo-main,
+  .yotpo .yotpo-review .yotpo-main {
+    margin: 2rem 0 0;
+
+  }
+}
+
+/* REVIEW TITLE ================== */
+#sh-yotpo {
+  .yotpo .yotpo-comment .yotpo-main .content-title,
+  .yotpo .yotpo-onsite-upload .yotpo-main .content-title,
+  .yotpo .yotpo-question .yotpo-main .content-title,
+  .yotpo .yotpo-review .yotpo-main .content-title {
+    font-family: $headingFont;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0;
+    font-size: 3rem;
+    line-height: (40 / 30);
+    color: black;
+    @include mobile-only {
+      font-size: 2.5rem;
+      line-height: (35 / 25);
+    }
+  }
+}
+
+/* REVIEW BODY COPY ================== */
+#sh-yotpo {
+  .content-review {
+    font-family: $bodyTextFont;
+    line-height: $bodyTextLineHeight;
+    letter-spacing: $bodyTextLetterSpacing;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: antialiased;
+    font-size: $bodyDesktopFontSize;
+    color: black;
+    @include mobile-only {
+      font-size: $bodyMobileFontSize;
+    }
+  }
+}
+
+/* REVIEW SHARE ROW / WAS THIS REVIEW HELPFUL ================== */
+#sh-yotpo {
+  .footer-actions,
+  .socialize-wrapper,
+  .yotpo-helpful {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  WRITE REVIEW FORM
+-----------------------------------------------------------------------------*/
+/* FORM HEADING ================== */
+#sh-yotpo {
+  .yotpo .write-review .yotpo-header .yotpo-header-title {
+    font-family: $headingFont;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0;
+    font-size: 3rem;
+    line-height: (40 / 30);
+    margin-bottom: 0.2rem;
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    @include mobile-only {
+      font-size: 2.5rem;
+      line-height: (35 / 25);
+    }
+
+  }
+
+}
+
+#sh-yotpo {
+
+  .yotpo-mandatory-explain {
+    color: black;
+  }
+
+  // Bottom row - remove xtra left padding
+  .yotpo .write-review .connect-wrapper {
+    padding-left: 0 !important;
+    @include mobile-only {}
+  }
+
+  // Submit button
+  .yotpo-submit {
+    @extend %smallCaps;
+    cursor: pointer;
+    color: black;
+    border: 0;
+    border-radius: 0;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: transparent;
+    padding: 2.1rem 3.3rem;
+    line-height: 1;
+    background: $blackButton;
+    color: white !important;
+    margin-top: 3rem !important;
+    &:hover {
+      background: $blackButton;
+      color: white !important;
+    }
+  }
+}
+
+/* FORM INPUT ================== */
+#sh-yotpo {
+  .yotpo .text-box,
+  .yotpo .y-input,
+  .yotpo .yotpo-text-box,
+  .yotpo input {
+    &:not([type="button"]) {
+      padding: 0 0 0.8rem;
+      border: 0;
+      border-bottom: $border;
+      margin: 0 0 3rem;
+      font-family: $bodyTextFont;
+      color: $primaryTextColor;
+      line-height: $bodyTextLineHeight;
+      letter-spacing: $bodyTextLetterSpacing;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-font-smoothing: antialiased;
+      font-size: $bodyDesktopFontSize;
+      @include mobile-only {
+        font-size: $bodyMobileFontSize;
+      }
+    }
+  }
+
+}
+
+/* FORM LABELS ================== */
+#sh-yotpo {
+  .yotpo .y-label,
+  .yotpo span.y-label {
+    @extend %smallCaps;
+    color: black;
+    padding-bottom: 0.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  THANK YOU
+-----------------------------------------------------------------------------*/
+#sh-yotpo {
+  .yotpo-thankyou-footer {
+    display: none;
+  }
+  .yotpo .yotpo-modal-dialog .yotpo-thank-you,
+  .yotpo.yotpo-main-widget .yotpo-thank-you {
+    border: 0;
+  }
+
+  /* THANK YOU HEADER */
+  .yotpo .yotpo-modal-dialog .yotpo-thank-you .yotpo-thankyou-header span,
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-header span {
+    font-family: $headingFont;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0;
+    font-size: 3rem;
+    line-height: (40 / 30);
+    margin-bottom: 0.2rem;
+    text-transform: lowercase;
+    display: inline-block;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    @include mobile-only {
+      font-size: 2.5rem;
+      line-height: (35 / 25);
+    }
+  }
+
+  /* HEART */
+  .yotpo .yotpo-modal-dialog .yotpo-thank-you .yotpo-thankyou-header .yotpo-icon,
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-header .yotpo-icon {
+    display: none !important;
+  }
+
+  .yotpo .yotpo-modal-dialog .yotpo-thank-you .yotpo-thankyou-content span,
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-content span {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .yotpo .yotpo-modal-dialog .yotpo-thank-you .yotpo-thankyou-content span,
+  .yotpo.yotpo-main-widget .yotpo-thank-you .yotpo-thankyou-content span {
+    font-family: $bodyTextFont;
+    color: $primaryTextColor;
+    line-height: $bodyTextLineHeight;
+    letter-spacing: $bodyTextLetterSpacing;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: antialiased;
+    font-size: $bodyDesktopFontSize;
+    @include mobile-only {
+      font-size: $bodyMobileFontSize;
+    }
+  }
+}

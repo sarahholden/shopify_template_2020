@@ -1,19 +1,19 @@
 {%- unless section.settings.hide_instagram_section -%}
-  <section class="container padded">
+  <section class="container padded" data-anim="scroll">
     <div class="cols-2 no-gutters">
       <div>
-        <h2 class="h1">{{ section.settings.heading | newline_to_br }}</h2>
+        <h2 class="h1" data-break="lines-masked">{{ section.settings.heading | newline_to_br }}</h2>
       </div>
       <div>
-        <div class="desc">
+        <div class="desc" data-anim="slide" data-anim-order="3">
           {{ section.settings.desc }}
         </div>
       </div>
     </div>
-    <a href="{{ section.settings.link }}" class="instagram-handle-row small-caps">
+    <a href="{{ section.settings.link }}" class="instagram-handle-row small-caps" data-anim="slide" data-anim-order="4">
       {{ section.settings.handle }}
     </a>
-    <div class="sh-insta-feed">
+    <div class="sh-insta-feed" data-anim="slide" data-anim-order="5">
       <div id="insta-feed"></div>
     </div>
   </section>

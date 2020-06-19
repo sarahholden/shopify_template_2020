@@ -28,13 +28,15 @@
   PRODUCT INFO / FORM STYLES (RIGHT COLUMN)
 -----------------------------------------------------------------------------*/
 .page-product-detail .product-info-col {
-  border-left: $border;
+  @include tablet-up {
+    border-left: $border;
+  }
 }
 
 /* --------------------------------------------------------------------------
   PRODUCT TITLE AND DESCRIPTION
 -----------------------------------------------------------------------------*/
-.page-product-detail .product-into-info {
+.page-product-detail .product-intro-info {
   padding-bottom: 3.6rem;
   border-bottom: $border;
   @include tablet-up {
@@ -51,6 +53,9 @@
   }
   .desc {
     padding-top: 2.85rem;
+    @include tablet-up {
+      max-width: 95%;
+    }
   }
 }
 
@@ -60,14 +65,14 @@
 .subscribe-and-save {
   @extend %smallCaps;
   background: $darkGreyBackground;
-  overflow: hidden;
+  // overflow: hidden;
 
   /* Style like other form rows */
   #rc_radio_options > .rc_block {
     @extend .container-left-lg;
     @extend .container-mobile;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
     border-top: $border;
     border-radius: 0;
     @include tablet-up {
@@ -79,12 +84,89 @@
     color: $primaryTextColor;
   }
 
+  .sh-row-wrapper {
+    @include tablet-up {
+      display: flex !important;
+      width: 100% !important;
+      align-items: center;
+      height: 5.6rem;
+    }
+    @include mobile-only {
+      padding-top: 2.1rem !important;
+      padding-bottom: 2.1rem !important;
+      display: flex !important;
+      margin-right: 0 !important;
+    }
+
+    // Left column (with two inner columns)
+    .sh-left-col {
+      width: 68%;
+      @include mobile-only {
+        width: 70%;
+        display: block;
+      }
+      @include tablet-up {
+        display: flex;
+
+        align-items: center;
+        height: 5.6rem;
+      }
+    }
+
+    // INNER LEFT COLUMN (type of purchase - one time or subscribe)
+    .sh-left-col .sh-inner-col-1 {
+      @include mobile-only {
+        display: block;
+      }
+      @include tablet-up {
+        display: inline-block;
+        width: 55%;
+        overflow: hidden;
+        padding: 1rem 2rem 1rem 0;
+      }
+    }
+
+    // INNER RIGHT COLUMN (QUANTITY AND DELIVERY INTERVAL)
+    .sh-left-col .sh-inner-col-2 {
+      @include mobile-only {
+        display: block;
+      }
+      @include tablet-up {
+        display: inline-block;
+        height: 5.6rem;
+        border-left: $border;
+        border-right: $border;
+        width: 45%;
+        padding: 2rem 2rem 2rem 3rem;
+      }
+    }
+
+    .sh-left-col .rc_block__type__options {
+      @include tablet-up {
+        padding: 0;
+      }
+    }
+
+    // Right column (with two inner columns)
+    .sh-right-col {
+      width: 9rem;
+      display: inline-block;
+      padding: 0 0 0 3rem;
+      @include mobile-only {
+        width: 30%;
+        display: block;
+      }
+    }
+
+  }
+
   /* Reset Styles */
   div#rc_container {
     margin-bottom: 0;
   }
   label.rc_label__deliver_every {
     padding: 0;
+    margin-right: 0 !important;
   }
   div.rc_block__type--active {
     background: transparent;
@@ -102,9 +184,9 @@
 
   /* Delivery Options */
   #rc_autodeliver_options {
-    @include mobile-only {
-      padding-left: 4rem;
-    }
+    // @include mobile-only {
+    //   padding-left: 4rem;
+    // }
   }
 
   /* Hide info tooltip */
@@ -137,14 +219,15 @@
     @extend %smallCaps;
     @extend .container-mobile;
     background: $darkGreyBackground;
-    overflow: hidden;
+    // overflow: hidden;
+    margin: 0 !important;
     display: flex;
     align-items: center;
-    padding-top: 2.2rem;
-    padding-bottom: 2.2rem;
   }
   label {
     @extend %smallCaps;
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
     margin-right: 2.2rem;
   }
   input {
@@ -160,14 +243,38 @@
 /* QUANTITY ================== */
 .page-product-detail .quantity-wrapper {
   // border-top: $border;
+
+  @include mobile-only {
+    display: none !important;
+  }
+  @include tablet-up {
+    display: flex !important;
+    align-items: center;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
   input[type="number"] {
     @extend %smallCaps;
     border: $border;
     width: 3rem;
     text-align: center;
     padding: 0.4rem 0;
+    transition: all 0.3s ease-in-out;
+    &:disabled {
+      opacity: 0.7;
+    }
+  }
+  label {
+    margin-right: 1.4rem !important;
   }
 }
+
+// .rc_block:not(.rc_block__type--active) .quantity-wrapper {
+//   input {
+//     color: #868484;
+//     border: 1px solid #868484;
+//   }
+// }
 
 /* RADIO STYLES ================== */
 .page-product-detail form {
@@ -195,6 +302,7 @@
 /* SPACER ROW ================== */
 .page-product-detail form {
   .spacer-row {
+    pointer-events: none;
     border-top: $border;
     background: $darkGreyBackground;
     width: 100%;
@@ -203,6 +311,27 @@
       height: 5rem;
     }
   }
+}
+
+.page-product-detail .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .price-wrapper {
+    display: inline-block;
+    margin-right: 6rem;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    @include mobile-only {
+      margin-right: 3rem;
+    }
+  }
+}
+
+.temp-hidden {
+  opacity: 0;
+  display: none;
+
 }
 
 /* --------------------------------------------------------------------------
@@ -240,7 +369,7 @@
 .product-images-col {
   @include tablet-up {
     overflow-y: scroll;
-    height: calc(100vh - 70px);
+    height: calc(90vh - 70px);
     position: sticky;
     top: 70px;
   }
@@ -256,19 +385,7 @@
   @include mobile-only {
     padding: 2rem 4rem 5rem !important;
   }
-  .swiper-next,
-  .swiper-prev {
-    position: absolute;
-    width: 3.3rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .swiper-prev {
-    left: 0;
-  }
-  .swiper-next {
-    right: 0;
-  }
+
   .swiper-pagination {
     bottom: 0;
   }
@@ -282,6 +399,23 @@
   }
   .swiper-pagination-bullet-active {
     background: $primaryTextColor;
+  }
+}
+
+.swiper-has-arrows {
+  .swiper-next,
+  .swiper-prev {
+    position: absolute;
+    width: 3.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+  .swiper-prev {
+    left: 0;
+  }
+  .swiper-next {
+    right: 0;
   }
 }
 

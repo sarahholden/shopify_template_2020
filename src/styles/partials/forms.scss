@@ -93,6 +93,9 @@ input[type=number] {
 		outline: $border;
 		border: 2px solid $darkGreyBackground;
 		background: $darkGreyBackground;
+		@include mobile-only {
+			top: 3.1rem;
+		}
 	}
 }
 %active-radio {

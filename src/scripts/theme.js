@@ -97,7 +97,7 @@ $(document).ready(function() {
     var promoBarHeight = $('.promo-bar').outerHeight();
     $('.nav-wrapper-placeholder').height(navbarHeight);
     var navBarOffsetTop = $('.nav-wrapper').offset().top;
-    var triggerPoint = navbarHeight + 10;
+    var triggerPoint = 10;
 
     $(window).on('resize', function () {
       navbarHeight = $('.nav-wrapper').innerHeight();
@@ -147,8 +147,8 @@ $(document).ready(function() {
             .addClass('scroll-up');
         }
 
-        lastScrollTop = distanceScrolled;
       }
+      lastScrollTop = distanceScrolled;
     }
   }
 
@@ -195,6 +195,34 @@ $(document).ready(function() {
       nextEl: '.swiper-next',
       prevEl: '.swiper-prev',
     },
+  });
+
+  const reviewsSwiper = new Swiper('.swiper-container-reviews', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: 'true'
+    },
+    speed: 600,
+    allowTouchMove: true,
+    slidesPerView: 3,
+    spaceBetween: 40,
+    loop: true,
+    autoplay: {
+      delay: 10000,
+      disableOnInteraction: true
+    },
+    navigation: {
+      nextEl: '.swiper-next',
+      prevEl: '.swiper-prev',
+    },
+    breakpoints: {
+      // when window width is <= 769px
+      769: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+
+      }
+    }
   });
 
   /* ---------------------------------------------
@@ -254,26 +282,26 @@ $(document).ready(function() {
         offset: scrollOffset,
         triggerHook: .85
       })
-        .setClassToggle(this, "scrolled") // add class toggle
-        .reverse(false)
+      .setClassToggle(this, "scrolled") // add class toggle
+      .reverse(false)
 
-        .addTo(controller)
-        .on("enter", function (e) {
-          if ($thisWrapper.find('.animate-item').length > 0) {
-            var $listItems = $thisWrapper.find('.animate-item');
-          } else {
-            var $listItems = $thisWrapper.find('li');
-          }
+      .addTo(controller)
+      .on("enter", function (e) {
+        if ($thisWrapper.find('.animate-item').length > 0) {
+          var $listItems = $thisWrapper.find('.animate-item');
+        } else {
+          var $listItems = $thisWrapper.find('li');
+        }
 
 
-          $listItems.each(function(i) {
-            var delay = i * 100;
-            var self = this;
-            setTimeout(function() {
-              $(self).addClass('fade-in');
-            }, delay);
-          });
+        $listItems.each(function(i) {
+          var delay = i * 100;
+          var self = this;
+          setTimeout(function() {
+            $(self).addClass('fade-in');
+          }, delay);
         });
+      });
     });
 
   // END OF FONT LOADING
@@ -444,7 +472,19 @@ $(document).ready(function() {
       lastScrollPosition = $(window).scrollTop();
 
       $('body').addClass('show-email-popup');
-      $('.email-popup-form-wrapper').addClass('js-animate');
+      $('.email-popup-form-wrapper, .js-form-animation-wrapper').addClass('js-animate');
+
+
+      // Set a cookie so the popup only shows once every 30 days
+      const date = new Date();
+      const days = 30;
+
+      // Get unix milliseconds at current time plus number of days
+      date.setTime(+date + days * 86400000); // 24 * 60 * 60 * 1000
+      window.document.cookie = `${'show-email-popup' +
+        '=' +
+        'no' +
+        '; expires='}${date.toGMTString()}; path=/`;
 
     }, 10000);
   }
@@ -470,18 +510,8 @@ $(document).ready(function() {
         $('body').removeClass('show-email-popup email-submitted');
 
         // Once the body is unfixed, scroll to the last position
-          $(window).scrollTop(lastScrollPosition);
+        $(window).scrollTop(lastScrollPosition);
 
-        // Set a cookie so the popup only shows once every 30 days
-        const date = new Date();
-        const days = 30;
-
-        // Get unix milliseconds at current time plus number of days
-        date.setTime(+date + days * 86400000); // 24 * 60 * 60 * 1000
-        window.document.cookie = `${'show-email-popup' +
-          '=' +
-          'no' +
-          '; expires='}${date.toGMTString()}; path=/`;
       }, 2000);
     }
   });

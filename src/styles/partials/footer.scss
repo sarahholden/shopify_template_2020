@@ -2,6 +2,14 @@
   LOGO ICON
 -----------------------------------------------------------------------------*/
 footer .logo-icon {
+	transition: all 0.3s $ease;
+	transform: none;
+	display: inline-block;
+	&:hover {
+		@include tablet-up {
+			transform: translateY(.2rem);
+		}
+	}
 	@include mobile-only {
 		margin-bottom: 2.8rem;
 	}
@@ -51,13 +59,15 @@ Footer Navigation Styles
 			}
 		}
 	}
-	a,
-	a:visited {
+	a {
 		color: #FEFEFE;
+		transition: all 0.5s $ease;
+		display: inline-block;
 	}
 	a:hover {
 		color: #FEFEFE;
 		text-decoration: underline;
+		transform: translateY(.2rem);
 	}
 }
 

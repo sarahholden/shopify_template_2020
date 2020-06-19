@@ -64,6 +64,7 @@
   }
   .bg-image {
     transition: all 0.6s ease-in-out;
+    padding-bottom: 74.5%;
     @include mobile-only {
       padding-bottom: 74%;
     }
@@ -73,7 +74,7 @@
       background: $midGreyBackground;
     }
     .bg-image {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
   }
 }
@@ -95,6 +96,12 @@
     padding: 3rem $mobileSidePadding;
   }
   .desc {
+    p + p {
+      margin-top: 3rem;
+    }
+    p:last-of-type {
+      margin-bottom: 1.8rem;
+    }
     @include mobile-only {
       margin-top: 4rem;
       margin-bottom: 4rem;
@@ -108,6 +115,9 @@
 .template-index .icon-blocks-section {
   background: $lightGreyBackground;
   margin-top: 6rem;
+  @include mobile-only {
+    margin-top: 0;
+  }
   h3 {
     margin-bottom: 2rem;
   }
@@ -227,9 +237,12 @@
     line-height: 1;
   }
   .desc {
-    max-width: 32.2rem;
+    max-width: 23.2rem;
     margin-left: auto;
     margin-right: auto;
+  }
+  .step-item:nth-of-type(1) .desc {
+    max-width: 15.2rem;
   }
   .step-item:not(:first-of-type) {
     @include mobile-only {
@@ -261,7 +274,7 @@
     }
   }
   img {
-    max-width: 51rem;
+    max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
@@ -395,4 +408,92 @@
       padding-top: 100% !important;
     }
   }
+}
+
+/* --------------------------------------------------------------------------
+  REVIEWS SECTION
+-----------------------------------------------------------------------------*/
+.reviews-section {
+  overflow: hidden;
+  padding-bottom: 4rem;
+  @include mobile-only {
+    padding-bottom: 2rem;
+  }
+  .inner {
+    max-width: 127rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h3 {
+    padding-top: 1.55rem;
+    border-top: $border;
+    border-bottom: $border;
+    padding-bottom: 1.55rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+}
+
+/* REVIEW BLOCKS ================== */
+.reviews-section {
+  .review-item {
+    border: $border;
+    padding: 3.6rem;
+    @include mobile-only {
+      padding: 2.4rem;
+    }
+  }
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+  .customer-name {
+    margin: 2.8rem 0 2rem;
+  }
+  .star-rating-wrapper {
+    svg {
+      display: inline-block;
+      margin-right: 0.3rem;
+      width: 1.7rem;
+    }
+  }
+}
+
+/* SWIPER STYLES ================== */
+.reviews-section {
+  .swiper-container-reviews {
+    overflow: visible;
+    padding: 0 5rem 0.2rem !important;
+
+    @include mobile-only {
+      padding: 0 4rem !important;
+    }
+  }
+  .swiper-slide {
+    height: auto;
+    opacity: 0.3;
+    transition: all 0.3s ease-in-out;
+  }
+  .swiper-slide-active {
+    opacity: 1;
+  }
+
+  .swiper-slide-next,
+  .swiper-slide-next + .swiper-slide {
+    @include tablet-up {
+      opacity: 1;
+    }
+  }
+
+  .swiper-prev {
+    @include mobile-only {
+      left: -1rem;
+    }
+  }
+  .swiper-next {
+    @include mobile-only {
+      right: -1rem;
+    }
+  }
+
 }

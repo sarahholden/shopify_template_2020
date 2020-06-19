@@ -1,0 +1,120 @@
+<!-- Subscriptions Powered by ReCharge Payments: Begin Liquid Code -->
+<!--
+	Subscription Cart Footer
+	http://rechargepayments.com: v3.2.6
+	Updated: 2020/03/13
+-->
+{% comment %}Subscriptions Powered by ReCharge Payments: Meta Fields{% endcomment %}
+{% assign has_subscriptions = false %}
+{% for i in cart.items %}
+	{% for p in i.properties %}
+		{% if p.first == 'shipping_interval_frequency' %}
+			{% assign has_subscriptions = true %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+
+{% if has_subscriptions %}
+<!-- Subscriptions Powered by ReCharge Payments: JS -->
+<script>
+
+
+</script>
+
+{% endif %}
+<!-- Subscriptions Powered by ReCharge Payments: End Liquid Code -->
+
+
+
+    {% comment %}
+    {% if cart.item_count > 0 %}
+      {% for item in cart.items %}
+
+        {% assign has_subscriptions = false %}
+        {% for p in item.properties %}
+          {% if p.first == 'shipping_interval_frequency' %}
+            {% assign has_subscriptions = true %}
+          {% endif %}
+        {% endfor %}
+
+        {%- if has_subscriptions -%}
+          {% assign original_handle = item.product.metafields.subscriptions.original_handle %}
+          {% assign originalProduct = all_products[original_handle] %}
+        {%- else -%}
+          {% assign originalProduct = item.product %}
+        {%- endif -%}
+
+      <!-- <div class="js-cart-item ">
+        <div class="cart-row">
+          <div data-label="{{ 'customer.order.product' | t }}">
+
+            <div class="cart-image container">
+              {% if item.image != blank %}
+                <a href="{{ item.url | within: collections.all }}">
+                  {{ item.product.images[0] | img_url: '232x' | img_tag: item.title }}
+                </a>
+              {% endif %}
+            </div>
+
+            <hr>
+
+            <div class="cart-info container">
+              <h3><a href="{{ originalProduct.url }}">{{ originalProduct.title }}</a></h3>
+
+              {%- assign property_size = item.properties | size -%}
+
+              <div class="subscribe-text">
+                {% if property_size > 0 %}
+                  {% assign interval_frequency = '' %}
+                  {% for p in item.properties %}
+                    {% unless p.last == blank %}
+
+                      {%- if p.first == 'shipping_interval_frequency' -%}
+                        {% assign interval_frequency = p.last %}
+                      {%- elsif p.first == 'shipping_interval_unit_type' -%}
+                        {%- if interval_frequency == '1' and p.last contains 'Months' -%}
+                          <h4>Subscribe</h4>
+                          <h4>Delever every month</h4>
+                        {%- else -%}
+                          <h4>Subscribe</h4>
+                          <h4>Delever every {{ interval_frequency }} {{ p.last }}</h4>
+                        {%- endif -%}
+
+                      {%- endif -%}
+                    {% endunless %}
+                  {% endfor %}
+                {% else %}
+                  <h4>One-Time Purchase</h4>
+                {% endif %}
+              </div>
+
+              <div data-label="Quantity" class="quantity-cell">
+                <h4>Quantity </h4>
+                <div class="number-input-wrapper cart-number-input-wrapper">
+                  <input type="number"
+                      name="updates[]"
+                      id="updates_{{ item.key }}"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      aria-label="{{ 'cart.general.item_quantity' | t }}"
+                      onblur="this.form.submit();">
+                  <a href="#" class="subtract-one" data-quantity="{{ item.quantity }}" data-operation="subtract" data-product-id="{{ item.variant_id }}">-</a>
+                  <span class="placeholder item-count">{{ item.quantity }}</span>
+                  <a href="#" class="add-one" data-operation="add" data-product-id="{{ item.variant_id }}">+</a>
+                </div>
+              </div>
+
+              <div data-label="Total" class="total-cell">
+                <h4>Subtotal</h4>
+                <h4><span class="small-caps line-item-total">{{ item.line_price | money }}</span></h4>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div> -->
+
+    {% endfor %}
+
+    {% endcomment %}
