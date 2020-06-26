@@ -15,7 +15,7 @@ $selectric-font-size: 1.1rem !default; // Font size
 .selectric-wrapper {
   cursor: pointer;
   position: relative;
-  width: 17.5rem;
+  width: 100%;
   @include tablet-up {
     height: $selectric-height;
   }
@@ -118,6 +118,10 @@ $selectric-font-size: 1.1rem !default; // Font size
 
   .selectric-items {
     display: block;
+    @include tablet-up {
+      width: calc(100% + 2px) !important;
+      left: -1px;
+    }
   }
 }
 

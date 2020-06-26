@@ -18,3 +18,25 @@
     padding-bottom: 0;
   }
 }
+
+.page-facts {
+  .main-heading {
+    cursor: pointer;
+    position: relative;
+    padding-right: 6rem;
+  }
+  .faq-section-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 0;
+  }
+  .accordion {
+    margin-bottom: 5.55rem;
+  }
+  .expanded-section {
+    .faq-section-wrapper {
+      max-height: 1000vh;
+    }
+  }
+}

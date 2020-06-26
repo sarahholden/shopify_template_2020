@@ -60,16 +60,28 @@
             {% assign image = section.settings.image %}
             {% assign alt_text = section.settings.image_alt | escape %}
             {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-            <img
-            class="lazyload lazy-fade"
-            data-src="{{ img_url }}"
-            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-            data-aspectratio="{{ image.aspect_ratio }}"
-            data-sizes="auto"
-            alt="{{ alt_text }}"
-            data-anim="scale"
-            data-duration="200%"
-            >
+            {%- if format contains 'circle-image' -%}
+              <img
+              class="lazyload lazy-fade"
+              data-src="{{ img_url }}"
+              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+              data-aspectratio="{{ image.aspect_ratio }}"
+              data-sizes="auto"
+              alt="{{ alt_text }}"
+              >
+            {%- else -%}
+              <img
+              class="lazyload lazy-fade"
+              data-src="{{ img_url }}"
+              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+              data-aspectratio="{{ image.aspect_ratio }}"
+              data-sizes="auto"
+              alt="{{ alt_text }}"
+              data-anim="scale"
+              data-duration="200%"
+              >
+
+            {%- endif -%}
           </div>
         </div>
       </div>

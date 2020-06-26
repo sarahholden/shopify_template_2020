@@ -20,6 +20,7 @@ button {
   background: $grayButton;
   color: $black;
   border: 0.2rem solid transparent;
+  &:focus,
   &:hover {
     background: darken($grayButton, 8%);
     color: $black;
@@ -31,6 +32,7 @@ button {
   background: $darkGrey;
   color: white;
 
+  &:focus,
   &:hover {
     background: $darkGrey;
     color: white;
@@ -41,6 +43,7 @@ button {
   background: $blackButton;
   color: white;
 
+  &:focus,
   &:hover {
     background: $blackButton;
     color: white;

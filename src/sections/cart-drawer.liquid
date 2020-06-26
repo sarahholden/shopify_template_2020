@@ -23,6 +23,7 @@
         <div data-label="Product"
           class="js-cart-item cart-row"
           data-product-id="{{ variant_id }}"
+          data-variant-key="{{ key }}"
           data-interval-unit="{{ properties.shipping_interval_unit_type }}"
           data-frequency="{{ properties.shipping_interval_frequency }}"
           data-quantity="{{ quantity }}">
@@ -115,7 +116,7 @@
           item.original_title = originalProduct.title;
           item.original_image = originalProduct.featured_image;
 
-          console.log(originalProduct);
+          // console.log(originalProduct);
 
           cartItems.push(item);
         </script>

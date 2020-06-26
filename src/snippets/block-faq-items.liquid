@@ -30,9 +30,9 @@ FAQs
         {% when 'faq_item' %}
 
           <div class="accordion-panel cols-2 animate-item">
-            <h2 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h2>
+            <h2 class="accordion-toggle" tabindex="0"><span class="text">{{ block.settings.title }}</span> <span class="icon-plus-minus"></span></h2>
             <div class="accordion-text">
-              <div class="inner">
+              <div class="inner" tabindex="-1">
                 {{ block.settings.desc }}
               </div>
             </div>

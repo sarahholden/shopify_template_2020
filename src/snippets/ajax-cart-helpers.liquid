@@ -45,7 +45,7 @@
     $.each($duplicateVariantId, function () {
       var frequency = $(this).attr('data-frequency');
       var intervalUnit = $(this).attr('data-interval-unit');
-      console.log(frequency, lineItemfrequency, intervalUnit, lineItemIntervalUnit);
+      // console.log(frequency, lineItemfrequency, intervalUnit, lineItemIntervalUnit);
       if (frequency == lineItemfrequency && intervalUnit == lineItemIntervalUnit) {
         $(this).remove();
       }

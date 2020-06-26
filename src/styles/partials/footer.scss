@@ -25,7 +25,10 @@ footer .logo-icon {
 	background: $black;
 	color: #FEFEFE;
 	padding-top: 3.2rem;
-	padding-bottom: 10rem;
+	padding-bottom: 3rem;
+	@include tablet-up {
+		padding-right: 7rem;
+	}
 }
 
 /* MOBILE COLUMNS ================== */

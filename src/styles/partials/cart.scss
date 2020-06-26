@@ -17,6 +17,7 @@ $mobileBorderHeight: 1.7rem;
   transform: translateX(100%);
   transition: all 0.3s ease-in-out 0.3s;
   overflow-y: scroll;
+  border-left: $border;
   @include mobile-only {
     width: 100%;
     top: $mobileBorderHeight;

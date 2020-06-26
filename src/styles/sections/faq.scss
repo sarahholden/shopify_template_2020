@@ -4,7 +4,7 @@
 .page-faq header {
   .image-wrapper {
     @include tablet-up {
-      border-bottom: $border;
+      border-bottom: 1px solid $borderColor;
     }
     @include mobile-only {
       width: calc(100% + $mobileTotalSidePadding);
@@ -48,8 +48,8 @@
   background: $darkGreyBackground;
   padding: 1.7rem 2rem;
   display: flex;
-  border-top: $border;
-  border-bottom: $border;
+  border-top: 1px solid $borderColor;
+  border-bottom: 1px solid $borderColor;
   @include tablet-up {
     justify-content: space-between;
     .left-col-heading,
@@ -105,6 +105,9 @@ Accordions
 
     }
   }
+  p + p {
+    margin-top: 2rem;
+  }
   a {
     color: $primaryAnchorColor;
     &:hover {
@@ -134,38 +137,12 @@ Accordions
   position: relative;
   margin-top: 0;
   padding-right: 6rem;
+  &:focus {
+    text-decoration: underline;
+    outline: none;
+  }
   @include mobile-only {
     padding-right: 4.5rem;
-  }
-  /* Plus / Minus icon */
-  .icon {
-    cursor: pointer;
-    position: absolute;
-    right: 1.4rem;
-    top: 47%;
-    transform: translateY(-50%);
-    width: 2.8rem;
-    height: 2.8rem;
-    @include tablet-up {
-      top: 2.6rem;
-    }
-    @include mobile-only {
-      width: 2rem;
-      height: 2rem;
-    }
-  }
-  .icon::after,
-  .icon::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    border-bottom: 0.05rem solid $borderColor;
-  }
-  .icon::before {
-    transition: all 0.3s ease-in-out;
-    transform: rotate(90deg);
   }
 
   /* Accordion arrow (product detail page) */
@@ -180,6 +157,71 @@ Accordions
   }
 }
 
+/* --------------------------------------------------------------------------
+  PLUS MINUS ICON
+-----------------------------------------------------------------------------*/
+.icon-plus-minus {
+  cursor: pointer;
+  position: absolute;
+  right: 1.4rem;
+  top: 47%;
+  transform: translateY(-50%);
+  width: 2.8rem;
+  height: 2.8rem;
+  @include tablet-up {
+    top: 2.6rem;
+  }
+  @include mobile-only {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.icon-plus-minus::after,
+.icon-plus-minus::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid $borderColor;
+}
+
+.icon-plus-minus::before {
+  transition: all 0.3s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.faq-section-wrapper .accordion-toggle:not(.can-expand) {
+  cursor: default;
+  pointer-events: none;
+  @include tablet-up {
+    .icon-plus-minus {
+      display: none;
+    }
+  }
+}
+
+.expanded,
+.expanded-section .main-heading {
+
+  .icon-plus-minus {
+    top: 38%;
+  }
+  .icon-plus-minus::before {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .icon-plus-minus::after {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
 /* Expanded accordion styles ---------------- */
 .expanded {
   .accordion-text {
@@ -191,6 +233,7 @@ Accordions
       transition: all 0.3s ease-in-out 0.2s;
       opacity: 1;
     }
+
   }
   .accordion-toggle {
     .icon-arrow-down {
@@ -199,17 +242,6 @@ Accordions
       transition: all 0.3s ease-in-out;
 
     }
-    span::before {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-    span::after {
-      -webkit-transform: rotate(-180deg);
-      transform: rotate(-180deg);
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
+
   }
 }

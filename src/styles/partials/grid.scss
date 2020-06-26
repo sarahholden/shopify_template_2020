@@ -41,7 +41,7 @@ Grid Styles
 }
 
 .cols-2-lg {
-	@include desktop-up {
+	@include tablet-up {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
@@ -61,9 +61,6 @@ Grid Styles
 
 .cols-4 {
 	@include tablet-up {
-		grid-template-columns: repeat(2, 1fr);
-	}
-	@include desktop-up {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
@@ -76,9 +73,7 @@ Grid Styles
 
 .cols-6 {
 	@include tablet-up {
-		grid-template-columns: repeat(3, 1fr);
-	}
-	@include desktop-up {
+
 		grid-template-columns: repeat(6, 1fr);
 	}
 }

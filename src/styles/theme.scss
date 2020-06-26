@@ -49,6 +49,20 @@ Section Comment
   margin: -1px;
   padding: 0;
   border: 0;
+
+}
+
+.skip-link {
+  position: absolute;
+  top: -400px;
+  left: 0;
+  padding: 0.8rem;
+  z-index: 400;
+  background: white;
+  &:focus {
+    top: 0;
+
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -78,11 +92,13 @@ Section Comment
   p + p {
     margin-top: 2rem;
   }
+  ul {
+    margin-bottom: 2rem;
+  }
   a {
     text-decoration: underline;
   }
   em {
     font-style: italic;
-
   }
 }

@@ -175,37 +175,39 @@
                 {{ label_autodeliver }}
               </div>
               <div id="rc_autodeliver_options" class="rc_block rc_block__type__options sh-inner-col-2">
-                <label for="rc_shipping_interval_frequency" class=" rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
-                  <span class="rc_label__delivery inner-cell-left">{{ label_deliver_every }}</span>
-                  <span class="inner-cell-right">
-                    {% if shipping_interval_frequency.size == 1 %}
-                    <span class="rc_label__frequency">
-                      {{ shipping_interval_frequency[0] }}
-                      {% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
-                      {{ label_unit_type | remove: 's' }}
-                      {% else %}
-                      {{ label_unit_type }}
+                <div>
+                  <!-- <label for="rc_shipping_interval_frequency" class=" rc_label rc_label__deliver_every" aria-label="Subscription frequency options">
+                    <span class="rc_label__delivery inner-cell-left">{{ label_deliver_every }}</span>
+                    <span class="inner-cell-right">
+                      {% if shipping_interval_frequency.size == 1 %}
+                      <span class="rc_label__frequency">
+                        {{ shipping_interval_frequency[0] }}
+                        {% if shipping_interval_frequency[0] == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+                        {{ label_unit_type | remove: 's' }}
+                        {% else %}
+                        {{ label_unit_type }}
+                        {% endif %}
+                      </span>
                       {% endif %}
                     </span>
-                    {% endif %}
-                    <select name="" id="rc_shipping_interval_frequency" class="styled-select selectric-responsive rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
-                      {% for frequency in shipping_interval_frequency %}
-                      <option value="{{ frequency }}">
+                  </label> -->
+                  <select name="Frequency" id="rc_shipping_interval_frequency" class="styled-select selectric-responsive rc_select rc_select__frequency styled replaced" {% if shipping_interval_frequency.size == 1 %}style="display: none;"{% endif %}>
+                    {% for frequency in shipping_interval_frequency %}
+                    <option value="{{ frequency }}">
 
-                        {% if frequency == "1" and label_unit_type == 'Months' %}
-                          Monthly
-                        {% elsif frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
-                          {{ frequency }}
-                          {{ label_unit_type | remove: 's' }}
-                        {% else %}
-                          {{ frequency }}
-                          {{ label_unit_type }}
-                        {% endif %}
-                      </option>
-                      {% endfor %}
-                    </select>
-                  </span>
-                </label>
+                      {% if frequency == "1" and label_unit_type == 'Months' %}
+                        Monthly
+                      {% elsif frequency == "1" and label_unit_type == 'Months' or label_unit_type == 'Weeks' %}
+                        {{ frequency }}
+                        {{ label_unit_type | remove: 's' }}
+                      {% else %}
+                        {{ frequency }}
+                        {{ label_unit_type }}
+                      {% endif %}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
               </div>
             </span>
             <span class="sh-right-col">

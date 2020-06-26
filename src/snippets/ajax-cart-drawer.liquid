@@ -55,7 +55,7 @@ $(document).ready(function() {
   }
 
   /* ---------------------------------------------
-  ADD ITEMS TO CART ON PAGE LOAD
+  ADD ONE BUTTON
   ------------------------------------------------ */
   $('.js-cart-drawer').on('click', '.add-one', function (e) {
     e.preventDefault();
@@ -80,12 +80,6 @@ $(document).ready(function() {
       'properties': properties
     };
 
-
-    // var addToCartData = {
-    //   'id': variant_id,
-    //   'quantity': 1
-    // };
-
     $.ajax({
       type: 'POST',
       url: '/cart/add.js',
@@ -102,40 +96,30 @@ $(document).ready(function() {
     });
   });
 
+
+  /* ---------------------------------------------
+  SUBTRACT ONE BUTTON
+  ------------------------------------------------ */
   $('.js-cart-drawer').on('click', '.subtract-one', function (e) {
     e.preventDefault();
     var cartItem = $(this).closest('.js-cart-item');
     var $itemCountWrapper = $(cartItem).find('.js-count-placeholder');
-    var variant_id = $(cartItem).data('product-id');
-    // var frequency = $(cartItem).attr('data-frequency');
-    // var unit_type = $(cartItem).attr('data-interval-unit');
-    // var properties = {};
-    //
-    // if (frequency && unit_type) {
-    //   properties = {
-    //     'shipping_interval_frequency': frequency,
-    //     'shipping_interval_unit_type': unit_type
-    //   };
-    // }
-    //
-    // var addToCartData = {
-    //   'id': variant_id,
-    //   'quantity': 1,
-    //   'properties': properties
-    // };
+
+    // USE VARIANT KEY INSTEAD OF VARIANT ID - FIX FOR RECHARGE WEIRDNESS
+    var variant_key = $(cartItem).data('variant-key');
 
     var addToCartData = {
       updates: {}
     };
 
+    // GET UPDATED QUANTITY
     var updatedQuantity = $(cartItem).attr('data-quantity');
     updatedQuantity = parseInt(updatedQuantity, 10);
     updatedQuantity -= 1;
 
-    addToCartData.updates[variant_id] = updatedQuantity;
+    addToCartData.updates[variant_key] = updatedQuantity;
 
-    console.log(addToCartData);
-
+    // SUBTRACT ITEM FROM CART
     if (updatedQuantity >= 0) {
       $.ajax({
         type: "POST",
@@ -148,7 +132,7 @@ $(document).ready(function() {
           var isInCart = false;
 
           for (var i = 0; i < cart.items.length; i++) {
-            if (cart.items[i].id == variant_id) {
+            if (cart.items[i].key == variant_key) {
               var lineItem = cart.items[i];
               updateLineItem(cartItem, lineItem);
               isInCart = true;
@@ -163,10 +147,11 @@ $(document).ready(function() {
       });
     }
 
-
   });
 
-
+  /* ---------------------------------------------
+  REMOVE BUTTON
+  ------------------------------------------------ */
   $('.remove-item').on('click', function(e) {
     e.preventDefault();
 

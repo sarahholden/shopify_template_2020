@@ -7,6 +7,7 @@
 }
 
 /* LINE DOWN MIDDLE OF PAGE ================== */
+.template-collection .thumbs-wrapper,
 .template-product #MainContent {
   @include tablet-up {
     position: relative;
@@ -17,9 +18,10 @@
       top: 0;
       left: 50%;
       // transform: translateX(-50%);
-      width: 0.05rem;
+      width: 0.1rem;
       height: 100%;
-      border-left: $border;
+      border-left: 1px solid $borderColor;
+      z-index: 2;
     }
   }
 }
@@ -361,7 +363,7 @@
   .accordion-toggle {
     @extend %smallCaps;
   }
-  .accordion-toggle .icon {
+  .accordion-toggle .icon-plus-minus {
     top: 46%;
     width: 1.6rem;
     height: 1.6rem;
@@ -390,17 +392,31 @@
   @include mobile-only {
     padding-left: 1.4rem;
     padding-right: 1.4rem;
-    padding-top: 2rem;
+    padding-top: 0;
   }
 }
 
+/* CROPPED IMAGES ================== */
+.product-images-col {
+  .cropped-image-wrapper {
+    padding-bottom: 96%;
+  }
+  [data-swiper-slide-index="0"] {
+    .cropped-image-wrapper {
+      @include mobile-only {
+        padding-bottom: 130%;
+      }
+    }
+  }
+}
+
+/* SWIPER STYLES ================== */
 .swiper-container-product {
   padding: 3rem 5rem 4rem !important;
 
   @include mobile-only {
-    padding: 2rem 4rem 5rem !important;
+    padding: 0 4rem 5rem !important;
   }
-
   .swiper-pagination {
     bottom: 0;
   }
@@ -415,8 +431,14 @@
   .swiper-pagination-bullet-active {
     background: $primaryTextColor;
   }
+  .swiper-slide {
+    display: flex;
+    height: auto;
+    align-items: center;
+  }
 }
 
+/* SWIPER ARROWS ================== */
 .swiper-has-arrows {
   .swiper-next,
   .swiper-prev {

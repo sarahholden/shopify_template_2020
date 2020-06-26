@@ -5,9 +5,9 @@ Body Open Mobile Nav Styles
 -----------------------------------------------------------------------------*/
 .open-mobile-nav {
   /* Prevent the body from scrolling under the mobile navigation */
-  // position: fixed;
-  // overflow: hidden;
-  // width: 100%;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
 }
 
 /* --------------------------------------------------------------------------
@@ -33,12 +33,12 @@ $mobileBorderHeight: 1.7rem;
   .inner {
     @extend %stretch-aligner;
     @include tablet-up {
-      border-bottom: 0.05rem solid $black;
+      border-bottom: $border;
     }
   }
   .container {
     @include mobile-only {
-      border-bottom: 0.05rem solid $black;
+      border-bottom: $border;
     }
   }
 
@@ -50,44 +50,65 @@ Header Navigation Styles
 .nav-wrapper nav {
   @extend %stretch-aligner;
   z-index: 300;
+  @include tablet-up {
+    flex-grow: 1;
+  }
   ul {
     @extend %stretch-aligner;
+    @include tablet-up {
+      width: 100%;
+    }
   }
   li {
-    display: inline-flex;
     @extend %v-aligner;
+    display: inline-flex;
+    @include tablet-up {
+      width: 25%;
+      &:last-child {
+        display: none;
+        a {
+          // width: auto;
+          // min-width: 8.08vw;
+        }
+      }
+    }
   }
+}
+
+/* LEFT LINE OF CONTACT LINK SHOULD BE AT 50% ================== */
+.nav-wrapper .left-col {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.nav-wrapper .contact-link,
+.nav-wrapper nav {
   a {
     @extend %smallCaps;
     color: $primaryAnchorColor;
 
     @include tablet-up {
+      border-left: $border;
       display: inline-block;
       padding: $footerTabletUpPadding;
-      min-width: 11.61rem;
-      min-width: 8.08vw;
+      width: 100%;
+      display: block;
       text-align: center;
     }
     &:hover {
       background: $grayButton;
     }
   }
-  li {
-    @include tablet-up {
-      border-left: $border;
-      &:last-child {
-        border-right: $border;
-      }
-    }
-  }
   a:hover {
     color: darken($primaryAnchorColor, 20%);
   }
-  .current-page {
-    /* Styles for the currently active link */
+}
 
+.nav-wrapper .contact-link a {
+  @include tablet-up {
+    border-right: $border;
   }
-
 }
 
 /* --------------------------------------------------------------------------
@@ -99,7 +120,11 @@ Logo Styles
   margin-bottom: 1.5rem;
   @include tablet-up {
     width: 10.75vw;
+    // width: 11.3%;
     margin: 1rem 6.05rem 1.6rem 0.1rem;
+  }
+  @include monitor-up {
+    max-width: 15rem;
   }
 }
 
@@ -107,7 +132,7 @@ Logo Styles
 @include mobile-only {
   .nav-wrapper nav {
     position: fixed;
-    top: 7.3rem;
+    top: 7.2rem;
     // top: 0;
     right: 0;
     width: 18.7rem;
@@ -120,6 +145,7 @@ Logo Styles
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-top: $border;
     ul {
       display: block;
     }

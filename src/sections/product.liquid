@@ -15,17 +15,52 @@
       {% if product.images.size > 0 %}
         <div class="swiper-container swiper-has-arrows swiper-container-product">
           <div class="swiper-wrapper">
+          {% assign index = 0 %}
           {% for image in product.images %}
-            <div class="swiper-slide">
-              {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-              <img class="lazyload"
+            {%- if index == 0 or index == 1  -%}
+              <div class="swiper-slide">
+                <!-- <div class="cropped-image-wrapper"> -->
+                  {%- if index == 0 -%}
+                    {% assign mobile_image = product.images[2] %}
+                  {%- else -%}
+                    {% assign mobile_image = product.images[3] %}
+                  {%- endif -%}
+                  {% assign image = product.featured_image.src %}
+                  {% assign alt_text = product.featured_image.alt | escape %}
+                  {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                  {% assign mobile_img_url = mobile_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                  <img class="lazyload hide-mobile"
                   data-src="{{ img_url }}"
                   data-widths="[360, 540, 720, 900, 1080, 1600]"
                   data-aspectratio="{{ lazy_image.aspect_ratio }}"
                   data-sizes="auto"
                   alt="{{ featured_image.alt | escape }}"
                   data-product-single-thumbnail />
-            </div>
+                  <img class="lazyload show-mobile"
+                  data-src="{{ mobile_img_url }}"
+                  data-widths="[360, 540, 720, 900, 1080, 1600]"
+                  data-aspectratio="{{ lazy_image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ featured_image.alt | escape }}"
+                  data-product-single-thumbnail />
+
+                <!-- </div> -->
+              </div>
+            {%- elsif index > 3 -%}
+              <div class="swiper-slide">
+                {% assign image = product.featured_image.src %}
+                {% assign alt_text = product.featured_image.alt | escape %}
+                {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                <img class="lazyload"
+                data-src="{{ img_url }}"
+                data-widths="[360, 540, 720, 900, 1080, 1600]"
+                data-aspectratio="{{ lazy_image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ featured_image.alt | escape }}"
+                data-product-single-thumbnail />
+              </div>
+            {%- endif -%}
+          {% assign index = index | plus: 1 %}
           {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
@@ -45,6 +80,7 @@
           {{ product.description }}
         </div>
       </div>
+
 
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">

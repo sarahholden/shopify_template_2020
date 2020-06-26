@@ -384,7 +384,29 @@ $(document).ready(function() {
     $(this)
       .closest('.accordion-panel')
       .toggleClass('expanded');
+    $(this)
+      .closest('.accordion-panel')
+      .find('.inner')
+      .focus();
   });
+
+
+  // FACTS - MAKE SECTIONS COLLAPSIBLE
+  $('.js-expand-facts-section').on('click', function () {
+    $(this).closest('.js-facts-faq-section').toggleClass('expanded-section');
+  });
+
+
+  // Show plus signs ONLY if there is overflow
+  if ($('.faq-section-wrapper').length > 0) {
+    $('.accordion-panel').each(function () {
+      var self = this;
+
+      if ( $(this).find('.accordion-text .inner').prop('offsetHeight') - 15 > $(this).find('.accordion-text').prop('offsetHeight') ) {
+        $(self).closest('.accordion-panel').find('.accordion-toggle').addClass('can-expand');
+      }
+    });
+  }
 
 
   /* ---------------------------------------------
@@ -404,10 +426,6 @@ $(document).ready(function() {
   SELECTRIC
   ------------------------------------------------ */
   $('.styled-select').selectric();
-  /* ---------------------------------------------
-  TEXT EFFECT WRAPPER
-  ------------------------------------------------ */
-  // $('.js-animation-wrapper').scrollClass();
 
   /* ---------------------------------------------
   SMOOTH SCROLL
@@ -473,6 +491,7 @@ $(document).ready(function() {
 
       $('body').addClass('show-email-popup');
       $('.email-popup-form-wrapper, .js-form-animation-wrapper').addClass('js-animate');
+      $('.email-popup-form-wrapper').focus();
 
 
       // Set a cookie so the popup only shows once every 30 days

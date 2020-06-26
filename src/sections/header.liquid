@@ -43,11 +43,23 @@
 
       <div class="container">
         <div class="inner">
-          <!--   LOGO   -->
-          {%- include 'nav-logo' -%}
+          <div class="left-col">
+            <!--   LOGO   -->
+            {%- include 'nav-logo' -%}
 
-          <!--   NAV   -->
-          {%- include 'nav-menu' -%}
+            <!--   NAV   -->
+            {%- include 'nav-menu' -%}
+          </div>
+
+          <!-- HACK FOR DESKTOP - TO GET DIVIDER LINE PERFECTLY IN CENTER -->
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {% if forloop.last == true %}
+              <div class="contact-link hide-mobile">
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+
 
           <!-- Social Icons -->
           {%- include 'social-icons' -%}

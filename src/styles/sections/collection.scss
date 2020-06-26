@@ -10,13 +10,17 @@
     @include tablet-up {
       // Align center line (hack)
       position: relative;
-      left: 0.2rem;
     }
     @include mobile-only {
       border-bottom: 0;
     }
   }
   .product-thumb {
+    @include tablet-up {
+      &:nth-of-type(odd) {
+        border-right: 0;
+      }
+    }
     @include mobile-only {
       padding-top: 1rem;
     }
