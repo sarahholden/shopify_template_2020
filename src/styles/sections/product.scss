@@ -40,7 +40,7 @@
 -----------------------------------------------------------------------------*/
 .page-product-detail .product-intro-info {
   padding-bottom: 3.6rem;
-  border-bottom: $border;
+  // border-bottom: $border;
   @include tablet-up {
     padding-top: 5.65rem;
   }
@@ -462,4 +462,20 @@
 .social-sharing svg {
   display: block;
   width: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+  KLAVIYO - PRE-LAUNCH MESSAGE
+-----------------------------------------------------------------------------*/
+.klaviyo-form-product {
+  background: $darkGreyBackground;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  h2 {
+    margin-bottom: 3rem;
+  }
+  #sh-klaviyo-form-light {
+    border-top: $border;
+  }
 }

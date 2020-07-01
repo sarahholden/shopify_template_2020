@@ -76,23 +76,25 @@
 #sh-yotpo {
   .yotpo .yotpo-modal-dialog .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button,
   .yotpo.yotpo-main-widget .yotpo-bottomline.yotpo-bottomline-2-boxes .yotpo-default-button.write-review-button {
-    @extend %smallCaps;
-    // cursor: pointer;
-    // color: black;
-    // border: 0;
-    // border-radius: 0;
-    // transition: all 0.3s ease-in-out;
-    // outline: none;
-    // background-color: transparent;
-    // padding: 2.1rem 3.3rem;
-    // line-height: 1;
     top: 1.5rem;
-    background: transparent;
+    @extend %smallCaps;
+    cursor: pointer;
+    color: black;
+    border: 0;
+    border-radius: 0;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: transparent;
+    padding: 2.1rem 3.3rem;
+    line-height: 1;
+    background: $grayButton;
     color: $black;
+    @include mobile-only {
+      letter-spacing: 0.156rem;
+    }
     &:hover {
-      background: transparent;
+      background: darken($grayButton, 8%);
       color: $black;
-      text-decoration: underline;
     }
   }
 

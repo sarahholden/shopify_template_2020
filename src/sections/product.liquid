@@ -82,10 +82,13 @@
       </div>
 
 
+      {% if product.variants.first.inventory_quantity > 0 %}
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
         <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
         <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+
+
 
         <form id="add-item-form" action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
 
@@ -147,11 +150,6 @@
             {% endfor %}
           </select>
 
-          <!-- <div class="container-left-lg container-mobile form-cell quantity-wrapper">
-            <label for="quantity">{{ 'products.product.quantity' | t }}:</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1">
-          </div> -->
-
           <div class="spacer-row"></div>
 
           {%- assign featured_image_url = featured_image | img_url: '650x' -%}
@@ -187,8 +185,21 @@
           </button>
         </form>
 
-      </div>
 
+
+      </div>
+      {% endif %}
+
+
+      <!-- ======================================
+      PRE-LAUNCH SIGNUP FORM
+      =========================================== -->
+      <div class="container padded klaviyo-form-product">
+        {% if section.settings.pre_launch_text != blank %}
+          <h2>{{ section.settings.pre_launch_text | newline_to_br }}</h2>
+        {% endif %}
+        <div id="sh-klaviyo-form-light" class="klaviyo-form-VfFNQN"></div>
+      </div>
 
       <!-- ======================================
       PRODUCT ACCORDIONS
@@ -196,16 +207,16 @@
       <div class="product-accordions container-right-lg container-mobile">
         <div class="accordion list-animation-wrapper" data-anim="scroll">
 
-          {% if product.metafields.custom_fields["ingredients_heading"] != blank and product.metafields.custom_fields["product_ingredients"] != blank %}
-            {% assign accordion_heading = product.metafields.custom_fields["ingredients_heading"] %}
-            {% assign accordion_text = product.metafields.custom_fields["product_ingredients"] %}
-            {%- include 'block-faq-product', class_name: 'ingredients' -%}
-          {% endif %}
-
           {% if product.metafields.custom_fields["instructions_heading"] != blank and  product.metafields.custom_fields["product_instructions"] != blank %}
             {% assign accordion_heading = product.metafields.custom_fields["instructions_heading"] %}
             {% assign accordion_text = product.metafields.custom_fields["product_instructions"] %}
             {%- include 'block-faq-product', class_name: 'instructions'  -%}
+          {% endif %}
+
+          {% if product.metafields.custom_fields["ingredients_heading"] != blank and product.metafields.custom_fields["product_ingredients"] != blank %}
+            {% assign accordion_heading = product.metafields.custom_fields["ingredients_heading"] %}
+            {% assign accordion_text = product.metafields.custom_fields["product_ingredients"] %}
+            {%- include 'block-faq-product', class_name: 'ingredients' -%}
           {% endif %}
 
           {% if product.metafields.custom_fields["optional_accordion_3_heading"] != blank and product.metafields.custom_fields["optional_accordion_3_text"] != blank %}
@@ -231,8 +242,6 @@
       <!-- ======================================
       PRODUCT REVIEWS
       =========================================== -->
-      <!-- <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div> -->
-
       <div class="container-right-lg container-mobile">
         <div id="sh-yotpo">
           <div class="yotpo yotpo-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}" data-price="{{ variant.price | money_without_currency }}"
@@ -256,11 +265,8 @@
             </div>
         </div>
       </div>
-
     </div>
   </div>
-
-
 
 
 
@@ -279,11 +285,12 @@
     "class": "page-product-detail",
     "settings": [
       {
-        "type": "checkbox",
-        "id": "show_share_buttons",
-        "label": "Show social sharing buttons",
-        "default": true
+        "type": "text",
+        "id": "pre_launch_text",
+        "label": "Pre-Launch Newsletter Heading",
+        "default": "Coming Soon. Join The Waitlist."
       }
+
     ]
   }
 {% endschema %}

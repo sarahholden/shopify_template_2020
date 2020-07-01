@@ -68,6 +68,7 @@ Section Comment
 /* --------------------------------------------------------------------------
   GENERAL PAGES
 -----------------------------------------------------------------------------*/
+.page-404,
 .page-general {
   @include tablet-up {
     padding-top: 8rem;
@@ -101,4 +102,8 @@ Section Comment
   em {
     font-style: italic;
   }
+}
+
+.page-404 {
+  text-align: center;
 }

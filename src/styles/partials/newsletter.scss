@@ -162,7 +162,8 @@
 /* --------------------------------------------------------------------------
   KLAVIYO FORM RESET
 -----------------------------------------------------------------------------*/
-#sh-klaviyo-form {
+#sh-klaviyo-form,
+#sh-klaviyo-form-light {
   form {
     padding: 0 !important;
   }
@@ -192,8 +193,17 @@
   }
 }
 
+#sh-klaviyo-form-light {
+  input[type="email"],
+  input[type="text"] {
+    border-bottom: 0.05rem solid $primaryTextColor !important;
+    color: $primaryTextColor;
+  }
+}
+
 /* PLACEHOLDER TEXT ================== */
-#sh-klaviyo-form {
+#sh-klaviyo-form,
+#sh-klaviyo-form-light {
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: white !important;
@@ -246,8 +256,45 @@
   }
 }
 
+// PRODUCT PAGE - LIGHT THEMED FORM
+#sh-klaviyo-form-light {
+  ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $primaryTextColor !important;
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $primaryTextColor !important;
+  }
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    color: $primaryTextColor !important;
+  }
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: $primaryTextColor !important;
+  }
+  input:focus::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(0, 0, 0, .7) !important;
+  }
+  input:focus::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(0, 0, 0, .7) !important;
+  }
+  input:focus:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(0, 0, 0, .7) !important;
+  }
+  input:focus:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(0, 0, 0, .7) !important;
+  }
+}
+
 /* BUTTON STYLES ================== */
-#sh-klaviyo-form {
+#sh-klaviyo-form,
+#sh-klaviyo-form-light {
   button {
     @extend %smallCaps;
     cursor: pointer !important;
@@ -270,11 +317,23 @@
       color: white !important;
     }
   }
-
+}
+// PRODUCT PAGE (LIGHT THEME)
+#sh-klaviyo-form-light {
+  button {
+    margin-top: 1rem;
+    background: black !important;
+    color: white !important;
+    &:hover {
+      background: darken(black, 8%) !important;
+      color: white !important;
+    }
+  }
 }
 
 /* RADIO STYLES ================== */
-#sh-klaviyo-form {
+#sh-klaviyo-form,
+#sh-klaviyo-form-light {
   label,
   label div {
     color: white !important;
@@ -315,7 +374,8 @@
 }
 
 /* THANK YOU CONFIRMATION STYLES ================== */
-#sh-klaviyo-form .ql-editor {
+#sh-klaviyo-form .ql-editor,
+#sh-klaviyo-form-light .ql-editor {
   margin-top: 2rem !important;
   p,
   strong {
@@ -347,5 +407,16 @@
       font-size: 2.5rem !important;
       line-height: (35 / 25) !important;
     }
+  }
+}
+
+/* THANK YOU CONFIRMATION STYLES - PRODUCT PAGE ================== */
+#sh-klaviyo-form-light .ql-editor {
+  p,
+  strong {
+    color: $primaryTextColor !important;
+  }
+  p {
+    color: $primaryTextColor !important;
   }
 }
