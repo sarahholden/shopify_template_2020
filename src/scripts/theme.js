@@ -19,7 +19,9 @@ window.theme = window.theme || {};
 // =require templates/customers-login.js
 
 $(document).ready(function() {
-  console.log('Shopify developer: Sarah Holden 🏄🏻‍♀️');
+  console.log('Design and branding: Nice People');
+  console.log('http://nicepeople.com/');
+  console.log('Shopify developer: Sarah Holden 👀');
   console.log('https://saraheholden.com/');
 
   var sections = new slate.Sections();
