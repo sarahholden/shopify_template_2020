@@ -82,11 +82,11 @@
       </div>
 
 
-      {% if product.variants.first.inventory_quantity > 0 %}
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
         <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
         <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+      {% if product.variants.first.inventory_quantity > 0 %}
 
 
 
@@ -187,8 +187,8 @@
 
 
 
-      </div>
       {% endif %}
+    </div>
 
 
       <!-- ======================================
