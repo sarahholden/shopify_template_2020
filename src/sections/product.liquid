@@ -189,7 +189,7 @@
 
       {% endif %}
     </div>
-
+    {% unless product.variants.first.inventory_quantity > 0 %}
 
       <!-- ======================================
       PRE-LAUNCH SIGNUP FORM
@@ -200,6 +200,7 @@
         {% endif %}
         <div id="sh-klaviyo-form-light" class="klaviyo-form-VfFNQN"></div>
       </div>
+    {% endunless %}
 
       <!-- ======================================
       PRODUCT ACCORDIONS
