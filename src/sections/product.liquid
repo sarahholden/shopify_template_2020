@@ -162,13 +162,15 @@
             data-original-title="{{ product.title }}"
             data-original-image="{{ featured_image_url }}"
             {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            {%- if current_variant.price -%}
               <span class="price-wrapper" data-price-wrapper>
-                <span data-product-price>
-                  {{ current_variant.price | money }}
-                </span>
-                <span class="js-price temp-hidden">
-                  {{ current_variant.price | money }}
-                </span>
+                  <span data-product-price>
+                    {{ current_variant.price | money }}
+                  </span>
+                  <span class="js-price temp-hidden">
+                    {{ current_variant.price | money }}
+                  </span>
+
 
                 <!-- {% if product.compare_at_price_max > product.price %}
                   <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
@@ -179,6 +181,7 @@
                   </s>
                 {% endif %} -->
               </span>
+              {%- endif -%}
               <span data-add-to-cart-text class="js-add-to-cart-text">
                 Subscribe Now
               </span>

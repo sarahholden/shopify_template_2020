@@ -141,6 +141,10 @@
       var quantity = parseInt($('#quantity').val(), 10);
       var pricePerUnit = parseFloat($('[data-onetime-unit-price]').data('onetime-unit-price'));
 
+      if (!pricePerUnit) {
+        return;
+      }
+
       updatePrice(quantity, pricePerUnit);
 
       $('.js-add-to-cart-text').text('Add to Cart');
