@@ -424,6 +424,11 @@ $(document).ready(function() {
     $('body').removeClass('open-cart');
   });
 
+  console.log(window.location.hash);
+
+  if (window.location.hash && window.location.hash == '#view-cart') {
+    $('body').addClass('open-cart');
+  }
   /* ---------------------------------------------
   SELECTRIC
   ------------------------------------------------ */
